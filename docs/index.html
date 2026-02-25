@@ -808,9 +808,35 @@
 
     <main class="container">
 
-        <!-- QUICK ACTION BUTTONS — rendered dynamically from site-data.json + admin settings -->
+        <!-- QUICK ACTION BUTTONS — JS will replace these with dynamic versions -->
         <section id="quick-links">
-            <div class="action-grid" id="action-grid"></div>
+            <div class="action-grid" id="action-grid">
+                <a class="action-card action-card--green" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
+                    <span class="action-icon">🛒</span>
+                    <span class="action-label">Team Store</span>
+                    <span class="action-sub">Jerseys &amp; Gear</span>
+                </a>
+                <a class="action-card action-card--outline" href="https://get.groupspot.app/QZLhY" target="_blank" rel="noopener">
+                    <span class="action-icon">📲</span>
+                    <span class="action-label">Join GroupSpot</span>
+                    <span class="action-sub">Parents</span>
+                </a>
+                <a class="action-card action-card--outline" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
+                    <span class="action-icon">📋</span>
+                    <span class="action-label">Sign-Ups</span>
+                    <span class="action-sub">Concessions &amp; Snacks</span>
+                </a>
+                <a class="action-card action-card--outline" href="#" onclick="openScheduleModal(event)">
+                    <span class="action-icon">📅</span>
+                    <span class="action-label">Schedule</span>
+                    <span class="action-sub">Games &amp; Events</span>
+                </a>
+                <a class="action-card action-card--gold" href="https://www.stattyapp.com/public" target="_blank" rel="noopener">
+                    <span class="action-icon">📊</span>
+                    <span class="action-label">Live Stats</span>
+                    <span class="action-sub">Game Cast on Statty</span>
+                </a>
+            </div>
         </section>
 
         <!-- GROUPSPOT / COMMUNICATION -->
@@ -1005,7 +1031,7 @@
 
                     var el = document.createElement('a');
                     el.className = 'action-card action-card--' + btn.style;
-                    el.setAttribute('-webkit-tap-highlight-color', 'transparent');
+                    el.style.webkitTapHighlightColor = 'transparent';
 
                     if (btn.action) {
                         el.href = '#';
