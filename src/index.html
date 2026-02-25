@@ -177,8 +177,8 @@
         .action-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            padding: 1.5rem 0;
+            gap: 0.5rem;
+            padding: 1rem 0;
         }
 
         /* Center the 5th (odd) button on its own row */
@@ -194,11 +194,11 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 1.25rem 0.75rem;
-            border-radius: 16px;
+            padding: 0.75rem 0.5rem;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             transition: all 0.2s;
             border: 2px solid transparent;
             -webkit-tap-highlight-color: transparent;
@@ -206,8 +206,8 @@
         }
 
         .action-card .action-icon {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.35rem;
+            margin-bottom: 0.3rem;
         }
 
         .action-card .action-label {
@@ -215,10 +215,10 @@
         }
 
         .action-card .action-sub {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 500;
             opacity: 0.7;
-            margin-top: 0.25rem;
+            margin-top: 0.15rem;
         }
 
         .action-card--green {
@@ -811,22 +811,7 @@
         <!-- QUICK ACTION BUTTONS — JS will replace these with dynamic versions -->
         <section id="quick-links">
             <div class="action-grid" id="action-grid">
-                <a class="action-card action-card--green" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
-                    <span class="action-icon">🛒</span>
-                    <span class="action-label">Team Store</span>
-                    <span class="action-sub">Jerseys &amp; Gear</span>
-                </a>
-                <a class="action-card action-card--outline" href="https://get.groupspot.app/QZLhY" target="_blank" rel="noopener">
-                    <span class="action-icon">📲</span>
-                    <span class="action-label">Join GroupSpot</span>
-                    <span class="action-sub">Parents</span>
-                </a>
-                <a class="action-card action-card--outline" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
-                    <span class="action-icon">📋</span>
-                    <span class="action-label">Sign-Ups</span>
-                    <span class="action-sub">Concessions &amp; Snacks</span>
-                </a>
-                <a class="action-card action-card--outline" href="#" onclick="openScheduleModal(event)">
+                <a class="action-card action-card--green" href="#" onclick="openScheduleModal(event)">
                     <span class="action-icon">📅</span>
                     <span class="action-label">Schedule</span>
                     <span class="action-sub">Games &amp; Events</span>
@@ -835,6 +820,21 @@
                     <span class="action-icon">📊</span>
                     <span class="action-label">Live Stats</span>
                     <span class="action-sub">Game Cast on Statty</span>
+                </a>
+                <a class="action-card action-card--outline" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
+                    <span class="action-icon">📋</span>
+                    <span class="action-label">Sign-Ups</span>
+                    <span class="action-sub">Concessions &amp; Snacks</span>
+                </a>
+                <a class="action-card action-card--outline" href="https://get.groupspot.app/QZLhY" target="_blank" rel="noopener">
+                    <span class="action-icon">📲</span>
+                    <span class="action-label">Join GroupSpot</span>
+                    <span class="action-sub">Parents</span>
+                </a>
+                <a class="action-card action-card--outline" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
+                    <span class="action-icon">🛒</span>
+                    <span class="action-label">Team Store</span>
+                    <span class="action-sub">Jerseys &amp; Gear</span>
                 </a>
             </div>
         </section>
