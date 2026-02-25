@@ -1,0 +1,40 @@
+{
+  "season": "2026",
+  "announcement": {
+    "active": true,
+    "emoji": "📸",
+    "text": "Team photos — Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
+  },
+  "links": {
+    "teamStore": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
+    "groupspotParents": "https://get.groupspot.app/QZLhY",
+    "groupspotPlayers": "https://get.groupspot.app/RAaUG",
+    "signupSheet": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
+    "liveStats": "https://www.stattyapp.com/public",
+    "teamApp": ""
+  },
+  "scheduleLinks": {
+    "varsity": "https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/",
+    "jv": "https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/",
+    "frosh": ""
+  },
+  "groupspot": {
+    "parentCode": "QZLhY"
+  },
+  "schedule": [
+    { "date": "Mar 7", "opponent": "Mountain Crest", "time": "4:00 PM", "location": "home" },
+    { "date": "Mar 14", "opponent": "Sky View", "time": "4:00 PM", "location": "away" },
+    { "date": "Mar 21", "opponent": "Logan", "time": "4:00 PM", "location": "home" },
+    { "date": "Mar 28", "opponent": "Ridgeline", "time": "4:00 PM", "location": "away" },
+    { "date": "Apr 4", "opponent": "Bear River", "time": "4:00 PM", "location": "home" }
+  ],
+  "photoDay": {
+    "date": "Monday, March 2nd",
+    "time": "5:00 PM",
+    "note": "After practice. Parent Night follows at 6:30 PM."
+  },
+  "signups": {
+    "concessions": "1 Concessions spot",
+    "food": "1 Lunch for an away game OR 2 Snacks for home games"
+  }
+}

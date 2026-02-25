@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Green Canyon Lacrosse | GC Lax</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <!-- Open Graph / Social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Green Canyon Lacrosse — GC LAX 2026">
+    <meta property="og:description" content="Your one-stop hub for GC Lacrosse team info, schedules, sign-ups, the team store, and more. Go Wolves!">
+    <meta property="og:url" content="https://greencanyonlacrosse.com">
+    <meta property="og:site_name" content="GC Lax">
+    <meta name="description" content="Green Canyon High School Lacrosse — team store, schedules, sign-ups, GroupSpot links, and everything parents and players need for the 2026 season.">
+
+    <!-- Apple / iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a5632">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gc-green: #1a5632;
+            --gc-green-light: #2a7a4a;
+            --gc-green-dark: #0e3a20;
+            --gc-gold: #c8a951;
+            --gc-silver: #a8b5ad;
+            --gc-white: #ffffff;
+            --gc-gray-50: #f8faf9;
+            --gc-gray-100: #f0f4f2;
+            --gc-gray-200: #dce5df;
+            --gc-gray-600: #4a6352;
+            --gc-gray-800: #1a2e21;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gc-gray-800);
+            background: var(--gc-white);
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* ===== ANNOUNCEMENT BANNER ===== */
+        .announcement {
+            background: linear-gradient(90deg, #fef3c7, #fde68a);
+            border-bottom: 1px solid #f59e0b;
+            padding: 0.75rem 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        .announcement a {
+            color: #92400e;
+            text-decoration: underline;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--gc-green-dark) 0%, var(--gc-green) 50%, var(--gc-green-light) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1.5rem 2.5rem;
+            padding-top: calc(env(safe-area-inset-top, 0px) + 3rem);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Remove white background from JPEG */
+            mix-blend-mode: screen;
+            filter: brightness(1.1) contrast(1.2);
+        }
+
+        .hero h1 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            max-width: 400px;
+            margin: 0.75rem auto 0;
+            line-height: 1.5;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== ACTION CARDS (top CTA buttons) ===== */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            padding: 1.5rem 0;
+        }
+
+        /* Center the 5th (odd) button on its own row */
+        .action-grid .action-card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            max-width: 50%;
+            justify-self: center;
+        }
+
+        .action-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.25rem 0.75rem;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+        }
+
+        .action-card .action-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-card .action-label {
+            line-height: 1.3;
+        }
+
+        .action-card .action-sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+
+        .action-card--green {
+            background: var(--gc-green);
+            color: white;
+        }
+        .action-card--green:hover, .action-card--green:active {
+            background: var(--gc-green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26,86,50,0.3);
+        }
+
+        .action-card--outline {
+            background: white;
+            color: var(--gc-green);
+            border-color: var(--gc-gray-200);
+        }
+        .action-card--outline:hover, .action-card--outline:active {
+            border-color: var(--gc-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .action-card--gold {
+            background: linear-gradient(135deg, #b8941f, #d4af37);
+            color: white;
+        }
+        .action-card--gold:hover, .action-card--gold:active {
+            background: linear-gradient(135deg, #a07e10, #c8a020);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200,169,81,0.4);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--gc-gray-200);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .section-icon--green { background: #dcfce7; }
+        .section-icon--blue { background: #dbeafe; }
+        .section-icon--orange { background: #ffedd5; }
+        .section-icon--purple { background: #f3e8ff; }
+        .section-icon--yellow { background: #fef9c3; }
+
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--gc-gray-800);
+        }
+
+        .section-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--gc-gray-600);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== INFO CARDS ===== */
+        .info-card {
+            background: var(--gc-gray-50);
+            border: 1px solid var(--gc-gray-200);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gc-green);
+            margin-bottom: 0.35rem;
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            color: var(--gc-gray-600);
+            line-height: 1.5;
+        }
+
+        .info-card .highlight {
+            font-weight: 700;
+            color: var(--gc-gray-800);
+        }
+
+        /* ===== LINK BUTTONS ===== */
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .link-btn--primary {
+            background: var(--gc-green);
+            color: white;
+        }
+        .link-btn--primary:hover, .link-btn--primary:active {
+            background: var(--gc-green-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(26,86,50,0.3);
+        }
+
+        .link-btn--secondary {
+            background: var(--gc-gray-100);
+            color: var(--gc-green);
+            border: 1px solid var(--gc-gray-200);
+        }
+        .link-btn--secondary:hover, .link-btn--secondary:active {
+            border-color: var(--gc-green);
+            transform: translateY(-1px);
+        }
+
+        .link-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--gc-gray-600);
+            line-height: 1.5;
+        }
+
+        .checklist li::before {
+            content: '\2713';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: var(--gc-green);
+            font-size: 0.7rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ===== MODAL (Schedule team picker) ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideUp 0.25s ease-out;
+        }
+
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--gc-gray-800);
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-subtitle {
+            font-size: 0.8rem;
+            color: var(--gc-gray-600);
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .modal-option {
+            display: block;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.15s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal-option--varsity {
+            background: var(--gc-green);
+            color: white;
+        }
+        .modal-option--varsity:hover, .modal-option--varsity:active {
+            background: var(--gc-green-dark);
+            transform: scale(1.02);
+        }
+
+        .modal-option--jv {
+            background: var(--gc-gray-100);
+            color: var(--gc-green);
+            border: 1px solid var(--gc-gray-200);
+        }
+        .modal-option--jv:hover, .modal-option--jv:active {
+            border-color: var(--gc-green);
+            transform: scale(1.02);
+        }
+
+        .modal-option--frosh {
+            background: var(--gc-gray-50);
+            color: var(--gc-gray-600);
+            border: 1px solid var(--gc-gray-200);
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .modal-cancel {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gc-gray-600);
+            background: none;
+            border: none;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal-cancel:hover {
+            color: var(--gc-gray-800);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--gc-gray-800);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 2rem);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        .footer strong {
+            color: white;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .admin-gear {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.15);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .admin-gear:hover {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer {
+            position: relative;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 640px) {
+            .hero {
+                padding: 4rem 2rem 3rem;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .action-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .action-grid .action-card:last-child:nth-child(odd) {
+                max-width: 100%;
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .action-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .schedule-table {
+                font-size: 0.78rem;
+            }
+            .schedule-table th, .schedule-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Smooth scroll for in-page links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ANNOUNCEMENT BANNER — edit via admin.html -->
+    <div id="announcement-banner" class="announcement">
+        📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-badge" id="hero-season-badge">2026 Season</div>
+        <div class="hero-logo">
+            <!-- Drop gc-wolves-logo.png in src/assets/ to use the real logo instead of the SVG -->
+            <img src="assets/gc-wolves-logo.jpeg" alt="Green Canyon Wolves">
+        </div>
+        <h1>
+            GC LAX
+            <span>Green Canyon Lacrosse</span>
+        </h1>
+        <p class="hero-subtitle">Your one-stop hub for team info, sign-ups, schedules, and everything Green Canyon Lacrosse.</p>
+    </header>
+
+    <main class="container">
+
+        <!-- QUICK ACTION BUTTONS -->
+        <section id="quick-links">
+            <div class="action-grid">
+                <a href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" class="action-card action-card--green" target="_blank" rel="noopener">
+                    <span class="action-icon">🛒</span>
+                    <span class="action-label">Team Store</span>
+                    <span class="action-sub">Jerseys &amp; Gear</span>
+                </a>
+                <a href="https://get.groupspot.app/QZLhY" class="action-card action-card--outline" target="_blank" rel="noopener">
+                    <span class="action-icon">📲</span>
+                    <span class="action-label">Join GroupSpot</span>
+                    <span class="action-sub">Parents</span>
+                </a>
+                <a href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" class="action-card action-card--outline" target="_blank" rel="noopener">
+                    <span class="action-icon">📋</span>
+                    <span class="action-label">Sign-Ups</span>
+                    <span class="action-sub">Concessions &amp; Snacks</span>
+                </a>
+                <a href="#" class="action-card action-card--outline" onclick="openScheduleModal(event)">
+                    <span class="action-icon">📅</span>
+                    <span class="action-label">Schedule</span>
+                    <span class="action-sub">Games &amp; Events</span>
+                </a>
+                <a href="https://www.stattyapp.com/public" class="action-card action-card--gold" target="_blank" rel="noopener">
+                    <span class="action-icon">📊</span>
+                    <span class="action-label">Live Stats</span>
+                    <span class="action-sub">Game Cast on Statty</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- GROUPSPOT / COMMUNICATION -->
+        <section id="communication" class="section">
+            <div class="section-header">
+                <div class="section-icon section-icon--blue">📲</div>
+                <h2 class="section-title">GroupSpot Communication</h2>
+            </div>
+            <p class="section-desc">
+                All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP — you won't want to miss important updates about games, practices, and events.
+            </p>
+            <div class="info-card">
+                <h4>Parents</h4>
+                <p>Join using invite code: <span class="highlight">QZLhY</span></p>
+            </div>
+            <div class="info-card">
+                <h4>Players</h4>
+                <p>Players should join through their own link below.</p>
+            </div>
+            <div class="link-btn-group">
+                <a href="https://get.groupspot.app/QZLhY" class="link-btn link-btn--primary" target="_blank" rel="noopener">
+                    Parents — Join GroupSpot →
+                </a>
+                <a href="https://get.groupspot.app/RAaUG" class="link-btn link-btn--secondary" target="_blank" rel="noopener">
+                    Players — Join GroupSpot
+                </a>
+            </div>
+        </section>
+
+        <!-- SIGN-UPS -->
+        <section id="signups" class="section">
+            <div class="section-header">
+                <div class="section-icon section-icon--orange">📋</div>
+                <h2 class="section-title">Concessions, Lunch &amp; Snack Sign-Ups</h2>
+            </div>
+            <p class="section-desc">
+                Each family is asked to sign up for volunteer spots to help keep the season running. Signing up early helps the board so we don't have to track anyone down!
+            </p>
+            <div class="info-card">
+                <h4>Each family, please sign up for:</h4>
+                <p>
+                    <span class="highlight" id="signup-concessions">1 Concessions spot</span> +
+                    <span class="highlight" id="signup-food">1 Lunch for an away game OR 2 Snacks for home games</span>
+                </p>
+            </div>
+            <div class="link-btn-group">
+                <a href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" class="link-btn link-btn--primary" target="_blank" rel="noopener">
+                    Open Sign-Up Sheet →
+                </a>
+            </div>
+        </section>
+
+        <!-- (Team Photos info is in the announcement banner) -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p><strong>Green Canyon Lacrosse</strong></p>
+        <p>North Logan, Utah</p>
+        <p style="margin-top: 0.75rem; font-size: 0.7rem; opacity: 0.6;">
+            &copy; 2026 Green Canyon Lacrosse Booster Club
+        </p>
+        <button class="admin-gear" onclick="adminLogin()" title="Admin Settings" aria-label="Admin Settings">&#9881;</button>
+    </footer>
+
+    <!-- SCHEDULE TEAM PICKER MODAL -->
+    <div id="schedule-modal" class="modal-overlay" onclick="closeScheduleModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-title">Choose a Team</div>
+            <div class="modal-subtitle">View schedule on MaxPreps</div>
+            <div class="modal-options">
+                <a href="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/" class="modal-option modal-option--varsity" target="_blank" rel="noopener">
+                    🥇 Varsity
+                </a>
+                <a href="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/" class="modal-option modal-option--jv" target="_blank" rel="noopener">
+                    🥈 JV
+                </a>
+                <div class="modal-option modal-option--frosh">
+                    🏃 Frosh — Coming Soon
+                </div>
+            </div>
+            <button class="modal-cancel" onclick="closeScheduleModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== SCHEDULE MODAL =====
+        function openScheduleModal(e) {
+            if (e) e.preventDefault();
+            document.getElementById('schedule-modal').classList.add('active');
+        }
+
+        function closeScheduleModal(e) {
+            if (e && e.target !== e.currentTarget) return;
+            document.getElementById('schedule-modal').classList.remove('active');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeScheduleModal();
+        });
+
+        // ===== ADMIN LOGIN =====
+        function adminLogin() {
+            var pw = prompt('Enter admin password:');
+            if (pw === 'gclax') {
+                window.location.href = 'admin.html';
+            } else if (pw !== null) {
+                alert('Incorrect password.');
+            }
+        }
+
+        // ===== ADMIN SETTINGS LOADER =====
+        // Reads settings saved by admin.html and applies them to the page.
+        (function() {
+            try {
+                var saved = JSON.parse(localStorage.getItem('gclax-admin'));
+                if (!saved) return;
+
+                // Announcement banner
+                var banner = document.getElementById('announcement-banner');
+                if (banner) {
+                    if (saved.announceActive === false) {
+                        banner.style.display = 'none';
+                    } else {
+                        banner.style.display = 'block';
+                        if (saved.announceText) banner.innerHTML = saved.announceText;
+                    }
+                }
+
+                // Helper to set href on elements by selector
+                function setLink(selector, url) {
+                    if (!url) return;
+                    var els = document.querySelectorAll(selector);
+                    els.forEach(function(el) { el.href = url; });
+                }
+
+                // Quick action buttons (by href matching or data attribute)
+                if (saved.linkStore) {
+                    setLink('a[href*="teamupathletics"]', saved.linkStore);
+                }
+                if (saved.linkGroupspotParents) {
+                    setLink('a[href*="groupspot.app/QZLhY"]', saved.linkGroupspotParents);
+                }
+                if (saved.linkGroupspotPlayers) {
+                    setLink('a[href*="groupspot.app/RAaUG"]', saved.linkGroupspotPlayers);
+                }
+                if (saved.linkSignups) {
+                    setLink('a[href*="docs.google.com/spreadsheets"]', saved.linkSignups);
+                }
+                if (saved.linkLiveStats) {
+                    setLink('a[href*="stattyapp"]', saved.linkLiveStats);
+                }
+
+                // Schedule modal links
+                if (saved.linkScheduleVarsity) {
+                    setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', saved.linkScheduleVarsity);
+                }
+                if (saved.linkScheduleJV) {
+                    setLink('a[href*="maxpreps"][href*="/jv/"]', saved.linkScheduleJV);
+                }
+
+                // Frosh — enable if URL is now set
+                if (saved.linkScheduleFrosh) {
+                    var froshEl = document.querySelector('.modal-option--frosh');
+                    if (froshEl) {
+                        var link = document.createElement('a');
+                        link.href = saved.linkScheduleFrosh;
+                        link.className = 'modal-option modal-option--jv';
+                        link.target = '_blank';
+                        link.rel = 'noopener';
+                        link.textContent = '\uD83C\uDFC3 Frosh';
+                        froshEl.parentNode.replaceChild(link, froshEl);
+                    }
+                }
+
+                // Parent invite code
+                if (saved.parentCode) {
+                    var codeEls = document.querySelectorAll('.highlight');
+                    codeEls.forEach(function(el) {
+                        if (el.textContent.trim() === 'QZLhY') {
+                            el.textContent = saved.parentCode;
+                        }
+                    });
+                }
+
+                // Sign-up requirements
+                if (saved.signupConcessions) {
+                    var concEl = document.getElementById('signup-concessions');
+                    if (concEl) concEl.textContent = saved.signupConcessions;
+                }
+                if (saved.signupFood) {
+                    var foodEl = document.getElementById('signup-food');
+                    if (foodEl) foodEl.textContent = saved.signupFood;
+                }
+
+            } catch (e) {
+                // No admin settings, use HTML defaults
+            }
+        })();
+    </script>
+
+</body>
+</html>
