@@ -1164,15 +1164,12 @@
             var admin = null;
             try { admin = JSON.parse(localStorage.getItem('gclax-admin')); } catch (e) {}
 
-            // Safety net: always reveal the page after 2 seconds, even if fetch hangs
-            var revealed = false;
-            function safeReveal() {
-                if (revealed) return;
-                revealed = true;
-                revealPage();
-            }
-            setTimeout(safeReveal, 2000);
+            // Render default buttons + reveal immediately so page is never blank
+            renderActionButtons({}, admin);
+            applyAdminOverrides(admin);
+            revealPage();
 
+            // Then fetch JSON to upgrade with real data (buttons, links, etc.)
             fetch('site-data.json')
                 .then(function(res) {
                     if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -1182,12 +1179,9 @@
                     renderActionButtons(data, admin);
                     applyJsonData(data);
                     applyAdminOverrides(admin);
-                    safeReveal();
                 })
                 .catch(function() {
-                    renderActionButtons({}, admin);
-                    applyAdminOverrides(admin);
-                    safeReveal();
+                    // Already showing defaults, nothing more to do
                 });
         })();
     </script>
