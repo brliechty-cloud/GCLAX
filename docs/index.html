@@ -158,9 +158,11 @@
             align-items: stretch;
         }
 
-        /* Center the 5th (odd) button on its own row */
+        /* Center the 5th (odd) button on its own row, same width as others */
         .action-grid .action-card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
             justify-self: center;
+            width: calc(50% - 0.25rem);
         }
 
         .action-card {
@@ -735,7 +737,9 @@
                 grid-template-columns: repeat(5, 1fr);
             }
             .action-grid .action-card:last-child:nth-child(odd) {
+                grid-column: auto;
                 justify-self: stretch;
+                width: auto;
             }
         }
 
