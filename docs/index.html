@@ -10,7 +10,7 @@
 
     <!-- Open Graph / Social sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Green Canyon Lacrosse — GC LAX 2026">
+    <meta property="og:title" content="Green Canyon Lacrosse">
     <meta property="og:description" content="Your one-stop hub for GC Lacrosse team info, schedules, sign-ups, the team store, and more. Go Wolves!">
     <meta property="og:url" content="https://greencanyonlacrosse.com">
     <meta property="og:site_name" content="GC Lax">
@@ -18,7 +18,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Green Canyon Lacrosse — GC LAX 2026">
+    <meta name="twitter:title" content="Green Canyon Lacrosse">
     <meta name="twitter:description" content="Your one-stop hub for GC Lacrosse team info, schedules, sign-ups, the team store, and more. Go Wolves!">
     <meta name="twitter:image" content="https://greencanyonlacrosse.com/assets/og-image.svg">
     <meta name="description" content="Green Canyon High School Lacrosse — team store, schedules, sign-ups, GroupSpot links, and everything parents and players need for the 2026 season.">
@@ -101,21 +101,6 @@
             pointer-events: none;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 0.25rem 0.85rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-        }
-
         .hero-logo {
             width: 100px;
             height: 100px;
@@ -141,21 +126,12 @@
         }
 
         .hero h1 {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 0.35rem;
-        }
-
-        .hero h1 span {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            opacity: 0.8;
-            margin-top: 0.2rem;
+            opacity: 0.85;
+            margin-bottom: 0.35rem;
         }
 
         .hero-subtitle {
@@ -751,9 +727,6 @@
             .hero {
                 padding: 3rem 2rem 2.5rem;
             }
-            .hero h1 {
-                font-size: 2.75rem;
-            }
             .hero-logo {
                 width: 130px;
                 height: 130px;
@@ -794,15 +767,11 @@
 
     <!-- HERO -->
     <header class="hero">
-        <div class="hero-badge" id="hero-season-badge">2026 Season</div>
         <div class="hero-logo">
             <!-- Drop gc-wolves-logo.png in src/assets/ to use the real logo instead of the SVG -->
             <img src="assets/gc-wolves-logo.jpeg" alt="Green Canyon Wolves">
         </div>
-        <h1>
-            GC LAX
-            <span>Green Canyon Lacrosse</span>
-        </h1>
+        <h1>Green Canyon Lacrosse</h1>
         <p class="hero-subtitle">Your one-stop hub for team info, sign-ups, schedules, and everything Green Canyon Lacrosse.</p>
     </header>
 
@@ -1025,9 +994,6 @@
 
             // Apply all data from site-data.json to the page
             function applyJsonData(data) {
-                var badge = document.getElementById('hero-season-badge');
-                if (badge && data.season) badge.textContent = data.season + ' Season';
-
                 var banner = document.getElementById('announcement-banner');
                 if (banner && data.announcement) {
                     if (!data.announcement.active) {
