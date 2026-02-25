@@ -590,21 +590,7 @@
             transform: translateY(0);
         }
 
-        /* ===== FLASH PREVENTION ===== */
-        .page-loading .announcement,
-        .page-loading .section,
-        .page-loading .action-grid,
-        .page-loading .footer {
-            opacity: 0;
-        }
-
-        body:not(.page-loading) .announcement,
-        body:not(.page-loading) .section,
-        body:not(.page-loading) .action-grid,
-        body:not(.page-loading) .footer {
-            opacity: 1;
-            transition: opacity 0.15s ease;
-        }
+        /* Flash prevention removed — page renders synchronously now */
 
         /* ===== DARK MODE ===== */
         @media (prefers-color-scheme: dark) {
@@ -799,7 +785,7 @@
         }
     </style>
 </head>
-<body class="page-loading">
+<body>
 
     <!-- ANNOUNCEMENT BANNER — edit via admin.html -->
     <div id="announcement-banner" class="announcement">
@@ -1156,18 +1142,12 @@
             }
 
             // Reveal page (remove loading state)
-            function revealPage() {
-                document.body.classList.remove('page-loading');
-            }
-
-            // Main init: fetch JSON → render buttons → apply data → apply admin → reveal
+            // Main init: render default buttons, then fetch JSON to upgrade
             var admin = null;
             try { admin = JSON.parse(localStorage.getItem('gclax-admin')); } catch (e) {}
 
-            // Render default buttons + reveal immediately so page is never blank
             renderActionButtons({}, admin);
             applyAdminOverrides(admin);
-            revealPage();
 
             // Then fetch JSON to upgrade with real data (buttons, links, etc.)
             fetch('site-data.json')
