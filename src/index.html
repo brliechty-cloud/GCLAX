@@ -981,17 +981,8 @@
         })();
 
         // ===== JSON DATA LAYER =====
-        // Loads site-data.json and populates the page, then applies admin overrides.
+        // Loads site-data.json and populates the page. All config lives in site-data.json.
         (function() {
-            // Default button definitions (fallback if site-data.json is missing quickActions)
-            var DEFAULT_BUTTONS = [
-                { id: 'teamStore', icon: '\uD83D\uDED2', label: 'Team Store', sub: 'Jerseys & Gear', style: 'green', linkKey: 'teamStore' },
-                { id: 'groupspot', icon: '\uD83D\uDCF2', label: 'Join GroupSpot', sub: 'Parents', style: 'outline', linkKey: 'groupspotParents' },
-                { id: 'signups', icon: '\uD83D\uDCCB', label: 'Sign-Ups', sub: 'Concessions & Snacks', style: 'outline', linkKey: 'signupSheet' },
-                { id: 'schedule', icon: '\uD83D\uDCC5', label: 'Schedule', sub: 'Games & Events', style: 'outline', action: 'openScheduleModal' },
-                { id: 'liveStats', icon: '\uD83D\uDCCA', label: 'Live Stats', sub: 'Game Cast on Statty', style: 'gold', linkKey: 'liveStats' }
-            ];
-
             // Helper to set href on elements by selector
             function setLink(selector, url) {
                 if (!url) return;
@@ -999,28 +990,20 @@
                 els.forEach(function(el) { el.href = url; });
             }
 
-            // Render quick action buttons dynamically
-            function renderActionButtons(data, admin) {
+            // Render quick action buttons from JSON data
+            function renderActionButtons(data) {
                 var grid = document.getElementById('action-grid');
                 if (!grid) return;
+                if (!data || !data.quickActions || !data.quickActions.length) return;
 
-                var buttons = (data && data.quickActions && data.quickActions.length) ? data.quickActions : DEFAULT_BUTTONS;
-                var order = (admin && Array.isArray(admin.buttonOrder)) ? admin.buttonOrder : buttons.map(function(b) { return b.id; });
-                var hidden = (admin && Array.isArray(admin.buttonHidden)) ? admin.buttonHidden : [];
+                var buttons = data.quickActions;
+                var order = (data.buttonOrder && Array.isArray(data.buttonOrder)) ? data.buttonOrder : buttons.map(function(b) { return b.id; });
+                var hidden = (data.buttonHidden && Array.isArray(data.buttonHidden)) ? data.buttonHidden : [];
+                var links = data.links || {};
 
                 // Build lookup
                 var btnMap = {};
                 buttons.forEach(function(b) { btnMap[b.id] = b; });
-
-                // Resolve URLs: admin overrides > site-data.json links
-                var links = (data && data.links) || {};
-                var overrides = {};
-                if (admin) {
-                    if (admin.linkStore) overrides.teamStore = admin.linkStore;
-                    if (admin.linkGroupspotParents) overrides.groupspotParents = admin.linkGroupspotParents;
-                    if (admin.linkSignups) overrides.signupSheet = admin.linkSignups;
-                    if (admin.linkLiveStats) overrides.liveStats = admin.linkLiveStats;
-                }
 
                 grid.innerHTML = '';
 
@@ -1031,13 +1014,12 @@
 
                     var el = document.createElement('a');
                     el.className = 'action-card action-card--' + btn.style;
-                    el.style.webkitTapHighlightColor = 'transparent';
 
                     if (btn.action) {
                         el.href = '#';
                         el.setAttribute('onclick', btn.action + '(event)');
                     } else if (btn.linkKey) {
-                        el.href = overrides[btn.linkKey] || links[btn.linkKey] || '#';
+                        el.href = links[btn.linkKey] || '#';
                         el.target = '_blank';
                         el.rel = 'noopener';
                     }
@@ -1051,63 +1033,7 @@
                 });
             }
 
-            // Apply admin localStorage overrides (non-button settings)
-            function applyAdminOverrides(admin) {
-                if (!admin) return;
-
-                // Announcement banner
-                var banner = document.getElementById('announcement-banner');
-                if (banner) {
-                    if (admin.announceActive === false) {
-                        banner.style.display = 'none';
-                    } else {
-                        banner.style.display = 'block';
-                        if (admin.announceText) banner.innerHTML = admin.announceText;
-                    }
-                }
-
-                // Non-button links (GroupSpot section, etc.)
-                if (admin.linkGroupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', admin.linkGroupspotParents);
-                if (admin.linkGroupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', admin.linkGroupspotPlayers);
-                if (admin.linkSignups) setLink('a[href*="docs.google.com/spreadsheets"]', admin.linkSignups);
-
-                // Schedule modal links
-                if (admin.linkScheduleVarsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', admin.linkScheduleVarsity);
-                if (admin.linkScheduleJV) setLink('a[href*="maxpreps"][href*="/jv/"]', admin.linkScheduleJV);
-
-                if (admin.linkScheduleFrosh) {
-                    var froshEl = document.querySelector('.modal-option--frosh');
-                    if (froshEl) {
-                        var link = document.createElement('a');
-                        link.href = admin.linkScheduleFrosh;
-                        link.className = 'modal-option modal-option--jv';
-                        link.target = '_blank';
-                        link.rel = 'noopener';
-                        link.textContent = '\uD83C\uDFC3 Frosh';
-                        froshEl.parentNode.replaceChild(link, froshEl);
-                    }
-                }
-
-                if (admin.parentCode) {
-                    var codeEls = document.querySelectorAll('.highlight');
-                    codeEls.forEach(function(el) {
-                        if (el.textContent.trim() === 'QZLhY') {
-                            el.textContent = admin.parentCode;
-                        }
-                    });
-                }
-
-                if (admin.signupConcessions) {
-                    var concEl = document.getElementById('signup-concessions');
-                    if (concEl) concEl.textContent = admin.signupConcessions;
-                }
-                if (admin.signupFood) {
-                    var foodEl = document.getElementById('signup-food');
-                    if (foodEl) foodEl.textContent = admin.signupFood;
-                }
-            }
-
-            // Load site-data.json and populate page (non-button data)
+            // Apply all data from site-data.json to the page
             function applyJsonData(data) {
                 var badge = document.getElementById('hero-season-badge');
                 if (badge && data.season) badge.textContent = data.season + ' Season';
@@ -1117,12 +1043,12 @@
                     if (!data.announcement.active) {
                         banner.style.display = 'none';
                     } else {
+                        banner.style.display = 'block';
                         var emoji = data.announcement.emoji ? data.announcement.emoji + ' ' : '';
                         banner.textContent = emoji + data.announcement.text;
                     }
                 }
 
-                // Non-button links (GroupSpot section links, sign-up sheet link)
                 if (data.links) {
                     if (data.links.groupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', data.links.groupspotParents);
                     if (data.links.groupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', data.links.groupspotPlayers);
@@ -1140,7 +1066,7 @@
                             link.className = 'modal-option modal-option--jv';
                             link.target = '_blank';
                             link.rel = 'noopener';
-                            link.textContent = '\uD83C\uDFC3 Frosh';
+                            link.textContent = '🏃 Frosh';
                             froshEl.parentNode.replaceChild(link, froshEl);
                         }
                     }
@@ -1167,27 +1093,18 @@
                 }
             }
 
-            // Reveal page (remove loading state)
-            // Main init: render default buttons, then fetch JSON to upgrade
-            var admin = null;
-            try { admin = JSON.parse(localStorage.getItem('gclax-admin')); } catch (e) {}
-
-            renderActionButtons({}, admin);
-            applyAdminOverrides(admin);
-
-            // Then fetch JSON to upgrade with real data (buttons, links, etc.)
+            // Fetch JSON and upgrade the page (hardcoded HTML buttons show as fallback)
             fetch('site-data.json')
                 .then(function(res) {
                     if (!res.ok) throw new Error('HTTP ' + res.status);
                     return res.json();
                 })
                 .then(function(data) {
-                    renderActionButtons(data, admin);
+                    renderActionButtons(data);
                     applyJsonData(data);
-                    applyAdminOverrides(admin);
                 })
                 .catch(function() {
-                    // Already showing defaults, nothing more to do
+                    // Hardcoded HTML buttons are already visible as fallback
                 });
         })();
     </script>

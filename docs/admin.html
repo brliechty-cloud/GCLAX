@@ -35,12 +35,6 @@
             font-weight: 800;
         }
 
-        .admin-header-links {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
         .admin-header a {
             color: rgba(255,255,255,0.8);
             font-size: 0.8rem;
@@ -48,20 +42,6 @@
         }
 
         .admin-header a:hover { color: white; }
-
-        .unsaved-badge {
-            display: none;
-            background: #fbbf24;
-            color: #92400e;
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .unsaved-badge.visible { display: inline-block; }
 
         .admin-container {
             max-width: 640px;
@@ -200,28 +180,6 @@
             border-color: #1a5632;
         }
 
-        .btn-danger {
-            background: #fef2f2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
-        }
-
-        .btn-danger:hover {
-            background: #fee2e2;
-            border-color: #dc2626;
-        }
-
-        .btn-preview {
-            background: #eff6ff;
-            color: #2563eb;
-            border: 1px solid #bfdbfe;
-        }
-
-        .btn-preview:hover {
-            background: #dbeafe;
-            border-color: #2563eb;
-        }
-
         .btn-group {
             display: flex;
             flex-wrap: wrap;
@@ -303,13 +261,8 @@
             transition: opacity 0.15s;
         }
 
-        .btn-manage-row:last-child {
-            border-bottom: none;
-        }
-
-        .btn-manage-row.is-hidden {
-            opacity: 0.45;
-        }
+        .btn-manage-row:last-child { border-bottom: none; }
+        .btn-manage-row.is-hidden { opacity: 0.45; }
 
         .btn-manage-arrows {
             display: flex;
@@ -340,166 +293,82 @@
             border-color: #1a5632;
         }
 
-        .btn-arrow:disabled {
-            opacity: 0.25;
-            cursor: default;
+        .btn-arrow:disabled { opacity: 0.25; cursor: default; }
+
+        .btn-manage-icon { font-size: 1.15rem; flex-shrink: 0; }
+        .btn-manage-label { flex: 1; font-weight: 600; font-size: 0.85rem; }
+
+        /* ===== JSON OUTPUT ===== */
+        .json-output {
+            display: none;
+            margin-top: 1rem;
         }
 
-        .btn-manage-icon {
-            font-size: 1.15rem;
-            flex-shrink: 0;
-        }
+        .json-output.visible { display: block; }
 
-        .btn-manage-label {
-            flex: 1;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        /* ===== PREVIEW PANEL ===== */
-        .preview-card {
-            background: white;
-            border-radius: 12px;
-            border: 2px solid #2563eb;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .preview-card .card-title {
-            color: #2563eb;
-        }
-
-        .preview-phone {
-            background: #f8faf9;
-            border: 2px solid #dce5df;
-            border-radius: 20px;
-            padding: 0.5rem;
-            max-width: 320px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .preview-phone iframe {
+        .json-output textarea {
             width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: 16px;
+            min-height: 300px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            background: #1a2e21;
+            color: #8cc8a0;
+            border: 2px solid #1a5632;
+            border-radius: 8px;
+            padding: 1rem;
         }
 
-        .preview-note {
-            text-align: center;
-            font-size: 0.7rem;
-            color: #4a6352;
-            margin-top: 0.75rem;
-            font-style: italic;
+        .json-instructions {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #1e40af;
+            line-height: 1.5;
         }
+
+        .json-instructions ol {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .json-instructions li { margin-bottom: 0.25rem; }
 
         /* ===== DARK MODE ===== */
         @media (prefers-color-scheme: dark) {
-            body {
-                background: #121a14;
-                color: #e8f0eb;
-            }
-
-            .admin-header {
-                background: #0e3a20;
-            }
-
-            .card, .preview-card {
-                background: #1a2e21;
-                border-color: #2a4a35;
-            }
-
+            body { background: #121a14; color: #e8f0eb; }
+            .admin-header { background: #0e3a20; }
+            .card { background: #1a2e21; border-color: #2a4a35; }
             .card-title { color: #e8f0eb; }
-
             label { color: #a8b5ad; }
-
-            input[type="text"],
-            input[type="url"],
-            textarea {
-                background: #162419;
-                border-color: #2a4a35;
-                color: #e8f0eb;
+            input[type="text"], input[type="url"], textarea {
+                background: #162419; border-color: #2a4a35; color: #e8f0eb;
             }
-
             input:focus, textarea:focus {
-                border-color: #2a7a4a;
-                box-shadow: 0 0 0 3px rgba(42,122,74,0.2);
+                border-color: #2a7a4a; box-shadow: 0 0 0 3px rgba(42,122,74,0.2);
             }
-
             .toggle-slider { background: #2a4a35; }
-
-            .btn-secondary {
-                background: #1a2e21;
-                color: #8cc8a0;
-                border-color: #2a4a35;
-            }
-
+            .btn-secondary { background: #1a2e21; color: #8cc8a0; border-color: #2a4a35; }
             .btn-secondary:hover { border-color: #2a7a4a; }
-
-            .btn-danger {
-                background: #2a1515;
-                color: #f87171;
-                border-color: #5c2020;
-            }
-
-            .btn-preview {
-                background: #152035;
-                color: #60a5fa;
-                border-color: #1e3a5f;
-            }
-
             .help-text { color: #a8b5ad; }
-
-            .link-test {
-                background: #1a2e21;
-                border-color: #2a4a35;
-                color: #8cc8a0;
-            }
-
+            .link-test { background: #1a2e21; border-color: #2a4a35; color: #8cc8a0; }
             .divider { border-top-color: #2a4a35; }
-
-            .btn-manage-list,
-            .btn-manage-row {
-                border-color: #2a4a35;
-            }
-
-            .btn-arrow {
-                background: #162419;
-                border-color: #2a4a35;
-                color: #8cc8a0;
-            }
-
-            .btn-arrow:hover:not(:disabled) {
-                background: #2a7a4a;
-                color: white;
-                border-color: #2a7a4a;
-            }
-
-            .preview-phone {
-                background: #162419;
-                border-color: #2a4a35;
-            }
-
-            .preview-note { color: #a8b5ad; }
-
-            .toast {
-                background: #2a7a4a;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            }
+            .btn-manage-list, .btn-manage-row { border-color: #2a4a35; }
+            .btn-arrow { background: #162419; border-color: #2a4a35; color: #8cc8a0; }
+            .btn-arrow:hover:not(:disabled) { background: #2a7a4a; color: white; border-color: #2a7a4a; }
+            .toast { background: #2a7a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+            .json-instructions { background: #152035; border-color: #1e3a5f; color: #60a5fa; }
         }
     </style>
 </head>
 <body>
 
     <header class="admin-header">
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-            <h1>GC Lax Admin</h1>
-            <span id="unsaved-badge" class="unsaved-badge">Unsaved</span>
-        </div>
-        <div class="admin-header-links">
-            <a href="index.html">← View Site</a>
-        </div>
+        <h1>GC Lax Admin</h1>
+        <a href="index.html">← View Site</a>
     </header>
 
     <div class="admin-container">
@@ -514,8 +383,10 @@
                     <span class="toggle-slider"></span>
                 </label>
             </div>
+            <label for="admin-announce-emoji">Emoji</label>
+            <input type="text" id="admin-announce-emoji" value="📸">
             <label for="admin-announce-text">Banner text</label>
-            <textarea id="admin-announce-text" rows="2">📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM</textarea>
+            <textarea id="admin-announce-text" rows="2"></textarea>
             <p class="help-text">Tip: Use emoji at the start to grab attention. Keep it short.</p>
         </div>
 
@@ -523,18 +394,16 @@
         <div class="card">
             <div class="card-title">🎯 Quick Action Buttons</div>
             <p class="help-text" style="margin-top:-0.5rem;">Reorder and toggle the big action buttons at the top of the site.</p>
-            <div id="btn-manage-list" class="btn-manage-list">
-                <!-- Rendered by JS -->
-            </div>
+            <div id="btn-manage-list" class="btn-manage-list"></div>
         </div>
 
         <!-- LINKS -->
         <div class="card">
-            <div class="card-title">🔗 Quick Action Links</div>
+            <div class="card-title">🔗 Links</div>
 
             <label for="admin-link-store">Team Store URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-store" value="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home">
+                <input type="url" id="admin-link-store">
                 <a class="link-test" onclick="testLink('admin-link-store')">Test ↗</a>
             </div>
 
@@ -542,290 +411,253 @@
 
             <label for="admin-link-groupspot-parents">GroupSpot — Parents URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-groupspot-parents" value="https://get.groupspot.app/QZLhY">
+                <input type="url" id="admin-link-groupspot-parents">
                 <a class="link-test" onclick="testLink('admin-link-groupspot-parents')">Test ↗</a>
             </div>
 
             <label for="admin-link-groupspot-players">GroupSpot — Players URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-groupspot-players" value="https://get.groupspot.app/RAaUG">
+                <input type="url" id="admin-link-groupspot-players">
                 <a class="link-test" onclick="testLink('admin-link-groupspot-players')">Test ↗</a>
             </div>
 
             <label for="admin-parent-code">Parent Invite Code</label>
-            <input type="text" id="admin-parent-code" value="QZLhY">
+            <input type="text" id="admin-parent-code">
 
             <hr class="divider">
 
             <label for="admin-link-signups">Sign-Up Sheet URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-signups" value="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing">
+                <input type="url" id="admin-link-signups">
                 <a class="link-test" onclick="testLink('admin-link-signups')">Test ↗</a>
+            </div>
+
+            <hr class="divider">
+
+            <label for="admin-link-livestats">Live Stats URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-livestats">
+                <a class="link-test" onclick="testLink('admin-link-livestats')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
             <label for="admin-link-schedule-varsity">Schedule — Varsity URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-schedule-varsity" value="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/">
+                <input type="url" id="admin-link-schedule-varsity">
                 <a class="link-test" onclick="testLink('admin-link-schedule-varsity')">Test ↗</a>
             </div>
 
             <label for="admin-link-schedule-jv">Schedule — JV URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-schedule-jv" value="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/">
+                <input type="url" id="admin-link-schedule-jv">
                 <a class="link-test" onclick="testLink('admin-link-schedule-jv')">Test ↗</a>
             </div>
 
             <label for="admin-link-schedule-frosh">Schedule — Frosh URL</label>
             <div class="link-field">
-                <input type="url" id="admin-link-schedule-frosh" value="">
+                <input type="url" id="admin-link-schedule-frosh">
                 <a class="link-test" onclick="testLink('admin-link-schedule-frosh')">Test ↗</a>
             </div>
             <p class="help-text">Leave blank to show "Coming Soon"</p>
-
-            <hr class="divider">
-
-            <label for="admin-link-livestats">Live Stats (Statty) URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-livestats" value="https://www.stattyapp.com/public">
-                <a class="link-test" onclick="testLink('admin-link-livestats')">Test ↗</a>
-            </div>
         </div>
 
         <!-- SIGN-UP REQUIREMENTS -->
         <div class="card">
             <div class="card-title">📋 Sign-Up Requirements</div>
             <label for="admin-signup-concessions">Concessions requirement</label>
-            <input type="text" id="admin-signup-concessions" value="1 Concessions spot">
+            <input type="text" id="admin-signup-concessions">
             <label for="admin-signup-food">Food requirement</label>
-            <input type="text" id="admin-signup-food" value="1 Lunch for an away game OR 2 Snacks for home games">
+            <input type="text" id="admin-signup-food">
         </div>
 
-        <!-- PREVIEW -->
-        <div class="preview-card" id="preview-card" style="display:none;">
-            <div class="card-title">👁 Live Preview</div>
-            <div class="preview-phone">
-                <iframe id="preview-frame" src="index.html" title="Site preview"></iframe>
-            </div>
-            <p class="preview-note">This is a live preview. Save your changes first, then refresh the preview to see updates.</p>
-            <div class="btn-group" style="justify-content:center;margin-top:0.75rem;">
-                <button class="btn btn-preview" onclick="refreshPreview()">Refresh Preview</button>
-                <button class="btn btn-secondary" onclick="hidePreview()">Close Preview</button>
-            </div>
-        </div>
-
-        <!-- SAVE -->
+        <!-- GENERATE JSON -->
         <div class="btn-group">
-            <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
-            <button class="btn btn-preview" onclick="showPreview()">Preview Site</button>
-            <button class="btn btn-danger" onclick="resetSettings()">Reset to Defaults</button>
+            <button class="btn btn-primary" onclick="generateJson()">Generate Updated JSON</button>
         </div>
 
         <p class="help-text" style="margin-top: 1rem;">
-            Changes are saved to your browser and apply immediately to the main site.
-            Use "Preview Site" to see how your changes look before sharing.
+            Click "Generate" to create the updated site-data.json. Copy it and paste into the file, then commit &amp; push to GitHub.
         </p>
+
+        <!-- JSON OUTPUT -->
+        <div id="json-output" class="json-output">
+            <div class="json-instructions">
+                <strong>How to apply changes:</strong>
+                <ol>
+                    <li>Click "Copy JSON" below</li>
+                    <li>Open <code>site-data.json</code> in the repo (both <code>src/</code> and <code>docs/</code>)</li>
+                    <li>Replace the entire file contents with the copied JSON</li>
+                    <li>Commit and push to GitHub</li>
+                </ol>
+            </div>
+            <div class="btn-group" style="margin-bottom:0.75rem;">
+                <button class="btn btn-primary" onclick="copyJson()">📋 Copy JSON</button>
+            </div>
+            <textarea id="json-textarea" readonly></textarea>
+        </div>
 
     </div>
 
-    <div id="toast" class="toast">Saved!</div>
+    <div id="toast" class="toast">Copied!</div>
 
     <script>
-        const STORAGE_KEY = 'gclax-admin';
+        // Current state loaded from site-data.json
+        var siteData = null;
+        var buttonOrder = [];
+        var buttonHidden = [];
 
-        // Button definitions (must match site-data.json quickActions)
-        const DEFAULT_BUTTONS = [
-            { id: 'teamStore',  icon: '🛒', label: 'Team Store' },
-            { id: 'groupspot',  icon: '📲', label: 'Join GroupSpot' },
-            { id: 'signups',    icon: '📋', label: 'Sign-Ups' },
-            { id: 'schedule',   icon: '📅', label: 'Schedule' },
-            { id: 'liveStats',  icon: '📊', label: 'Live Stats' },
-        ];
+        // Button definitions (derived from quickActions in JSON)
+        var buttonDefs = [];
 
-        let buttonOrder = DEFAULT_BUTTONS.map(b => b.id);
-        let buttonHidden = [];
-
-        // All field IDs and their keys
-        const FIELDS = {
-            'admin-announce-text':          'announceText',
-            'admin-announce-active':        'announceActive',
-            'admin-link-store':             'linkStore',
-            'admin-link-groupspot-parents':  'linkGroupspotParents',
-            'admin-link-groupspot-players':  'linkGroupspotPlayers',
-            'admin-parent-code':            'parentCode',
-            'admin-link-signups':           'linkSignups',
-            'admin-link-schedule-varsity':  'linkScheduleVarsity',
-            'admin-link-schedule-jv':       'linkScheduleJV',
-            'admin-link-schedule-frosh':    'linkScheduleFrosh',
-            'admin-link-livestats':         'linkLiveStats',
-            'admin-signup-concessions':     'signupConcessions',
-            'admin-signup-food':            'signupFood',
-        };
-
-        // Default values (match what's in the HTML)
-        const DEFAULTS = {
-            announceActive: true,
-            announceText: '📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM',
-            linkStore: 'https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home',
-            linkGroupspotParents: 'https://get.groupspot.app/QZLhY',
-            linkGroupspotPlayers: 'https://get.groupspot.app/RAaUG',
-            parentCode: 'QZLhY',
-            linkSignups: 'https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing',
-            linkScheduleVarsity: 'https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/',
-            linkScheduleJV: 'https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/',
-            linkScheduleFrosh: '',
-            linkLiveStats: 'https://www.stattyapp.com/public',
-            signupConcessions: '1 Concessions spot',
-            signupFood: '1 Lunch for an away game OR 2 Snacks for home games',
-        };
-
-        let savedSnapshot = null; // Track last-saved state for dirty detection
-        let isDirty = false;
-
-        // Get current form values (includes button config)
-        function getCurrentValues() {
-            const data = {};
-            Object.entries(FIELDS).forEach(([elId, key]) => {
-                const el = document.getElementById(elId);
-                if (!el) return;
-                data[key] = el.type === 'checkbox' ? el.checked : el.value;
-            });
-            data.buttonOrder = buttonOrder;
-            data.buttonHidden = buttonHidden;
-            return data;
-        }
-
-        // Check if form has unsaved changes
-        function checkDirty() {
-            const current = JSON.stringify(getCurrentValues());
-            isDirty = current !== savedSnapshot;
-            document.getElementById('unsaved-badge').classList.toggle('visible', isDirty);
-        }
-
-        // Load saved settings on page load
-        function loadSettings() {
-            try {
-                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                if (!saved) {
-                    renderButtonList();
-                    savedSnapshot = JSON.stringify(getCurrentValues());
-                    return;
-                }
-
-                Object.entries(FIELDS).forEach(([elId, key]) => {
-                    const el = document.getElementById(elId);
-                    if (!el || saved[key] === undefined) return;
-
-                    if (el.type === 'checkbox') {
-                        el.checked = saved[key];
-                    } else {
-                        el.value = saved[key];
-                    }
-                });
-
-                // Load button config
-                if (saved.buttonOrder && Array.isArray(saved.buttonOrder)) {
-                    buttonOrder = saved.buttonOrder;
-                }
-                if (saved.buttonHidden && Array.isArray(saved.buttonHidden)) {
-                    buttonHidden = saved.buttonHidden;
-                }
-
-                renderButtonList();
-                savedSnapshot = JSON.stringify(getCurrentValues());
-            } catch (e) {
-                console.log('No saved settings found.');
-                renderButtonList();
-                savedSnapshot = JSON.stringify(getCurrentValues());
-            }
-        }
-
-        // Save all settings
-        function saveSettings() {
-            const data = getCurrentValues();
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            savedSnapshot = JSON.stringify(data);
-            isDirty = false;
-            document.getElementById('unsaved-badge').classList.remove('visible');
-            showToast('Saved! Changes are live on the site.');
-        }
-
-        // Reset to defaults
-        function resetSettings() {
-            if (!confirm('Reset all settings to their original defaults? Your current saved settings will be removed.')) return;
-            localStorage.removeItem(STORAGE_KEY);
-
-            // Restore default values to form fields
-            Object.entries(FIELDS).forEach(([elId, key]) => {
-                const el = document.getElementById(elId);
-                if (!el || DEFAULTS[key] === undefined) return;
-
-                if (el.type === 'checkbox') {
-                    el.checked = DEFAULTS[key];
-                } else {
-                    el.value = DEFAULTS[key];
-                }
-            });
-
-            // Reset button config
-            buttonOrder = DEFAULT_BUTTONS.map(b => b.id);
-            buttonHidden = [];
-            renderButtonList();
-
-            savedSnapshot = JSON.stringify(getCurrentValues());
-            isDirty = false;
-            document.getElementById('unsaved-badge').classList.remove('visible');
-            showToast('Reset to defaults. Click "Save" to keep these values.');
-        }
-
-        // Test a link
         function testLink(inputId) {
-            const url = document.getElementById(inputId).value;
+            var url = document.getElementById(inputId).value;
             if (url) window.open(url, '_blank');
         }
 
-        // Preview panel
-        function showPreview() {
-            document.getElementById('preview-card').style.display = 'block';
-            refreshPreview();
-            document.getElementById('preview-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        function hidePreview() {
-            document.getElementById('preview-card').style.display = 'none';
-        }
-
-        function refreshPreview() {
-            const frame = document.getElementById('preview-frame');
-            frame.src = 'index.html?t=' + Date.now(); // Cache-bust
-        }
-
-        // Toast notification
         function showToast(msg) {
-            const toast = document.getElementById('toast');
+            var toast = document.getElementById('toast');
             toast.textContent = msg;
             toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+            setTimeout(function() { toast.classList.remove('show'); }, 2500);
+        }
+
+        // Load site-data.json and populate the form
+        function loadFromJson() {
+            fetch('site-data.json')
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    siteData = data;
+                    populateForm(data);
+                })
+                .catch(function() {
+                    showToast('Error loading site-data.json');
+                });
+        }
+
+        function populateForm(data) {
+            // Announcement
+            document.getElementById('admin-announce-active').checked = data.announcement ? data.announcement.active : true;
+            document.getElementById('admin-announce-emoji').value = (data.announcement && data.announcement.emoji) || '';
+            document.getElementById('admin-announce-text').value = (data.announcement && data.announcement.text) || '';
+
+            // Links
+            var links = data.links || {};
+            document.getElementById('admin-link-store').value = links.teamStore || '';
+            document.getElementById('admin-link-groupspot-parents').value = links.groupspotParents || '';
+            document.getElementById('admin-link-groupspot-players').value = links.groupspotPlayers || '';
+            document.getElementById('admin-link-signups').value = links.signupSheet || '';
+            document.getElementById('admin-link-livestats').value = links.liveStats || '';
+
+            // Parent code
+            document.getElementById('admin-parent-code').value = (data.groupspot && data.groupspot.parentCode) || '';
+
+            // Schedule links
+            var sched = data.scheduleLinks || {};
+            document.getElementById('admin-link-schedule-varsity').value = sched.varsity || '';
+            document.getElementById('admin-link-schedule-jv').value = sched.jv || '';
+            document.getElementById('admin-link-schedule-frosh').value = sched.frosh || '';
+
+            // Sign-up requirements
+            var signups = data.signups || {};
+            document.getElementById('admin-signup-concessions').value = signups.concessions || '';
+            document.getElementById('admin-signup-food').value = signups.food || '';
+
+            // Buttons
+            buttonDefs = (data.quickActions || []).map(function(b) {
+                return { id: b.id, icon: b.icon, label: b.label };
+            });
+            buttonOrder = (data.buttonOrder && Array.isArray(data.buttonOrder))
+                ? data.buttonOrder.slice()
+                : buttonDefs.map(function(b) { return b.id; });
+            buttonHidden = (data.buttonHidden && Array.isArray(data.buttonHidden))
+                ? data.buttonHidden.slice()
+                : [];
+
+            renderButtonList();
+        }
+
+        // Build the updated JSON from form values
+        function buildJson() {
+            var data = JSON.parse(JSON.stringify(siteData)); // deep clone
+
+            // Announcement
+            data.announcement = {
+                active: document.getElementById('admin-announce-active').checked,
+                emoji: document.getElementById('admin-announce-emoji').value,
+                text: document.getElementById('admin-announce-text').value
+            };
+
+            // Links
+            data.links = {
+                teamStore: document.getElementById('admin-link-store').value,
+                groupspotParents: document.getElementById('admin-link-groupspot-parents').value,
+                groupspotPlayers: document.getElementById('admin-link-groupspot-players').value,
+                signupSheet: document.getElementById('admin-link-signups').value,
+                liveStats: document.getElementById('admin-link-livestats').value,
+                teamApp: (data.links && data.links.teamApp) || ''
+            };
+
+            // Parent code
+            data.groupspot = {
+                parentCode: document.getElementById('admin-parent-code').value
+            };
+
+            // Schedule links
+            data.scheduleLinks = {
+                varsity: document.getElementById('admin-link-schedule-varsity').value,
+                jv: document.getElementById('admin-link-schedule-jv').value,
+                frosh: document.getElementById('admin-link-schedule-frosh').value
+            };
+
+            // Sign-up requirements
+            data.signups = {
+                concessions: document.getElementById('admin-signup-concessions').value,
+                food: document.getElementById('admin-signup-food').value
+            };
+
+            // Button order and hidden
+            data.buttonOrder = buttonOrder;
+            data.buttonHidden = buttonHidden;
+
+            return data;
+        }
+
+        function generateJson() {
+            var data = buildJson();
+            var json = JSON.stringify(data, null, 2);
+            document.getElementById('json-textarea').value = json;
+            document.getElementById('json-output').classList.add('visible');
+            document.getElementById('json-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function copyJson() {
+            var textarea = document.getElementById('json-textarea');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(textarea.value).then(function() {
+                showToast('JSON copied to clipboard!');
+            }).catch(function() {
+                showToast('Select all and copy manually');
+            });
         }
 
         // ===== BUTTON MANAGER =====
         function renderButtonList() {
-            const container = document.getElementById('btn-manage-list');
+            var container = document.getElementById('btn-manage-list');
             if (!container) return;
             container.innerHTML = '';
 
-            const btnMap = {};
-            DEFAULT_BUTTONS.forEach(b => { btnMap[b.id] = b; });
+            var btnMap = {};
+            buttonDefs.forEach(function(b) { btnMap[b.id] = b; });
 
-            buttonOrder.forEach((id, i) => {
-                const btn = btnMap[id];
+            buttonOrder.forEach(function(id, i) {
+                var btn = btnMap[id];
                 if (!btn) return;
 
-                const isHidden = buttonHidden.indexOf(id) !== -1;
-                const row = document.createElement('div');
+                var isHidden = buttonHidden.indexOf(id) !== -1;
+                var row = document.createElement('div');
                 row.className = 'btn-manage-row' + (isHidden ? ' is-hidden' : '');
-                row.setAttribute('data-btn-id', id);
 
                 row.innerHTML =
                     '<div class="btn-manage-arrows">' +
@@ -844,47 +676,57 @@
         }
 
         function moveButton(id, direction) {
-            const idx = buttonOrder.indexOf(id);
+            var idx = buttonOrder.indexOf(id);
             if (idx === -1) return;
-            const newIdx = idx + direction;
+            var newIdx = idx + direction;
             if (newIdx < 0 || newIdx >= buttonOrder.length) return;
-
-            // Swap
-            const temp = buttonOrder[newIdx];
+            var temp = buttonOrder[newIdx];
             buttonOrder[newIdx] = buttonOrder[idx];
             buttonOrder[idx] = temp;
-
             renderButtonList();
-            checkDirty();
         }
 
         function toggleButton(id) {
-            const idx = buttonHidden.indexOf(id);
+            var idx = buttonHidden.indexOf(id);
             if (idx !== -1) {
                 buttonHidden.splice(idx, 1);
             } else {
                 buttonHidden.push(id);
             }
             renderButtonList();
-            checkDirty();
         }
 
-        // Warn before leaving with unsaved changes
-        window.addEventListener('beforeunload', function(e) {
-            if (isDirty) {
-                e.preventDefault();
-                e.returnValue = '';
-            }
-        });
+        // ===== ADMIN LOGIN (hashed password) =====
+        var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c';
 
-        // Listen for changes on all form fields
-        document.querySelectorAll('input, textarea').forEach(el => {
-            el.addEventListener('input', checkDirty);
-            el.addEventListener('change', checkDirty);
-        });
+        function checkAuth() {
+            if (sessionStorage.getItem('gclax-authed') === 'true') {
+                loadFromJson();
+                return;
+            }
+
+            var pw = prompt('Enter admin password:');
+            if (pw === null) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            var encoded = new TextEncoder().encode(pw);
+            crypto.subtle.digest('SHA-256', encoded).then(function(buffer) {
+                var hashArray = Array.from(new Uint8Array(buffer));
+                var hash = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+                if (hash === ADMIN_HASH) {
+                    sessionStorage.setItem('gclax-authed', 'true');
+                    loadFromJson();
+                } else {
+                    alert('Incorrect password.');
+                    window.location.href = 'index.html';
+                }
+            });
+        }
 
         // Init
-        loadSettings();
+        checkAuth();
     </script>
 
 </body>

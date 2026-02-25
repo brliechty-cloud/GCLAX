@@ -43,5 +43,7 @@
     { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "linkKey": "signupSheet" },
     { "id": "schedule", "icon": "📅", "label": "Schedule", "sub": "Games & Events", "style": "outline", "action": "openScheduleModal" },
     { "id": "liveStats", "icon": "📊", "label": "Live Stats", "sub": "Game Cast on Statty", "style": "gold", "linkKey": "liveStats" }
-  ]
+  ],
+  "buttonOrder": ["teamStore", "groupspot", "signups", "schedule", "liveStats"],
+  "buttonHidden": []
 }
