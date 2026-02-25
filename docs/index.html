@@ -631,15 +631,45 @@
                 color: #fde68a;
             }
 
+            .action-card--green {
+                background: linear-gradient(135deg, #1a5632, #2a7a4a);
+                border-color: #2a7a4a;
+            }
+
+            .action-card--green:hover, .action-card--green:active {
+                background: linear-gradient(135deg, #0e3a20, #1a5632);
+                box-shadow: 0 4px 16px rgba(42,122,74,0.3);
+            }
+
             .action-card--outline {
-                background: #1a2e21;
-                color: #8cc8a0;
-                border-color: #2a4a35;
+                background: linear-gradient(135deg, #162b1e, #1e3a28);
+                color: white;
+                border-color: #2a7a4a;
             }
 
             .action-card--outline:hover, .action-card--outline:active {
-                border-color: var(--gc-green-light);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                background: linear-gradient(135deg, #1a3524, #24472f);
+                border-color: #3a9a5a;
+                box-shadow: 0 4px 16px rgba(42,122,74,0.3);
+            }
+
+            .action-card--outline .action-label,
+            .action-card--outline .action-icon {
+                color: white;
+            }
+
+            .action-card--outline .action-sub {
+                color: rgba(255,255,255,0.6);
+            }
+
+            .action-card--gold {
+                background: linear-gradient(135deg, #6b5a1a, #8a7420);
+                border-color: #8a7420;
+            }
+
+            .action-card--gold:hover, .action-card--gold:active {
+                background: linear-gradient(135deg, #5a4a10, #7a6418);
+                box-shadow: 0 4px 16px rgba(200,169,81,0.3);
             }
 
             .info-card {
