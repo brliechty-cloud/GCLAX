@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GC Lax Admin</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #f5f7f6;
+            color: #1a2e21;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: #1a5632;
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .admin-header h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .admin-header a {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .admin-header a:hover { color: white; }
+
+        .admin-container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #dce5df;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #4a6352;
+            margin-bottom: 0.35rem;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #dce5df;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: #1a2e21;
+            margin-bottom: 1rem;
+            transition: border-color 0.15s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1a5632;
+            box-shadow: 0 0 0 3px rgba(26,86,50,0.1);
+        }
+
+        textarea { resize: vertical; min-height: 60px; }
+
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-row label { margin-bottom: 0; }
+
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .toggle input { opacity: 0; width: 0; height: 0; }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: #ccc;
+            border-radius: 24px;
+            transition: 0.2s;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: #1a5632;
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #1a5632;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0e3a20;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(26,86,50,0.3);
+        }
+
+        .btn-secondary {
+            background: #f0f4f2;
+            color: #1a5632;
+            border: 1px solid #dce5df;
+        }
+
+        .btn-secondary:hover {
+            border-color: #1a5632;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1a5632;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .help-text {
+            font-size: 0.75rem;
+            color: #4a6352;
+            margin-top: -0.75rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .link-field {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.5rem;
+            align-items: start;
+        }
+
+        .link-field input { margin-bottom: 0; }
+
+        .link-test {
+            padding: 0.6rem 0.75rem;
+            background: #f0f4f2;
+            border: 1px solid #dce5df;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1a5632;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .link-test:hover { border-color: #1a5632; }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #dce5df;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1>GC Lax Admin</h1>
+        <a href="index.html">← View Site</a>
+    </header>
+
+    <div class="admin-container">
+
+        <!-- ANNOUNCEMENT -->
+        <div class="card">
+            <div class="card-title">📢 Announcement Banner</div>
+            <div class="toggle-row">
+                <label>Show announcement</label>
+                <label class="toggle">
+                    <input type="checkbox" id="admin-announce-active" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <label for="admin-announce-text">Banner text</label>
+            <textarea id="admin-announce-text" rows="2">📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM</textarea>
+            <p class="help-text">Tip: Use emoji at the start to grab attention. Keep it short.</p>
+        </div>
+
+        <!-- LINKS -->
+        <div class="card">
+            <div class="card-title">🔗 Quick Action Links</div>
+
+            <label for="admin-link-store">Team Store URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-store" value="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home">
+                <a class="link-test" onclick="testLink('admin-link-store')">Test ↗</a>
+            </div>
+
+            <hr class="divider">
+
+            <label for="admin-link-groupspot-parents">GroupSpot — Parents URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-groupspot-parents" value="https://get.groupspot.app/QZLhY">
+                <a class="link-test" onclick="testLink('admin-link-groupspot-parents')">Test ↗</a>
+            </div>
+
+            <label for="admin-link-groupspot-players">GroupSpot — Players URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-groupspot-players" value="https://get.groupspot.app/RAaUG">
+                <a class="link-test" onclick="testLink('admin-link-groupspot-players')">Test ↗</a>
+            </div>
+
+            <label for="admin-parent-code">Parent Invite Code</label>
+            <input type="text" id="admin-parent-code" value="QZLhY">
+
+            <hr class="divider">
+
+            <label for="admin-link-signups">Sign-Up Sheet URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-signups" value="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing">
+                <a class="link-test" onclick="testLink('admin-link-signups')">Test ↗</a>
+            </div>
+
+            <hr class="divider">
+
+            <label for="admin-link-schedule-varsity">Schedule — Varsity URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-schedule-varsity" value="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/">
+                <a class="link-test" onclick="testLink('admin-link-schedule-varsity')">Test ↗</a>
+            </div>
+
+            <label for="admin-link-schedule-jv">Schedule — JV URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-schedule-jv" value="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/">
+                <a class="link-test" onclick="testLink('admin-link-schedule-jv')">Test ↗</a>
+            </div>
+
+            <label for="admin-link-schedule-frosh">Schedule — Frosh URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-schedule-frosh" value="">
+                <a class="link-test" onclick="testLink('admin-link-schedule-frosh')">Test ↗</a>
+            </div>
+            <p class="help-text">Leave blank to show "Coming Soon"</p>
+
+            <hr class="divider">
+
+            <label for="admin-link-livestats">Live Stats (Statty) URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-livestats" value="https://www.stattyapp.com/public">
+                <a class="link-test" onclick="testLink('admin-link-livestats')">Test ↗</a>
+            </div>
+        </div>
+
+        <!-- SIGN-UP REQUIREMENTS -->
+        <div class="card">
+            <div class="card-title">📋 Sign-Up Requirements</div>
+            <label for="admin-signup-concessions">Concessions requirement</label>
+            <input type="text" id="admin-signup-concessions" value="1 Concessions spot">
+            <label for="admin-signup-food">Food requirement</label>
+            <input type="text" id="admin-signup-food" value="1 Lunch for an away game OR 2 Snacks for home games">
+        </div>
+
+        <!-- SAVE -->
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
+            <button class="btn btn-secondary" onclick="resetSettings()">Reset to Defaults</button>
+        </div>
+
+        <p class="help-text" style="margin-top: 1rem;">
+            Changes are saved to your browser and apply immediately to the main site.
+            If you clear your browser data, settings will revert to the defaults coded in the HTML.
+        </p>
+
+    </div>
+
+    <div id="toast" class="toast">Saved!</div>
+
+    <script>
+        const STORAGE_KEY = 'gclax-admin';
+
+        // All field IDs and their keys
+        const FIELDS = {
+            'admin-announce-text':          'announceText',
+            'admin-announce-active':        'announceActive',
+            'admin-link-store':             'linkStore',
+            'admin-link-groupspot-parents':  'linkGroupspotParents',
+            'admin-link-groupspot-players':  'linkGroupspotPlayers',
+            'admin-parent-code':            'parentCode',
+            'admin-link-signups':           'linkSignups',
+            'admin-link-schedule-varsity':  'linkScheduleVarsity',
+            'admin-link-schedule-jv':       'linkScheduleJV',
+            'admin-link-schedule-frosh':    'linkScheduleFrosh',
+            'admin-link-livestats':         'linkLiveStats',
+            'admin-signup-concessions':     'signupConcessions',
+            'admin-signup-food':            'signupFood',
+        };
+
+        // Load saved settings on page load
+        function loadSettings() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (!saved) return;
+
+                Object.entries(FIELDS).forEach(([elId, key]) => {
+                    const el = document.getElementById(elId);
+                    if (!el || saved[key] === undefined) return;
+
+                    if (el.type === 'checkbox') {
+                        el.checked = saved[key];
+                    } else {
+                        el.value = saved[key];
+                    }
+                });
+            } catch (e) {
+                console.log('No saved settings found.');
+            }
+        }
+
+        // Save all settings
+        function saveSettings() {
+            const data = {};
+
+            Object.entries(FIELDS).forEach(([elId, key]) => {
+                const el = document.getElementById(elId);
+                if (!el) return;
+                data[key] = el.type === 'checkbox' ? el.checked : el.value;
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            showToast('Saved! Changes are live on the site.');
+        }
+
+        // Reset to defaults
+        function resetSettings() {
+            if (!confirm('Reset all settings to defaults? This cannot be undone.')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+        }
+
+        // Test a link
+        function testLink(inputId) {
+            const url = document.getElementById(inputId).value;
+            if (url) window.open(url, '_blank');
+        }
+
+        // Toast notification
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Init
+        loadSettings();
+    </script>
+
+</body>
+</html>
