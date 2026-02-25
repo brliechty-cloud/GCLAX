@@ -997,21 +997,11 @@
                 if (!data || !data.quickActions || !data.quickActions.length) return;
 
                 var buttons = data.quickActions;
-                var order = (data.buttonOrder && Array.isArray(data.buttonOrder)) ? data.buttonOrder : buttons.map(function(b) { return b.id; });
-                var hidden = (data.buttonHidden && Array.isArray(data.buttonHidden)) ? data.buttonHidden : [];
                 var links = data.links || {};
-
-                // Build lookup
-                var btnMap = {};
-                buttons.forEach(function(b) { btnMap[b.id] = b; });
 
                 grid.innerHTML = '';
 
-                order.forEach(function(id) {
-                    if (hidden.indexOf(id) !== -1) return;
-                    var btn = btnMap[id];
-                    if (!btn) return;
-
+                buttons.forEach(function(btn) {
                     var el = document.createElement('a');
                     el.className = 'action-card action-card--' + btn.style;
 

@@ -245,98 +245,6 @@
             margin: 1rem 0;
         }
 
-        /* ===== BUTTON MANAGER ===== */
-        .btn-manage-list {
-            border: 1px solid #dce5df;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .btn-manage-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.65rem 0.75rem;
-            border-bottom: 1px solid #dce5df;
-            transition: opacity 0.15s;
-        }
-
-        .btn-manage-row:last-child { border-bottom: none; }
-        .btn-manage-row.is-hidden { opacity: 0.45; }
-
-        .btn-manage-arrows {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .btn-arrow {
-            background: #f0f4f2;
-            border: 1px solid #dce5df;
-            border-radius: 4px;
-            width: 26px;
-            height: 20px;
-            font-size: 0.55rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1a5632;
-            transition: all 0.1s;
-            padding: 0;
-            font-family: inherit;
-        }
-
-        .btn-arrow:hover:not(:disabled) {
-            background: #1a5632;
-            color: white;
-            border-color: #1a5632;
-        }
-
-        .btn-arrow:disabled { opacity: 0.25; cursor: default; }
-
-        .btn-manage-icon { font-size: 1.15rem; flex-shrink: 0; }
-        .btn-manage-label { flex: 1; font-weight: 600; font-size: 0.85rem; }
-
-        /* ===== JSON OUTPUT ===== */
-        .json-output {
-            display: none;
-            margin-top: 1rem;
-        }
-
-        .json-output.visible { display: block; }
-
-        .json-output textarea {
-            width: 100%;
-            min-height: 300px;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            font-size: 0.75rem;
-            line-height: 1.5;
-            background: #1a2e21;
-            color: #8cc8a0;
-            border: 2px solid #1a5632;
-            border-radius: 8px;
-            padding: 1rem;
-        }
-
-        .json-instructions {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.8rem;
-            color: #1e40af;
-            line-height: 1.5;
-        }
-
-        .json-instructions ol {
-            margin-left: 1.25rem;
-            margin-top: 0.5rem;
-        }
-
-        .json-instructions li { margin-bottom: 0.25rem; }
-
         /* ===== DARK MODE ===== */
         @media (prefers-color-scheme: dark) {
             body { background: #121a14; color: #e8f0eb; }
@@ -356,11 +264,7 @@
             .help-text { color: #a8b5ad; }
             .link-test { background: #1a2e21; border-color: #2a4a35; color: #8cc8a0; }
             .divider { border-top-color: #2a4a35; }
-            .btn-manage-list, .btn-manage-row { border-color: #2a4a35; }
-            .btn-arrow { background: #162419; border-color: #2a4a35; color: #8cc8a0; }
-            .btn-arrow:hover:not(:disabled) { background: #2a7a4a; color: white; border-color: #2a7a4a; }
             .toast { background: #2a7a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-            .json-instructions { background: #152035; border-color: #1e3a5f; color: #60a5fa; }
         }
     </style>
 </head>
@@ -388,13 +292,6 @@
             <label for="admin-announce-text">Banner text</label>
             <textarea id="admin-announce-text" rows="2"></textarea>
             <p class="help-text">Tip: Use emoji at the start to grab attention. Keep it short.</p>
-        </div>
-
-        <!-- BUTTON MANAGER -->
-        <div class="card">
-            <div class="card-title">🎯 Quick Action Buttons</div>
-            <p class="help-text" style="margin-top:-0.5rem;">Reorder and toggle the big action buttons at the top of the site.</p>
-            <div id="btn-manage-list" class="btn-manage-list"></div>
         </div>
 
         <!-- LINKS -->
@@ -471,45 +368,15 @@
             <input type="text" id="admin-signup-food">
         </div>
 
-        <!-- GENERATE JSON -->
-        <div class="btn-group">
-            <button class="btn btn-primary" onclick="generateJson()">Generate Updated JSON</button>
-        </div>
-
         <p class="help-text" style="margin-top: 1rem;">
-            Click "Generate" to create the updated site-data.json. Copy it and paste into the file, then commit &amp; push to GitHub.
+            This page shows current site settings (read-only). To make changes, edit <code>site-data.json</code> in the repo and push to GitHub.
         </p>
-
-        <!-- JSON OUTPUT -->
-        <div id="json-output" class="json-output">
-            <div class="json-instructions">
-                <strong>How to apply changes:</strong>
-                <ol>
-                    <li>Click "Copy JSON" below</li>
-                    <li>Open <code>site-data.json</code> in the repo (both <code>src/</code> and <code>docs/</code>)</li>
-                    <li>Replace the entire file contents with the copied JSON</li>
-                    <li>Commit and push to GitHub</li>
-                </ol>
-            </div>
-            <div class="btn-group" style="margin-bottom:0.75rem;">
-                <button class="btn btn-primary" onclick="copyJson()">📋 Copy JSON</button>
-            </div>
-            <textarea id="json-textarea" readonly></textarea>
-        </div>
 
     </div>
 
     <div id="toast" class="toast">Copied!</div>
 
     <script>
-        // Current state loaded from site-data.json
-        var siteData = null;
-        var buttonOrder = [];
-        var buttonHidden = [];
-
-        // Button definitions (derived from quickActions in JSON)
-        var buttonDefs = [];
-
         function testLink(inputId) {
             var url = document.getElementById(inputId).value;
             if (url) window.open(url, '_blank');
@@ -522,178 +389,41 @@
             setTimeout(function() { toast.classList.remove('show'); }, 2500);
         }
 
-        // Load site-data.json and populate the form
+        // Load site-data.json and populate the form (read-only view)
         function loadFromJson() {
             fetch('site-data.json')
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
-                    siteData = data;
-                    populateForm(data);
+                    // Announcement
+                    document.getElementById('admin-announce-active').checked = data.announcement ? data.announcement.active : true;
+                    document.getElementById('admin-announce-emoji').value = (data.announcement && data.announcement.emoji) || '';
+                    document.getElementById('admin-announce-text').value = (data.announcement && data.announcement.text) || '';
+
+                    // Links
+                    var links = data.links || {};
+                    document.getElementById('admin-link-store').value = links.teamStore || '';
+                    document.getElementById('admin-link-groupspot-parents').value = links.groupspotParents || '';
+                    document.getElementById('admin-link-groupspot-players').value = links.groupspotPlayers || '';
+                    document.getElementById('admin-link-signups').value = links.signupSheet || '';
+                    document.getElementById('admin-link-livestats').value = links.liveStats || '';
+
+                    // Parent code
+                    document.getElementById('admin-parent-code').value = (data.groupspot && data.groupspot.parentCode) || '';
+
+                    // Schedule links
+                    var sched = data.scheduleLinks || {};
+                    document.getElementById('admin-link-schedule-varsity').value = sched.varsity || '';
+                    document.getElementById('admin-link-schedule-jv').value = sched.jv || '';
+                    document.getElementById('admin-link-schedule-frosh').value = sched.frosh || '';
+
+                    // Sign-up requirements
+                    var signups = data.signups || {};
+                    document.getElementById('admin-signup-concessions').value = signups.concessions || '';
+                    document.getElementById('admin-signup-food').value = signups.food || '';
                 })
                 .catch(function() {
                     showToast('Error loading site-data.json');
                 });
-        }
-
-        function populateForm(data) {
-            // Announcement
-            document.getElementById('admin-announce-active').checked = data.announcement ? data.announcement.active : true;
-            document.getElementById('admin-announce-emoji').value = (data.announcement && data.announcement.emoji) || '';
-            document.getElementById('admin-announce-text').value = (data.announcement && data.announcement.text) || '';
-
-            // Links
-            var links = data.links || {};
-            document.getElementById('admin-link-store').value = links.teamStore || '';
-            document.getElementById('admin-link-groupspot-parents').value = links.groupspotParents || '';
-            document.getElementById('admin-link-groupspot-players').value = links.groupspotPlayers || '';
-            document.getElementById('admin-link-signups').value = links.signupSheet || '';
-            document.getElementById('admin-link-livestats').value = links.liveStats || '';
-
-            // Parent code
-            document.getElementById('admin-parent-code').value = (data.groupspot && data.groupspot.parentCode) || '';
-
-            // Schedule links
-            var sched = data.scheduleLinks || {};
-            document.getElementById('admin-link-schedule-varsity').value = sched.varsity || '';
-            document.getElementById('admin-link-schedule-jv').value = sched.jv || '';
-            document.getElementById('admin-link-schedule-frosh').value = sched.frosh || '';
-
-            // Sign-up requirements
-            var signups = data.signups || {};
-            document.getElementById('admin-signup-concessions').value = signups.concessions || '';
-            document.getElementById('admin-signup-food').value = signups.food || '';
-
-            // Buttons
-            buttonDefs = (data.quickActions || []).map(function(b) {
-                return { id: b.id, icon: b.icon, label: b.label };
-            });
-            buttonOrder = (data.buttonOrder && Array.isArray(data.buttonOrder))
-                ? data.buttonOrder.slice()
-                : buttonDefs.map(function(b) { return b.id; });
-            buttonHidden = (data.buttonHidden && Array.isArray(data.buttonHidden))
-                ? data.buttonHidden.slice()
-                : [];
-
-            renderButtonList();
-        }
-
-        // Build the updated JSON from form values
-        function buildJson() {
-            var data = JSON.parse(JSON.stringify(siteData)); // deep clone
-
-            // Announcement
-            data.announcement = {
-                active: document.getElementById('admin-announce-active').checked,
-                emoji: document.getElementById('admin-announce-emoji').value,
-                text: document.getElementById('admin-announce-text').value
-            };
-
-            // Links
-            data.links = {
-                teamStore: document.getElementById('admin-link-store').value,
-                groupspotParents: document.getElementById('admin-link-groupspot-parents').value,
-                groupspotPlayers: document.getElementById('admin-link-groupspot-players').value,
-                signupSheet: document.getElementById('admin-link-signups').value,
-                liveStats: document.getElementById('admin-link-livestats').value,
-                teamApp: (data.links && data.links.teamApp) || ''
-            };
-
-            // Parent code
-            data.groupspot = {
-                parentCode: document.getElementById('admin-parent-code').value
-            };
-
-            // Schedule links
-            data.scheduleLinks = {
-                varsity: document.getElementById('admin-link-schedule-varsity').value,
-                jv: document.getElementById('admin-link-schedule-jv').value,
-                frosh: document.getElementById('admin-link-schedule-frosh').value
-            };
-
-            // Sign-up requirements
-            data.signups = {
-                concessions: document.getElementById('admin-signup-concessions').value,
-                food: document.getElementById('admin-signup-food').value
-            };
-
-            // Button order and hidden
-            data.buttonOrder = buttonOrder;
-            data.buttonHidden = buttonHidden;
-
-            return data;
-        }
-
-        function generateJson() {
-            var data = buildJson();
-            var json = JSON.stringify(data, null, 2);
-            document.getElementById('json-textarea').value = json;
-            document.getElementById('json-output').classList.add('visible');
-            document.getElementById('json-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        function copyJson() {
-            var textarea = document.getElementById('json-textarea');
-            textarea.select();
-            textarea.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(textarea.value).then(function() {
-                showToast('JSON copied to clipboard!');
-            }).catch(function() {
-                showToast('Select all and copy manually');
-            });
-        }
-
-        // ===== BUTTON MANAGER =====
-        function renderButtonList() {
-            var container = document.getElementById('btn-manage-list');
-            if (!container) return;
-            container.innerHTML = '';
-
-            var btnMap = {};
-            buttonDefs.forEach(function(b) { btnMap[b.id] = b; });
-
-            buttonOrder.forEach(function(id, i) {
-                var btn = btnMap[id];
-                if (!btn) return;
-
-                var isHidden = buttonHidden.indexOf(id) !== -1;
-                var row = document.createElement('div');
-                row.className = 'btn-manage-row' + (isHidden ? ' is-hidden' : '');
-
-                row.innerHTML =
-                    '<div class="btn-manage-arrows">' +
-                        '<button class="btn-arrow" ' + (i === 0 ? 'disabled' : '') + ' onclick="moveButton(\'' + id + '\', -1)" title="Move up">&#9650;</button>' +
-                        '<button class="btn-arrow" ' + (i === buttonOrder.length - 1 ? 'disabled' : '') + ' onclick="moveButton(\'' + id + '\', 1)" title="Move down">&#9660;</button>' +
-                    '</div>' +
-                    '<span class="btn-manage-icon">' + btn.icon + '</span>' +
-                    '<span class="btn-manage-label">' + btn.label + '</span>' +
-                    '<label class="toggle">' +
-                        '<input type="checkbox" ' + (!isHidden ? 'checked' : '') + ' onchange="toggleButton(\'' + id + '\')">' +
-                        '<span class="toggle-slider"></span>' +
-                    '</label>';
-
-                container.appendChild(row);
-            });
-        }
-
-        function moveButton(id, direction) {
-            var idx = buttonOrder.indexOf(id);
-            if (idx === -1) return;
-            var newIdx = idx + direction;
-            if (newIdx < 0 || newIdx >= buttonOrder.length) return;
-            var temp = buttonOrder[newIdx];
-            buttonOrder[newIdx] = buttonOrder[idx];
-            buttonOrder[idx] = temp;
-            renderButtonList();
-        }
-
-        function toggleButton(id) {
-            var idx = buttonHidden.indexOf(id);
-            if (idx !== -1) {
-                buttonHidden.splice(idx, 1);
-            } else {
-                buttonHidden.push(id);
-            }
-            renderButtonList();
         }
 
         // ===== ADMIN LOGIN (hashed password) =====
