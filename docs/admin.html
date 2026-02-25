@@ -287,6 +287,75 @@
             margin: 1rem 0;
         }
 
+        /* ===== BUTTON MANAGER ===== */
+        .btn-manage-list {
+            border: 1px solid #dce5df;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .btn-manage-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid #dce5df;
+            transition: opacity 0.15s;
+        }
+
+        .btn-manage-row:last-child {
+            border-bottom: none;
+        }
+
+        .btn-manage-row.is-hidden {
+            opacity: 0.45;
+        }
+
+        .btn-manage-arrows {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .btn-arrow {
+            background: #f0f4f2;
+            border: 1px solid #dce5df;
+            border-radius: 4px;
+            width: 26px;
+            height: 20px;
+            font-size: 0.55rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a5632;
+            transition: all 0.1s;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .btn-arrow:hover:not(:disabled) {
+            background: #1a5632;
+            color: white;
+            border-color: #1a5632;
+        }
+
+        .btn-arrow:disabled {
+            opacity: 0.25;
+            cursor: default;
+        }
+
+        .btn-manage-icon {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .btn-manage-label {
+            flex: 1;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
         /* ===== PREVIEW PANEL ===== */
         .preview-card {
             background: white;
@@ -390,6 +459,23 @@
 
             .divider { border-top-color: #2a4a35; }
 
+            .btn-manage-list,
+            .btn-manage-row {
+                border-color: #2a4a35;
+            }
+
+            .btn-arrow {
+                background: #162419;
+                border-color: #2a4a35;
+                color: #8cc8a0;
+            }
+
+            .btn-arrow:hover:not(:disabled) {
+                background: #2a7a4a;
+                color: white;
+                border-color: #2a7a4a;
+            }
+
             .preview-phone {
                 background: #162419;
                 border-color: #2a4a35;
@@ -431,6 +517,15 @@
             <label for="admin-announce-text">Banner text</label>
             <textarea id="admin-announce-text" rows="2">📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM</textarea>
             <p class="help-text">Tip: Use emoji at the start to grab attention. Keep it short.</p>
+        </div>
+
+        <!-- BUTTON MANAGER -->
+        <div class="card">
+            <div class="card-title">🎯 Quick Action Buttons</div>
+            <p class="help-text" style="margin-top:-0.5rem;">Reorder and toggle the big action buttons at the top of the site.</p>
+            <div id="btn-manage-list" class="btn-manage-list">
+                <!-- Rendered by JS -->
+            </div>
         </div>
 
         <!-- LINKS -->
@@ -539,6 +634,18 @@
     <script>
         const STORAGE_KEY = 'gclax-admin';
 
+        // Button definitions (must match site-data.json quickActions)
+        const DEFAULT_BUTTONS = [
+            { id: 'teamStore',  icon: '🛒', label: 'Team Store' },
+            { id: 'groupspot',  icon: '📲', label: 'Join GroupSpot' },
+            { id: 'signups',    icon: '📋', label: 'Sign-Ups' },
+            { id: 'schedule',   icon: '📅', label: 'Schedule' },
+            { id: 'liveStats',  icon: '📊', label: 'Live Stats' },
+        ];
+
+        let buttonOrder = DEFAULT_BUTTONS.map(b => b.id);
+        let buttonHidden = [];
+
         // All field IDs and their keys
         const FIELDS = {
             'admin-announce-text':          'announceText',
@@ -576,7 +683,7 @@
         let savedSnapshot = null; // Track last-saved state for dirty detection
         let isDirty = false;
 
-        // Get current form values
+        // Get current form values (includes button config)
         function getCurrentValues() {
             const data = {};
             Object.entries(FIELDS).forEach(([elId, key]) => {
@@ -584,6 +691,8 @@
                 if (!el) return;
                 data[key] = el.type === 'checkbox' ? el.checked : el.value;
             });
+            data.buttonOrder = buttonOrder;
+            data.buttonHidden = buttonHidden;
             return data;
         }
 
@@ -599,6 +708,7 @@
             try {
                 const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
                 if (!saved) {
+                    renderButtonList();
                     savedSnapshot = JSON.stringify(getCurrentValues());
                     return;
                 }
@@ -614,9 +724,19 @@
                     }
                 });
 
+                // Load button config
+                if (saved.buttonOrder && Array.isArray(saved.buttonOrder)) {
+                    buttonOrder = saved.buttonOrder;
+                }
+                if (saved.buttonHidden && Array.isArray(saved.buttonHidden)) {
+                    buttonHidden = saved.buttonHidden;
+                }
+
+                renderButtonList();
                 savedSnapshot = JSON.stringify(getCurrentValues());
             } catch (e) {
                 console.log('No saved settings found.');
+                renderButtonList();
                 savedSnapshot = JSON.stringify(getCurrentValues());
             }
         }
@@ -647,6 +767,11 @@
                     el.value = DEFAULTS[key];
                 }
             });
+
+            // Reset button config
+            buttonOrder = DEFAULT_BUTTONS.map(b => b.id);
+            buttonHidden = [];
+            renderButtonList();
 
             savedSnapshot = JSON.stringify(getCurrentValues());
             isDirty = false;
@@ -682,6 +807,66 @@
             toast.textContent = msg;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // ===== BUTTON MANAGER =====
+        function renderButtonList() {
+            const container = document.getElementById('btn-manage-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const btnMap = {};
+            DEFAULT_BUTTONS.forEach(b => { btnMap[b.id] = b; });
+
+            buttonOrder.forEach((id, i) => {
+                const btn = btnMap[id];
+                if (!btn) return;
+
+                const isHidden = buttonHidden.indexOf(id) !== -1;
+                const row = document.createElement('div');
+                row.className = 'btn-manage-row' + (isHidden ? ' is-hidden' : '');
+                row.setAttribute('data-btn-id', id);
+
+                row.innerHTML =
+                    '<div class="btn-manage-arrows">' +
+                        '<button class="btn-arrow" ' + (i === 0 ? 'disabled' : '') + ' onclick="moveButton(\'' + id + '\', -1)" title="Move up">&#9650;</button>' +
+                        '<button class="btn-arrow" ' + (i === buttonOrder.length - 1 ? 'disabled' : '') + ' onclick="moveButton(\'' + id + '\', 1)" title="Move down">&#9660;</button>' +
+                    '</div>' +
+                    '<span class="btn-manage-icon">' + btn.icon + '</span>' +
+                    '<span class="btn-manage-label">' + btn.label + '</span>' +
+                    '<label class="toggle">' +
+                        '<input type="checkbox" ' + (!isHidden ? 'checked' : '') + ' onchange="toggleButton(\'' + id + '\')">' +
+                        '<span class="toggle-slider"></span>' +
+                    '</label>';
+
+                container.appendChild(row);
+            });
+        }
+
+        function moveButton(id, direction) {
+            const idx = buttonOrder.indexOf(id);
+            if (idx === -1) return;
+            const newIdx = idx + direction;
+            if (newIdx < 0 || newIdx >= buttonOrder.length) return;
+
+            // Swap
+            const temp = buttonOrder[newIdx];
+            buttonOrder[newIdx] = buttonOrder[idx];
+            buttonOrder[idx] = temp;
+
+            renderButtonList();
+            checkDirty();
+        }
+
+        function toggleButton(id) {
+            const idx = buttonHidden.indexOf(id);
+            if (idx !== -1) {
+                buttonHidden.splice(idx, 1);
+            } else {
+                buttonHidden.push(id);
+            }
+            renderButtonList();
+            checkDirty();
         }
 
         // Warn before leaving with unsaved changes

@@ -773,7 +773,7 @@
                 height: 130px;
             }
             .action-grid {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             }
             .action-grid .action-card:last-child:nth-child(odd) {
                 max-width: 100%;
@@ -822,35 +822,9 @@
 
     <main class="container">
 
-        <!-- QUICK ACTION BUTTONS -->
+        <!-- QUICK ACTION BUTTONS — rendered dynamically from site-data.json + admin settings -->
         <section id="quick-links">
-            <div class="action-grid">
-                <a href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" class="action-card action-card--green" target="_blank" rel="noopener">
-                    <span class="action-icon">🛒</span>
-                    <span class="action-label">Team Store</span>
-                    <span class="action-sub">Jerseys &amp; Gear</span>
-                </a>
-                <a href="https://get.groupspot.app/QZLhY" class="action-card action-card--outline" target="_blank" rel="noopener">
-                    <span class="action-icon">📲</span>
-                    <span class="action-label">Join GroupSpot</span>
-                    <span class="action-sub">Parents</span>
-                </a>
-                <a href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" class="action-card action-card--outline" target="_blank" rel="noopener">
-                    <span class="action-icon">📋</span>
-                    <span class="action-label">Sign-Ups</span>
-                    <span class="action-sub">Concessions &amp; Snacks</span>
-                </a>
-                <a href="#" class="action-card action-card--outline" onclick="openScheduleModal(event)">
-                    <span class="action-icon">📅</span>
-                    <span class="action-label">Schedule</span>
-                    <span class="action-sub">Games &amp; Events</span>
-                </a>
-                <a href="https://www.stattyapp.com/public" class="action-card action-card--gold" target="_blank" rel="noopener">
-                    <span class="action-icon">📊</span>
-                    <span class="action-label">Live Stats</span>
-                    <span class="action-sub">Game Cast on Statty</span>
-                </a>
-            </div>
+            <div class="action-grid" id="action-grid"></div>
         </section>
 
         <!-- GROUPSPOT / COMMUNICATION -->
@@ -997,6 +971,15 @@
         // ===== JSON DATA LAYER =====
         // Loads site-data.json and populates the page, then applies admin overrides.
         (function() {
+            // Default button definitions (fallback if site-data.json is missing quickActions)
+            var DEFAULT_BUTTONS = [
+                { id: 'teamStore', icon: '\uD83D\uDED2', label: 'Team Store', sub: 'Jerseys & Gear', style: 'green', linkKey: 'teamStore' },
+                { id: 'groupspot', icon: '\uD83D\uDCF2', label: 'Join GroupSpot', sub: 'Parents', style: 'outline', linkKey: 'groupspotParents' },
+                { id: 'signups', icon: '\uD83D\uDCCB', label: 'Sign-Ups', sub: 'Concessions & Snacks', style: 'outline', linkKey: 'signupSheet' },
+                { id: 'schedule', icon: '\uD83D\uDCC5', label: 'Schedule', sub: 'Games & Events', style: 'outline', action: 'openScheduleModal' },
+                { id: 'liveStats', icon: '\uD83D\uDCCA', label: 'Live Stats', sub: 'Game Cast on Statty', style: 'gold', linkKey: 'liveStats' }
+            ];
+
             // Helper to set href on elements by selector
             function setLink(selector, url) {
                 if (!url) return;
@@ -1004,74 +987,119 @@
                 els.forEach(function(el) { el.href = url; });
             }
 
-            // Apply admin localStorage overrides on top of defaults
-            function applyAdminOverrides() {
-                try {
-                    var saved = JSON.parse(localStorage.getItem('gclax-admin'));
-                    if (!saved) return;
+            // Render quick action buttons dynamically
+            function renderActionButtons(data, admin) {
+                var grid = document.getElementById('action-grid');
+                if (!grid) return;
 
-                    // Announcement banner
-                    var banner = document.getElementById('announcement-banner');
-                    if (banner) {
-                        if (saved.announceActive === false) {
-                            banner.style.display = 'none';
-                        } else {
-                            banner.style.display = 'block';
-                            if (saved.announceText) banner.innerHTML = saved.announceText;
+                var buttons = (data && data.quickActions && data.quickActions.length) ? data.quickActions : DEFAULT_BUTTONS;
+                var order = (admin && Array.isArray(admin.buttonOrder)) ? admin.buttonOrder : buttons.map(function(b) { return b.id; });
+                var hidden = (admin && Array.isArray(admin.buttonHidden)) ? admin.buttonHidden : [];
+
+                // Build lookup
+                var btnMap = {};
+                buttons.forEach(function(b) { btnMap[b.id] = b; });
+
+                // Resolve URLs: admin overrides > site-data.json links
+                var links = (data && data.links) || {};
+                var overrides = {};
+                if (admin) {
+                    if (admin.linkStore) overrides.teamStore = admin.linkStore;
+                    if (admin.linkGroupspotParents) overrides.groupspotParents = admin.linkGroupspotParents;
+                    if (admin.linkSignups) overrides.signupSheet = admin.linkSignups;
+                    if (admin.linkLiveStats) overrides.liveStats = admin.linkLiveStats;
+                }
+
+                grid.innerHTML = '';
+
+                order.forEach(function(id) {
+                    if (hidden.indexOf(id) !== -1) return;
+                    var btn = btnMap[id];
+                    if (!btn) return;
+
+                    var el = document.createElement('a');
+                    el.className = 'action-card action-card--' + btn.style;
+                    el.setAttribute('-webkit-tap-highlight-color', 'transparent');
+
+                    if (btn.action) {
+                        el.href = '#';
+                        el.setAttribute('onclick', btn.action + '(event)');
+                    } else if (btn.linkKey) {
+                        el.href = overrides[btn.linkKey] || links[btn.linkKey] || '#';
+                        el.target = '_blank';
+                        el.rel = 'noopener';
+                    }
+
+                    el.innerHTML =
+                        '<span class="action-icon">' + btn.icon + '</span>' +
+                        '<span class="action-label">' + btn.label + '</span>' +
+                        '<span class="action-sub">' + btn.sub + '</span>';
+
+                    grid.appendChild(el);
+                });
+            }
+
+            // Apply admin localStorage overrides (non-button settings)
+            function applyAdminOverrides(admin) {
+                if (!admin) return;
+
+                // Announcement banner
+                var banner = document.getElementById('announcement-banner');
+                if (banner) {
+                    if (admin.announceActive === false) {
+                        banner.style.display = 'none';
+                    } else {
+                        banner.style.display = 'block';
+                        if (admin.announceText) banner.innerHTML = admin.announceText;
+                    }
+                }
+
+                // Non-button links (GroupSpot section, etc.)
+                if (admin.linkGroupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', admin.linkGroupspotParents);
+                if (admin.linkGroupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', admin.linkGroupspotPlayers);
+                if (admin.linkSignups) setLink('a[href*="docs.google.com/spreadsheets"]', admin.linkSignups);
+
+                // Schedule modal links
+                if (admin.linkScheduleVarsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', admin.linkScheduleVarsity);
+                if (admin.linkScheduleJV) setLink('a[href*="maxpreps"][href*="/jv/"]', admin.linkScheduleJV);
+
+                if (admin.linkScheduleFrosh) {
+                    var froshEl = document.querySelector('.modal-option--frosh');
+                    if (froshEl) {
+                        var link = document.createElement('a');
+                        link.href = admin.linkScheduleFrosh;
+                        link.className = 'modal-option modal-option--jv';
+                        link.target = '_blank';
+                        link.rel = 'noopener';
+                        link.textContent = '\uD83C\uDFC3 Frosh';
+                        froshEl.parentNode.replaceChild(link, froshEl);
+                    }
+                }
+
+                if (admin.parentCode) {
+                    var codeEls = document.querySelectorAll('.highlight');
+                    codeEls.forEach(function(el) {
+                        if (el.textContent.trim() === 'QZLhY') {
+                            el.textContent = admin.parentCode;
                         }
-                    }
+                    });
+                }
 
-                    if (saved.linkStore) setLink('a[href*="teamupathletics"]', saved.linkStore);
-                    if (saved.linkGroupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', saved.linkGroupspotParents);
-                    if (saved.linkGroupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', saved.linkGroupspotPlayers);
-                    if (saved.linkSignups) setLink('a[href*="docs.google.com/spreadsheets"]', saved.linkSignups);
-                    if (saved.linkLiveStats) setLink('a[href*="stattyapp"]', saved.linkLiveStats);
-                    if (saved.linkScheduleVarsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', saved.linkScheduleVarsity);
-                    if (saved.linkScheduleJV) setLink('a[href*="maxpreps"][href*="/jv/"]', saved.linkScheduleJV);
-
-                    if (saved.linkScheduleFrosh) {
-                        var froshEl = document.querySelector('.modal-option--frosh');
-                        if (froshEl) {
-                            var link = document.createElement('a');
-                            link.href = saved.linkScheduleFrosh;
-                            link.className = 'modal-option modal-option--jv';
-                            link.target = '_blank';
-                            link.rel = 'noopener';
-                            link.textContent = '\uD83C\uDFC3 Frosh';
-                            froshEl.parentNode.replaceChild(link, froshEl);
-                        }
-                    }
-
-                    if (saved.parentCode) {
-                        var codeEls = document.querySelectorAll('.highlight');
-                        codeEls.forEach(function(el) {
-                            if (el.textContent.trim() === 'QZLhY') {
-                                el.textContent = saved.parentCode;
-                            }
-                        });
-                    }
-
-                    if (saved.signupConcessions) {
-                        var concEl = document.getElementById('signup-concessions');
-                        if (concEl) concEl.textContent = saved.signupConcessions;
-                    }
-                    if (saved.signupFood) {
-                        var foodEl = document.getElementById('signup-food');
-                        if (foodEl) foodEl.textContent = saved.signupFood;
-                    }
-
-                } catch (e) {
-                    // No admin settings, use defaults
+                if (admin.signupConcessions) {
+                    var concEl = document.getElementById('signup-concessions');
+                    if (concEl) concEl.textContent = admin.signupConcessions;
+                }
+                if (admin.signupFood) {
+                    var foodEl = document.getElementById('signup-food');
+                    if (foodEl) foodEl.textContent = admin.signupFood;
                 }
             }
 
-            // Load site-data.json and populate page
+            // Load site-data.json and populate page (non-button data)
             function applyJsonData(data) {
-                // Season badge
                 var badge = document.getElementById('hero-season-badge');
                 if (badge && data.season) badge.textContent = data.season + ' Season';
 
-                // Announcement banner
                 var banner = document.getElementById('announcement-banner');
                 if (banner && data.announcement) {
                     if (!data.announcement.active) {
@@ -1082,16 +1110,13 @@
                     }
                 }
 
-                // Links
+                // Non-button links (GroupSpot section links, sign-up sheet link)
                 if (data.links) {
-                    if (data.links.teamStore) setLink('a[href*="teamupathletics"]', data.links.teamStore);
                     if (data.links.groupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', data.links.groupspotParents);
                     if (data.links.groupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', data.links.groupspotPlayers);
                     if (data.links.signupSheet) setLink('a[href*="docs.google.com/spreadsheets"]', data.links.signupSheet);
-                    if (data.links.liveStats) setLink('a[href*="stattyapp"]', data.links.liveStats);
                 }
 
-                // Schedule links
                 if (data.scheduleLinks) {
                     if (data.scheduleLinks.varsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', data.scheduleLinks.varsity);
                     if (data.scheduleLinks.jv) setLink('a[href*="maxpreps"][href*="/jv/"]', data.scheduleLinks.jv);
@@ -1109,7 +1134,6 @@
                     }
                 }
 
-                // Parent invite code
                 if (data.groupspot && data.groupspot.parentCode) {
                     var codeEls = document.querySelectorAll('.highlight');
                     codeEls.forEach(function(el) {
@@ -1119,7 +1143,6 @@
                     });
                 }
 
-                // Sign-up requirements
                 if (data.signups) {
                     if (data.signups.concessions) {
                         var concEl = document.getElementById('signup-concessions');
@@ -1137,17 +1160,21 @@
                 document.body.classList.remove('page-loading');
             }
 
-            // Main init: fetch JSON → apply → apply admin overrides → reveal
+            // Main init: fetch JSON → render buttons → apply data → apply admin → reveal
+            var admin = null;
+            try { admin = JSON.parse(localStorage.getItem('gclax-admin')); } catch (e) {}
+
             fetch('site-data.json')
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
+                    renderActionButtons(data, admin);
                     applyJsonData(data);
-                    applyAdminOverrides();
+                    applyAdminOverrides(admin);
                     revealPage();
                 })
                 .catch(function() {
-                    // JSON failed to load — just apply admin overrides and reveal
-                    applyAdminOverrides();
+                    renderActionButtons({}, admin);
+                    applyAdminOverrides(admin);
                     revealPage();
                 });
         })();

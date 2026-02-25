@@ -36,5 +36,12 @@
   "signups": {
     "concessions": "1 Concessions spot",
     "food": "1 Lunch for an away game OR 2 Snacks for home games"
-  }
+  },
+  "quickActions": [
+    { "id": "teamStore", "icon": "🛒", "label": "Team Store", "sub": "Jerseys & Gear", "style": "green", "linkKey": "teamStore" },
+    { "id": "groupspot", "icon": "📲", "label": "Join GroupSpot", "sub": "Parents", "style": "outline", "linkKey": "groupspotParents" },
+    { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "linkKey": "signupSheet" },
+    { "id": "schedule", "icon": "📅", "label": "Schedule", "sub": "Games & Events", "style": "outline", "action": "openScheduleModal" },
+    { "id": "liveStats", "icon": "📊", "label": "Live Stats", "sub": "Game Cast on Statty", "style": "gold", "linkKey": "liveStats" }
+  ]
 }
