@@ -157,10 +157,10 @@
             padding: 1rem 0;
         }
 
-        /* Center the 5th (odd) button on its own row */
+        /* Center the 5th (odd) button on its own row, same size as others */
         .action-grid .action-card:last-child:nth-child(odd) {
             grid-column: 1 / -1;
-            max-width: 50%;
+            max-width: calc(50% - 0.25rem);
             justify-self: center;
         }
 
