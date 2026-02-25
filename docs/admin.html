@@ -25,11 +25,20 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         .admin-header h1 {
             font-size: 1.25rem;
             font-weight: 800;
+        }
+
+        .admin-header-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .admin-header a {
@@ -39,6 +48,20 @@
         }
 
         .admin-header a:hover { color: white; }
+
+        .unsaved-badge {
+            display: none;
+            background: #fbbf24;
+            color: #92400e;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .unsaved-badge.visible { display: inline-block; }
 
         .admin-container {
             max-width: 640px;
@@ -83,6 +106,7 @@
             font-family: inherit;
             font-size: 0.85rem;
             color: #1a2e21;
+            background: white;
             margin-bottom: 1rem;
             transition: border-color 0.15s;
         }
@@ -176,8 +200,31 @@
             border-color: #1a5632;
         }
 
+        .btn-danger {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .btn-danger:hover {
+            background: #fee2e2;
+            border-color: #dc2626;
+        }
+
+        .btn-preview {
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .btn-preview:hover {
+            background: #dbeafe;
+            border-color: #2563eb;
+        }
+
         .btn-group {
             display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
@@ -239,13 +286,134 @@
             border-top: 1px solid #dce5df;
             margin: 1rem 0;
         }
+
+        /* ===== PREVIEW PANEL ===== */
+        .preview-card {
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #2563eb;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .preview-card .card-title {
+            color: #2563eb;
+        }
+
+        .preview-phone {
+            background: #f8faf9;
+            border: 2px solid #dce5df;
+            border-radius: 20px;
+            padding: 0.5rem;
+            max-width: 320px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .preview-phone iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 16px;
+        }
+
+        .preview-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #4a6352;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* ===== DARK MODE ===== */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121a14;
+                color: #e8f0eb;
+            }
+
+            .admin-header {
+                background: #0e3a20;
+            }
+
+            .card, .preview-card {
+                background: #1a2e21;
+                border-color: #2a4a35;
+            }
+
+            .card-title { color: #e8f0eb; }
+
+            label { color: #a8b5ad; }
+
+            input[type="text"],
+            input[type="url"],
+            textarea {
+                background: #162419;
+                border-color: #2a4a35;
+                color: #e8f0eb;
+            }
+
+            input:focus, textarea:focus {
+                border-color: #2a7a4a;
+                box-shadow: 0 0 0 3px rgba(42,122,74,0.2);
+            }
+
+            .toggle-slider { background: #2a4a35; }
+
+            .btn-secondary {
+                background: #1a2e21;
+                color: #8cc8a0;
+                border-color: #2a4a35;
+            }
+
+            .btn-secondary:hover { border-color: #2a7a4a; }
+
+            .btn-danger {
+                background: #2a1515;
+                color: #f87171;
+                border-color: #5c2020;
+            }
+
+            .btn-preview {
+                background: #152035;
+                color: #60a5fa;
+                border-color: #1e3a5f;
+            }
+
+            .help-text { color: #a8b5ad; }
+
+            .link-test {
+                background: #1a2e21;
+                border-color: #2a4a35;
+                color: #8cc8a0;
+            }
+
+            .divider { border-top-color: #2a4a35; }
+
+            .preview-phone {
+                background: #162419;
+                border-color: #2a4a35;
+            }
+
+            .preview-note { color: #a8b5ad; }
+
+            .toast {
+                background: #2a7a4a;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            }
+        }
     </style>
 </head>
 <body>
 
     <header class="admin-header">
-        <h1>GC Lax Admin</h1>
-        <a href="index.html">← View Site</a>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+            <h1>GC Lax Admin</h1>
+            <span id="unsaved-badge" class="unsaved-badge">Unsaved</span>
+        </div>
+        <div class="admin-header-links">
+            <a href="index.html">← View Site</a>
+        </div>
     </header>
 
     <div class="admin-container">
@@ -339,15 +507,29 @@
             <input type="text" id="admin-signup-food" value="1 Lunch for an away game OR 2 Snacks for home games">
         </div>
 
+        <!-- PREVIEW -->
+        <div class="preview-card" id="preview-card" style="display:none;">
+            <div class="card-title">👁 Live Preview</div>
+            <div class="preview-phone">
+                <iframe id="preview-frame" src="index.html" title="Site preview"></iframe>
+            </div>
+            <p class="preview-note">This is a live preview. Save your changes first, then refresh the preview to see updates.</p>
+            <div class="btn-group" style="justify-content:center;margin-top:0.75rem;">
+                <button class="btn btn-preview" onclick="refreshPreview()">Refresh Preview</button>
+                <button class="btn btn-secondary" onclick="hidePreview()">Close Preview</button>
+            </div>
+        </div>
+
         <!-- SAVE -->
         <div class="btn-group">
             <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
-            <button class="btn btn-secondary" onclick="resetSettings()">Reset to Defaults</button>
+            <button class="btn btn-preview" onclick="showPreview()">Preview Site</button>
+            <button class="btn btn-danger" onclick="resetSettings()">Reset to Defaults</button>
         </div>
 
         <p class="help-text" style="margin-top: 1rem;">
             Changes are saved to your browser and apply immediately to the main site.
-            If you clear your browser data, settings will revert to the defaults coded in the HTML.
+            Use "Preview Site" to see how your changes look before sharing.
         </p>
 
     </div>
@@ -374,11 +556,52 @@
             'admin-signup-food':            'signupFood',
         };
 
+        // Default values (match what's in the HTML)
+        const DEFAULTS = {
+            announceActive: true,
+            announceText: '📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM',
+            linkStore: 'https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home',
+            linkGroupspotParents: 'https://get.groupspot.app/QZLhY',
+            linkGroupspotPlayers: 'https://get.groupspot.app/RAaUG',
+            parentCode: 'QZLhY',
+            linkSignups: 'https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing',
+            linkScheduleVarsity: 'https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/',
+            linkScheduleJV: 'https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/',
+            linkScheduleFrosh: '',
+            linkLiveStats: 'https://www.stattyapp.com/public',
+            signupConcessions: '1 Concessions spot',
+            signupFood: '1 Lunch for an away game OR 2 Snacks for home games',
+        };
+
+        let savedSnapshot = null; // Track last-saved state for dirty detection
+        let isDirty = false;
+
+        // Get current form values
+        function getCurrentValues() {
+            const data = {};
+            Object.entries(FIELDS).forEach(([elId, key]) => {
+                const el = document.getElementById(elId);
+                if (!el) return;
+                data[key] = el.type === 'checkbox' ? el.checked : el.value;
+            });
+            return data;
+        }
+
+        // Check if form has unsaved changes
+        function checkDirty() {
+            const current = JSON.stringify(getCurrentValues());
+            isDirty = current !== savedSnapshot;
+            document.getElementById('unsaved-badge').classList.toggle('visible', isDirty);
+        }
+
         // Load saved settings on page load
         function loadSettings() {
             try {
                 const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                if (!saved) return;
+                if (!saved) {
+                    savedSnapshot = JSON.stringify(getCurrentValues());
+                    return;
+                }
 
                 Object.entries(FIELDS).forEach(([elId, key]) => {
                     const el = document.getElementById(elId);
@@ -390,36 +613,67 @@
                         el.value = saved[key];
                     }
                 });
+
+                savedSnapshot = JSON.stringify(getCurrentValues());
             } catch (e) {
                 console.log('No saved settings found.');
+                savedSnapshot = JSON.stringify(getCurrentValues());
             }
         }
 
         // Save all settings
         function saveSettings() {
-            const data = {};
-
-            Object.entries(FIELDS).forEach(([elId, key]) => {
-                const el = document.getElementById(elId);
-                if (!el) return;
-                data[key] = el.type === 'checkbox' ? el.checked : el.value;
-            });
-
+            const data = getCurrentValues();
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            savedSnapshot = JSON.stringify(data);
+            isDirty = false;
+            document.getElementById('unsaved-badge').classList.remove('visible');
             showToast('Saved! Changes are live on the site.');
         }
 
         // Reset to defaults
         function resetSettings() {
-            if (!confirm('Reset all settings to defaults? This cannot be undone.')) return;
+            if (!confirm('Reset all settings to their original defaults? Your current saved settings will be removed.')) return;
             localStorage.removeItem(STORAGE_KEY);
-            location.reload();
+
+            // Restore default values to form fields
+            Object.entries(FIELDS).forEach(([elId, key]) => {
+                const el = document.getElementById(elId);
+                if (!el || DEFAULTS[key] === undefined) return;
+
+                if (el.type === 'checkbox') {
+                    el.checked = DEFAULTS[key];
+                } else {
+                    el.value = DEFAULTS[key];
+                }
+            });
+
+            savedSnapshot = JSON.stringify(getCurrentValues());
+            isDirty = false;
+            document.getElementById('unsaved-badge').classList.remove('visible');
+            showToast('Reset to defaults. Click "Save" to keep these values.');
         }
 
         // Test a link
         function testLink(inputId) {
             const url = document.getElementById(inputId).value;
             if (url) window.open(url, '_blank');
+        }
+
+        // Preview panel
+        function showPreview() {
+            document.getElementById('preview-card').style.display = 'block';
+            refreshPreview();
+            document.getElementById('preview-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function hidePreview() {
+            document.getElementById('preview-card').style.display = 'none';
+        }
+
+        function refreshPreview() {
+            const frame = document.getElementById('preview-frame');
+            frame.src = 'index.html?t=' + Date.now(); // Cache-bust
         }
 
         // Toast notification
@@ -429,6 +683,20 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
+
+        // Warn before leaving with unsaved changes
+        window.addEventListener('beforeunload', function(e) {
+            if (isDirty) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // Listen for changes on all form fields
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('input', checkDirty);
+            el.addEventListener('change', checkDirty);
+        });
 
         // Init
         loadSettings();

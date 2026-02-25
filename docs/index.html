@@ -14,11 +14,19 @@
     <meta property="og:description" content="Your one-stop hub for GC Lacrosse team info, schedules, sign-ups, the team store, and more. Go Wolves!">
     <meta property="og:url" content="https://greencanyonlacrosse.com">
     <meta property="og:site_name" content="GC Lax">
+    <meta property="og:image" content="https://greencanyonlacrosse.com/assets/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Green Canyon Lacrosse — GC LAX 2026">
+    <meta name="twitter:description" content="Your one-stop hub for GC Lacrosse team info, schedules, sign-ups, the team store, and more. Go Wolves!">
+    <meta name="twitter:image" content="https://greencanyonlacrosse.com/assets/og-image.svg">
     <meta name="description" content="Green Canyon High School Lacrosse — team store, schedules, sign-ups, GroupSpot links, and everything parents and players need for the 2026 season.">
 
     <!-- Apple / iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.svg">
     <meta name="theme-color" content="#1a5632">
 
     <!-- Fonts -->
@@ -540,6 +548,176 @@
             position: relative;
         }
 
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gc-green);
+            color: white;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(26,86,50,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 50;
+            -webkit-tap-highlight-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--gc-green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26,86,50,0.4);
+        }
+
+        .back-to-top:active {
+            transform: translateY(0);
+        }
+
+        /* ===== FLASH PREVENTION ===== */
+        .page-loading .announcement,
+        .page-loading .section,
+        .page-loading .action-grid,
+        .page-loading .footer {
+            opacity: 0;
+        }
+
+        body:not(.page-loading) .announcement,
+        body:not(.page-loading) .section,
+        body:not(.page-loading) .action-grid,
+        body:not(.page-loading) .footer {
+            opacity: 1;
+            transition: opacity 0.15s ease;
+        }
+
+        /* ===== DARK MODE ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --gc-white: #121a14;
+                --gc-gray-50: #1a2e21;
+                --gc-gray-100: #1e3327;
+                --gc-gray-200: #2a4a35;
+                --gc-gray-600: #a8b5ad;
+                --gc-gray-800: #e8f0eb;
+            }
+
+            body {
+                background: #121a14;
+                color: #e8f0eb;
+            }
+
+            .announcement {
+                background: linear-gradient(90deg, #3b2e0a, #4a3a10);
+                border-bottom-color: #6b5520;
+                color: #fde68a;
+            }
+
+            .announcement a {
+                color: #fde68a;
+            }
+
+            .action-card--outline {
+                background: #1a2e21;
+                color: #8cc8a0;
+                border-color: #2a4a35;
+            }
+
+            .action-card--outline:hover, .action-card--outline:active {
+                border-color: var(--gc-green-light);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+
+            .info-card {
+                background: #1a2e21;
+                border-color: #2a4a35;
+            }
+
+            .info-card h4 {
+                color: #8cc8a0;
+            }
+
+            .info-card .highlight {
+                color: #e8f0eb;
+            }
+
+            .link-btn--secondary {
+                background: #1a2e21;
+                color: #8cc8a0;
+                border-color: #2a4a35;
+            }
+
+            .link-btn--secondary:hover, .link-btn--secondary:active {
+                border-color: var(--gc-green-light);
+            }
+
+            .section {
+                border-bottom-color: #2a4a35;
+            }
+
+            .modal {
+                background: #1e3327;
+                color: #e8f0eb;
+            }
+
+            .modal-title {
+                color: #e8f0eb;
+            }
+
+            .modal-subtitle {
+                color: #a8b5ad;
+            }
+
+            .modal-option--jv {
+                background: #1a2e21;
+                color: #8cc8a0;
+                border-color: #2a4a35;
+            }
+
+            .modal-option--frosh {
+                background: #162419;
+                color: #a8b5ad;
+                border-color: #2a4a35;
+            }
+
+            .modal-cancel {
+                color: #a8b5ad;
+            }
+
+            .modal-cancel:hover {
+                color: #e8f0eb;
+            }
+
+            .checklist li::before {
+                background: #1a3d28;
+                color: #8cc8a0;
+            }
+
+            .back-to-top {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            }
+
+            input[type="text"], input[type="url"], textarea {
+                background: #1a2e21;
+                border-color: #2a4a35;
+                color: #e8f0eb;
+            }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (min-width: 640px) {
             .hero {
@@ -575,7 +753,7 @@
         }
     </style>
 </head>
-<body>
+<body class="page-loading">
 
     <!-- ANNOUNCEMENT BANNER — edit via admin.html -->
     <div id="announcement-banner" class="announcement">
@@ -693,6 +871,9 @@
         <button class="admin-gear" onclick="adminLogin()" title="Admin Settings" aria-label="Admin Settings">&#9881;</button>
     </footer>
 
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">&#8593;</button>
+
     <!-- SCHEDULE TEAM PICKER MODAL -->
     <div id="schedule-modal" class="modal-overlay" onclick="closeScheduleModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
@@ -729,103 +910,200 @@
             if (e.key === 'Escape') closeScheduleModal();
         });
 
-        // ===== ADMIN LOGIN =====
-        function adminLogin() {
+        // ===== ADMIN LOGIN (hashed password) =====
+        // Password is verified via SHA-256 hash instead of plaintext.
+        // To change the password, update the hash below. Generate a new one at:
+        // https://emn178.github.io/online-tools/sha256.html
+        var ADMIN_HASH = '031a39e94df8343eabc3c38cca7ce2f4a0e0f2be2b4df2804e84576e06be3eb0'; // hash of 'gclax'
+
+        async function hashPassword(pw) {
+            var encoded = new TextEncoder().encode(pw);
+            var buffer = await crypto.subtle.digest('SHA-256', encoded);
+            var hashArray = Array.from(new Uint8Array(buffer));
+            return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+        }
+
+        async function adminLogin() {
             var pw = prompt('Enter admin password:');
-            if (pw === 'gclax') {
+            if (pw === null) return;
+            var hash = await hashPassword(pw);
+            if (hash === ADMIN_HASH) {
                 window.location.href = 'admin.html';
-            } else if (pw !== null) {
+            } else {
                 alert('Incorrect password.');
             }
         }
 
-        // ===== ADMIN SETTINGS LOADER =====
-        // Reads settings saved by admin.html and applies them to the page.
+        // ===== BACK TO TOP BUTTON =====
         (function() {
-            try {
-                var saved = JSON.parse(localStorage.getItem('gclax-admin'));
-                if (!saved) return;
+            var btn = document.getElementById('back-to-top');
+            var scrollThreshold = 400;
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > scrollThreshold) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            }, { passive: true });
+        })();
+
+        // ===== JSON DATA LAYER =====
+        // Loads site-data.json and populates the page, then applies admin overrides.
+        (function() {
+            // Helper to set href on elements by selector
+            function setLink(selector, url) {
+                if (!url) return;
+                var els = document.querySelectorAll(selector);
+                els.forEach(function(el) { el.href = url; });
+            }
+
+            // Apply admin localStorage overrides on top of defaults
+            function applyAdminOverrides() {
+                try {
+                    var saved = JSON.parse(localStorage.getItem('gclax-admin'));
+                    if (!saved) return;
+
+                    // Announcement banner
+                    var banner = document.getElementById('announcement-banner');
+                    if (banner) {
+                        if (saved.announceActive === false) {
+                            banner.style.display = 'none';
+                        } else {
+                            banner.style.display = 'block';
+                            if (saved.announceText) banner.innerHTML = saved.announceText;
+                        }
+                    }
+
+                    if (saved.linkStore) setLink('a[href*="teamupathletics"]', saved.linkStore);
+                    if (saved.linkGroupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', saved.linkGroupspotParents);
+                    if (saved.linkGroupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', saved.linkGroupspotPlayers);
+                    if (saved.linkSignups) setLink('a[href*="docs.google.com/spreadsheets"]', saved.linkSignups);
+                    if (saved.linkLiveStats) setLink('a[href*="stattyapp"]', saved.linkLiveStats);
+                    if (saved.linkScheduleVarsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', saved.linkScheduleVarsity);
+                    if (saved.linkScheduleJV) setLink('a[href*="maxpreps"][href*="/jv/"]', saved.linkScheduleJV);
+
+                    if (saved.linkScheduleFrosh) {
+                        var froshEl = document.querySelector('.modal-option--frosh');
+                        if (froshEl) {
+                            var link = document.createElement('a');
+                            link.href = saved.linkScheduleFrosh;
+                            link.className = 'modal-option modal-option--jv';
+                            link.target = '_blank';
+                            link.rel = 'noopener';
+                            link.textContent = '\uD83C\uDFC3 Frosh';
+                            froshEl.parentNode.replaceChild(link, froshEl);
+                        }
+                    }
+
+                    if (saved.parentCode) {
+                        var codeEls = document.querySelectorAll('.highlight');
+                        codeEls.forEach(function(el) {
+                            if (el.textContent.trim() === 'QZLhY') {
+                                el.textContent = saved.parentCode;
+                            }
+                        });
+                    }
+
+                    if (saved.signupConcessions) {
+                        var concEl = document.getElementById('signup-concessions');
+                        if (concEl) concEl.textContent = saved.signupConcessions;
+                    }
+                    if (saved.signupFood) {
+                        var foodEl = document.getElementById('signup-food');
+                        if (foodEl) foodEl.textContent = saved.signupFood;
+                    }
+
+                } catch (e) {
+                    // No admin settings, use defaults
+                }
+            }
+
+            // Load site-data.json and populate page
+            function applyJsonData(data) {
+                // Season badge
+                var badge = document.getElementById('hero-season-badge');
+                if (badge && data.season) badge.textContent = data.season + ' Season';
 
                 // Announcement banner
                 var banner = document.getElementById('announcement-banner');
-                if (banner) {
-                    if (saved.announceActive === false) {
+                if (banner && data.announcement) {
+                    if (!data.announcement.active) {
                         banner.style.display = 'none';
                     } else {
-                        banner.style.display = 'block';
-                        if (saved.announceText) banner.innerHTML = saved.announceText;
+                        var emoji = data.announcement.emoji ? data.announcement.emoji + ' ' : '';
+                        banner.textContent = emoji + data.announcement.text;
                     }
                 }
 
-                // Helper to set href on elements by selector
-                function setLink(selector, url) {
-                    if (!url) return;
-                    var els = document.querySelectorAll(selector);
-                    els.forEach(function(el) { el.href = url; });
+                // Links
+                if (data.links) {
+                    if (data.links.teamStore) setLink('a[href*="teamupathletics"]', data.links.teamStore);
+                    if (data.links.groupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', data.links.groupspotParents);
+                    if (data.links.groupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', data.links.groupspotPlayers);
+                    if (data.links.signupSheet) setLink('a[href*="docs.google.com/spreadsheets"]', data.links.signupSheet);
+                    if (data.links.liveStats) setLink('a[href*="stattyapp"]', data.links.liveStats);
                 }
 
-                // Quick action buttons (by href matching or data attribute)
-                if (saved.linkStore) {
-                    setLink('a[href*="teamupathletics"]', saved.linkStore);
-                }
-                if (saved.linkGroupspotParents) {
-                    setLink('a[href*="groupspot.app/QZLhY"]', saved.linkGroupspotParents);
-                }
-                if (saved.linkGroupspotPlayers) {
-                    setLink('a[href*="groupspot.app/RAaUG"]', saved.linkGroupspotPlayers);
-                }
-                if (saved.linkSignups) {
-                    setLink('a[href*="docs.google.com/spreadsheets"]', saved.linkSignups);
-                }
-                if (saved.linkLiveStats) {
-                    setLink('a[href*="stattyapp"]', saved.linkLiveStats);
-                }
-
-                // Schedule modal links
-                if (saved.linkScheduleVarsity) {
-                    setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', saved.linkScheduleVarsity);
-                }
-                if (saved.linkScheduleJV) {
-                    setLink('a[href*="maxpreps"][href*="/jv/"]', saved.linkScheduleJV);
-                }
-
-                // Frosh — enable if URL is now set
-                if (saved.linkScheduleFrosh) {
-                    var froshEl = document.querySelector('.modal-option--frosh');
-                    if (froshEl) {
-                        var link = document.createElement('a');
-                        link.href = saved.linkScheduleFrosh;
-                        link.className = 'modal-option modal-option--jv';
-                        link.target = '_blank';
-                        link.rel = 'noopener';
-                        link.textContent = '\uD83C\uDFC3 Frosh';
-                        froshEl.parentNode.replaceChild(link, froshEl);
+                // Schedule links
+                if (data.scheduleLinks) {
+                    if (data.scheduleLinks.varsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', data.scheduleLinks.varsity);
+                    if (data.scheduleLinks.jv) setLink('a[href*="maxpreps"][href*="/jv/"]', data.scheduleLinks.jv);
+                    if (data.scheduleLinks.frosh) {
+                        var froshEl = document.querySelector('.modal-option--frosh');
+                        if (froshEl) {
+                            var link = document.createElement('a');
+                            link.href = data.scheduleLinks.frosh;
+                            link.className = 'modal-option modal-option--jv';
+                            link.target = '_blank';
+                            link.rel = 'noopener';
+                            link.textContent = '\uD83C\uDFC3 Frosh';
+                            froshEl.parentNode.replaceChild(link, froshEl);
+                        }
                     }
                 }
 
                 // Parent invite code
-                if (saved.parentCode) {
+                if (data.groupspot && data.groupspot.parentCode) {
                     var codeEls = document.querySelectorAll('.highlight');
                     codeEls.forEach(function(el) {
                         if (el.textContent.trim() === 'QZLhY') {
-                            el.textContent = saved.parentCode;
+                            el.textContent = data.groupspot.parentCode;
                         }
                     });
                 }
 
                 // Sign-up requirements
-                if (saved.signupConcessions) {
-                    var concEl = document.getElementById('signup-concessions');
-                    if (concEl) concEl.textContent = saved.signupConcessions;
+                if (data.signups) {
+                    if (data.signups.concessions) {
+                        var concEl = document.getElementById('signup-concessions');
+                        if (concEl) concEl.textContent = data.signups.concessions;
+                    }
+                    if (data.signups.food) {
+                        var foodEl = document.getElementById('signup-food');
+                        if (foodEl) foodEl.textContent = data.signups.food;
+                    }
                 }
-                if (saved.signupFood) {
-                    var foodEl = document.getElementById('signup-food');
-                    if (foodEl) foodEl.textContent = saved.signupFood;
-                }
-
-            } catch (e) {
-                // No admin settings, use HTML defaults
             }
+
+            // Reveal page (remove loading state)
+            function revealPage() {
+                document.body.classList.remove('page-loading');
+            }
+
+            // Main init: fetch JSON → apply → apply admin overrides → reveal
+            fetch('site-data.json')
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    applyJsonData(data);
+                    applyAdminOverrides();
+                    revealPage();
+                })
+                .catch(function() {
+                    // JSON failed to load — just apply admin overrides and reveal
+                    applyAdminOverrides();
+                    revealPage();
+                });
         })();
     </script>
 

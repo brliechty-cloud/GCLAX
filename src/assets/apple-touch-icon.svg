@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e3a20"/>
+      <stop offset="100%" stop-color="#1a5632"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="180" rx="36" fill="url(#bg)"/>
+  <text x="90" y="105" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="white">GC</text>
+  <rect x="30" y="125" width="120" height="4" rx="2" fill="#c8a951"/>
+  <text x="90" y="155" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="20" fill="rgba(255,255,255,0.8)" letter-spacing="4">LAX</text>
+</svg>
