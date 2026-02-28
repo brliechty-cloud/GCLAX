@@ -16,78 +16,63 @@
             background: #f5f7f6;
             color: #1a2e21;
             min-height: 100vh;
+            padding-bottom: 6rem;
         }
 
         .admin-header {
             background: #1a5632;
             color: white;
-            padding: 1.5rem 2rem;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .admin-header h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-        }
-
-        .admin-header a {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.8rem;
-            text-decoration: none;
-        }
-
+        .admin-header h1 { font-size: 1.1rem; font-weight: 800; }
+        .admin-header a { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-decoration: none; }
         .admin-header a:hover { color: white; }
 
-        .admin-container {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
+        .admin-container { max-width: 640px; margin: 0 auto; padding: 1.25rem; }
 
         .card {
             background: white;
             border-radius: 12px;
             border: 1px solid #dce5df;
-            padding: 1.5rem;
+            padding: 1.25rem;
             margin-bottom: 1rem;
         }
 
         .card-title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: #1a2e21;
         }
 
         label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.05em;
             color: #4a6352;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.3rem;
         }
 
-        input[type="text"],
-        input[type="url"],
-        textarea {
+        input[type="text"], input[type="url"], textarea {
             width: 100%;
-            padding: 0.6rem 0.75rem;
+            padding: 0.55rem 0.7rem;
             border: 1px solid #dce5df;
             border-radius: 8px;
             font-family: inherit;
             font-size: 0.85rem;
             color: #1a2e21;
             background: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
             transition: border-color 0.15s;
         }
 
@@ -103,129 +88,63 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
         }
 
         .toggle-row label { margin-bottom: 0; }
 
-        .toggle {
-            position: relative;
-            width: 44px;
-            height: 24px;
-            cursor: pointer;
-        }
-
+        .toggle { position: relative; width: 44px; height: 24px; cursor: pointer; flex-shrink: 0; }
         .toggle input { opacity: 0; width: 0; height: 0; }
-
-        .toggle-slider {
-            position: absolute;
-            inset: 0;
-            background: #ccc;
-            border-radius: 24px;
-            transition: 0.2s;
-        }
-
+        .toggle-slider { position: absolute; inset: 0; background: #ccc; border-radius: 24px; transition: 0.2s; }
         .toggle-slider::before {
             content: '';
             position: absolute;
-            width: 18px;
-            height: 18px;
-            left: 3px;
-            top: 3px;
+            width: 18px; height: 18px;
+            left: 3px; top: 3px;
             background: white;
             border-radius: 50%;
             transition: 0.2s;
         }
-
-        .toggle input:checked + .toggle-slider {
-            background: #1a5632;
-        }
-
-        .toggle input:checked + .toggle-slider::before {
-            transform: translateX(20px);
-        }
+        .toggle input:checked + .toggle-slider { background: #1a5632; }
+        .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.7rem 1.5rem;
-            border-radius: 10px;
-            font-size: 0.85rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
             font-weight: 700;
             border: none;
             cursor: pointer;
             transition: all 0.15s;
             font-family: inherit;
+            text-decoration: none;
         }
 
-        .btn-primary {
-            background: #1a5632;
-            color: white;
-        }
+        .btn-primary { background: #1a5632; color: white; }
+        .btn-primary:hover { background: #0e3a20; }
+        .btn-secondary { background: #f0f4f2; color: #1a5632; border: 1px solid #dce5df; }
+        .btn-secondary:hover { border-color: #1a5632; }
+        .btn-danger { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+        .btn-danger:hover { background: #fecaca; }
+        .btn-ghost { background: none; color: #4a6352; border: 1px solid #dce5df; }
+        .btn-ghost:hover { border-color: #1a5632; color: #1a5632; }
+        .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
 
-        .btn-primary:hover {
-            background: #0e3a20;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(26,86,50,0.3);
-        }
+        .divider { border: none; border-top: 1px solid #dce5df; margin: 1rem 0; }
 
-        .btn-secondary {
-            background: #f0f4f2;
-            color: #1a5632;
-            border: 1px solid #dce5df;
-        }
-
-        .btn-secondary:hover {
-            border-color: #1a5632;
-        }
-
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #1a5632;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            z-index: 100;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .help-text {
-            font-size: 0.75rem;
-            color: #4a6352;
-            margin-top: -0.75rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .link-field {
+        .link-row {
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 0.5rem;
             align-items: start;
+            margin-bottom: 0.85rem;
         }
-
-        .link-field input { margin-bottom: 0; }
-
+        .link-row input { margin-bottom: 0; }
         .link-test {
-            padding: 0.6rem 0.75rem;
+            padding: 0.55rem 0.7rem;
             background: #f0f4f2;
             border: 1px solid #dce5df;
             border-radius: 8px;
@@ -236,218 +155,259 @@
             text-decoration: none;
             white-space: nowrap;
         }
-
         .link-test:hover { border-color: #1a5632; }
 
-        .divider {
-            border: none;
+        /* ===== TOKEN SETUP ===== */
+        .token-card { border-color: #f59e0b; background: #fffbeb; }
+        .token-card .card-title { color: #92400e; }
+        .token-steps { font-size: 0.82rem; color: #78350f; line-height: 1.8; margin-bottom: 1rem; }
+        .token-steps a { color: #1a5632; }
+        .token-steps code { background: #fde68a; padding: 1px 5px; border-radius: 3px; font-size: 0.78rem; }
+
+        /* ===== SAVE BAR ===== */
+        .save-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
             border-top: 1px solid #dce5df;
-            margin: 1rem 0;
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            z-index: 100;
+            box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
         }
 
-        /* ===== DARK MODE ===== */
-        @media (prefers-color-scheme: dark) {
-            body { background: #121a14; color: #e8f0eb; }
-            .admin-header { background: #0e3a20; }
-            .card { background: #1a2e21; border-color: #2a4a35; }
-            .card-title { color: #e8f0eb; }
-            label { color: #a8b5ad; }
-            input[type="text"], input[type="url"], textarea {
-                background: #162419; border-color: #2a4a35; color: #e8f0eb;
-            }
-            input:focus, textarea:focus {
-                border-color: #2a7a4a; box-shadow: 0 0 0 3px rgba(42,122,74,0.2);
-            }
-            .toggle-slider { background: #2a4a35; }
-            .btn-secondary { background: #1a2e21; color: #8cc8a0; border-color: #2a4a35; }
-            .btn-secondary:hover { border-color: #2a7a4a; }
-            .help-text { color: #a8b5ad; }
-            .link-test { background: #1a2e21; border-color: #2a4a35; color: #8cc8a0; }
-            .divider { border-top-color: #2a4a35; }
-            .toast { background: #2a7a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .save-status { font-size: 0.8rem; color: #4a6352; }
+
+        /* ===== SECTIONS MANAGER ===== */
+        .section-item {
+            border: 1px solid #dce5df;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: #f9fbfa;
         }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title-display {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #1a2e21;
+            flex: 1;
+        }
+
+        .section-actions { display: flex; gap: 0.3rem; flex-shrink: 0; }
+
+        .section-body { display: none; }
+        .section-body.open { display: block; }
+
+        .btn-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+
+        .button-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            border: 1px solid #dce5df;
+            border-radius: 6px;
+            padding: 0.5rem 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .button-item input[type="text"],
+        .button-item input[type="url"] {
+            margin-bottom: 0;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.78rem;
+        }
+
+        .button-item .btn-label-input { width: 140px; flex-shrink: 0; }
+        .button-item .btn-url-input { flex: 1; min-width: 0; }
+
+        .outline-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #4a6352;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: #1a5632;
+            color: white;
+            padding: 0.7rem 1.4rem;
+            border-radius: 10px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 200;
+            white-space: nowrap;
+        }
+        .toast.error { background: #dc2626; }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        .help { font-size: 0.72rem; color: #4a6352; font-style: italic; margin-top: -0.6rem; margin-bottom: 0.85rem; }
     </style>
 </head>
 <body>
 
     <header class="admin-header">
-        <h1>GC Lax Admin</h1>
+        <h1>⚙️ GC Lax Admin</h1>
         <a href="index.html">← View Site</a>
     </header>
 
     <div class="admin-container">
 
-        <!-- ANNOUNCEMENT -->
+        <!-- GITHUB TOKEN SETUP -->
+        <div class="card token-card" id="token-card">
+            <div class="card-title">🔑 GitHub Token (one-time setup)</div>
+            <p class="token-steps">
+                To save changes live to the site, you need a GitHub token:<br>
+                1. Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+                2. Give it a name (e.g. "GC Lax Admin")<br>
+                3. Set expiration to <code>No expiration</code><br>
+                4. Check the <code>repo</code> scope box<br>
+                5. Click Generate token, paste it below
+            </p>
+            <label for="gh-token">Personal Access Token</label>
+            <input type="text" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+            <button class="btn btn-primary" onclick="saveToken()">Save Token</button>
+        </div>
+
+        <!-- ANNOUNCEMENT BANNER -->
         <div class="card">
             <div class="card-title">📢 Announcement Banner</div>
             <div class="toggle-row">
-                <label>Show announcement</label>
+                <label>Show banner</label>
                 <label class="toggle">
-                    <input type="checkbox" id="admin-announce-active" checked>
+                    <input type="checkbox" id="ann-active" checked>
                     <span class="toggle-slider"></span>
                 </label>
             </div>
-            <label for="admin-announce-emoji">Emoji</label>
-            <input type="text" id="admin-announce-emoji" value="📸">
-            <label for="admin-announce-text">Banner text</label>
-            <textarea id="admin-announce-text" rows="2"></textarea>
-            <p class="help-text">Tip: Use emoji at the start to grab attention. Keep it short.</p>
+            <label for="ann-emoji">Emoji</label>
+            <input type="text" id="ann-emoji" placeholder="📸" maxlength="4">
+            <label for="ann-text">Banner text</label>
+            <textarea id="ann-text" rows="2" placeholder="Team photos Mon, March 2nd @ 5 PM..."></textarea>
         </div>
 
         <!-- LINKS -->
         <div class="card">
             <div class="card-title">🔗 Links</div>
 
-            <label for="admin-link-store">Team Store URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-store">
-                <a class="link-test" onclick="testLink('admin-link-store')">Test ↗</a>
+            <label>Team Store URL</label>
+            <div class="link-row">
+                <input type="url" id="link-store" placeholder="https://shop.teamupathletics.com/...">
+                <a class="link-test" onclick="testLink('link-store')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
-            <label for="admin-link-groupspot-parents">GroupSpot — Parents URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-groupspot-parents">
-                <a class="link-test" onclick="testLink('admin-link-groupspot-parents')">Test ↗</a>
+            <label>GroupSpot — Parents URL</label>
+            <div class="link-row">
+                <input type="url" id="link-gs-parents" placeholder="https://get.groupspot.app/...">
+                <a class="link-test" onclick="testLink('link-gs-parents')">Test ↗</a>
             </div>
 
-            <label for="admin-link-groupspot-players">GroupSpot — Players URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-groupspot-players">
-                <a class="link-test" onclick="testLink('admin-link-groupspot-players')">Test ↗</a>
-            </div>
-
-            <label for="admin-parent-code">Parent Invite Code</label>
-            <input type="text" id="admin-parent-code">
-
-            <hr class="divider">
-
-            <label for="admin-link-signups">Sign-Up Sheet URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-signups">
-                <a class="link-test" onclick="testLink('admin-link-signups')">Test ↗</a>
+            <label>GroupSpot — Players URL</label>
+            <div class="link-row">
+                <input type="url" id="link-gs-players" placeholder="https://get.groupspot.app/...">
+                <a class="link-test" onclick="testLink('link-gs-players')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
-            <label for="admin-link-livestats">Live Stats URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-livestats">
-                <a class="link-test" onclick="testLink('admin-link-livestats')">Test ↗</a>
+            <label>Sign-Up Sheet URL</label>
+            <div class="link-row">
+                <input type="url" id="link-signups" placeholder="https://docs.google.com/...">
+                <a class="link-test" onclick="testLink('link-signups')">Test ↗</a>
+            </div>
+
+            <label>Live Stats URL</label>
+            <div class="link-row">
+                <input type="url" id="link-livestats" placeholder="https://www.stattyapp.com/public">
+                <a class="link-test" onclick="testLink('link-livestats')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
-            <label for="admin-link-schedule-varsity">Schedule — Varsity URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-schedule-varsity">
-                <a class="link-test" onclick="testLink('admin-link-schedule-varsity')">Test ↗</a>
+            <label>Schedule — Varsity URL</label>
+            <div class="link-row">
+                <input type="url" id="link-varsity" placeholder="https://www.maxpreps.com/...">
+                <a class="link-test" onclick="testLink('link-varsity')">Test ↗</a>
             </div>
 
-            <label for="admin-link-schedule-jv">Schedule — JV URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-schedule-jv">
-                <a class="link-test" onclick="testLink('admin-link-schedule-jv')">Test ↗</a>
+            <label>Schedule — JV URL</label>
+            <div class="link-row">
+                <input type="url" id="link-jv" placeholder="https://www.maxpreps.com/...">
+                <a class="link-test" onclick="testLink('link-jv')">Test ↗</a>
             </div>
 
-            <label for="admin-link-schedule-frosh">Schedule — Frosh URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-schedule-frosh">
-                <a class="link-test" onclick="testLink('admin-link-schedule-frosh')">Test ↗</a>
+            <label>Schedule — Frosh URL</label>
+            <div class="link-row">
+                <input type="url" id="link-frosh" placeholder="Leave blank = Coming Soon">
+                <a class="link-test" onclick="testLink('link-frosh')">Test ↗</a>
             </div>
-            <p class="help-text">Leave blank to show "Coming Soon"</p>
         </div>
 
-        <!-- SIGN-UP REQUIREMENTS -->
+        <!-- SECTIONS MANAGER -->
         <div class="card">
-            <div class="card-title">📋 Sign-Up Requirements</div>
-            <label for="admin-signup-concessions">Concessions requirement</label>
-            <input type="text" id="admin-signup-concessions">
-            <label for="admin-signup-food">Food requirement</label>
-            <input type="text" id="admin-signup-food">
+            <div class="card-title">📄 Page Sections</div>
+            <p class="help" style="margin-bottom:1rem;">These are the content sections on the main page. Drag the ↕ arrows to reorder, or use the buttons to edit, move, and delete.</p>
+            <div id="sections-list"></div>
+            <button class="btn btn-secondary" style="width:100%;margin-top:0.5rem;" onclick="addSection()">+ Add Section</button>
         </div>
-
-        <p class="help-text" style="margin-top: 1rem;">
-            This page shows current site settings (read-only). To make changes, edit <code>site-data.json</code> in the repo and push to GitHub.
-        </p>
 
     </div>
 
-    <div id="toast" class="toast">Copied!</div>
+    <!-- SAVE BAR -->
+    <div class="save-bar">
+        <span class="save-status" id="save-status">Changes will go live in ~30 seconds after saving.</span>
+        <button class="btn btn-primary" onclick="saveAll()" id="save-btn">💾 Save &amp; Publish</button>
+    </div>
+
+    <div id="toast" class="toast"></div>
 
     <script>
-        function testLink(inputId) {
-            var url = document.getElementById(inputId).value;
-            if (url) window.open(url, '_blank');
-        }
-
-        function showToast(msg) {
-            var toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(function() { toast.classList.remove('show'); }, 2500);
-        }
-
-        // Load site-data.json and populate the form (read-only view)
-        function loadFromJson() {
-            fetch('site-data.json')
-                .then(function(res) { return res.json(); })
-                .then(function(data) {
-                    // Announcement
-                    document.getElementById('admin-announce-active').checked = data.announcement ? data.announcement.active : true;
-                    document.getElementById('admin-announce-emoji').value = (data.announcement && data.announcement.emoji) || '';
-                    document.getElementById('admin-announce-text').value = (data.announcement && data.announcement.text) || '';
-
-                    // Links
-                    var links = data.links || {};
-                    document.getElementById('admin-link-store').value = links.teamStore || '';
-                    document.getElementById('admin-link-groupspot-parents').value = links.groupspotParents || '';
-                    document.getElementById('admin-link-groupspot-players').value = links.groupspotPlayers || '';
-                    document.getElementById('admin-link-signups').value = links.signupSheet || '';
-                    document.getElementById('admin-link-livestats').value = links.liveStats || '';
-
-                    // Parent code
-                    document.getElementById('admin-parent-code').value = (data.groupspot && data.groupspot.parentCode) || '';
-
-                    // Schedule links
-                    var sched = data.scheduleLinks || {};
-                    document.getElementById('admin-link-schedule-varsity').value = sched.varsity || '';
-                    document.getElementById('admin-link-schedule-jv').value = sched.jv || '';
-                    document.getElementById('admin-link-schedule-frosh').value = sched.frosh || '';
-
-                    // Sign-up requirements
-                    var signups = data.signups || {};
-                    document.getElementById('admin-signup-concessions').value = signups.concessions || '';
-                    document.getElementById('admin-signup-food').value = signups.food || '';
-                })
-                .catch(function() {
-                    showToast('Error loading site-data.json');
-                });
-        }
-
-        // ===== ADMIN LOGIN (hashed password) =====
         var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c';
+        var GH_OWNER = 'brliechty-cloud';
+        var GH_REPO = 'GCLAX';
+        var GH_FILE = 'docs/site-data.json';
+        var GH_API = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_FILE;
 
+        var currentSha = null;
+        var siteData = null;
+
+        // ===== AUTH =====
         function checkAuth() {
-            if (sessionStorage.getItem('gclax-authed') === 'true') {
-                loadFromJson();
-                return;
-            }
-
+            if (sessionStorage.getItem('gclax-authed') === 'true') { init(); return; }
             var pw = prompt('Enter admin password:');
-            if (pw === null) {
-                window.location.href = 'index.html';
-                return;
-            }
-
+            if (!pw) { window.location.href = 'index.html'; return; }
             var encoded = new TextEncoder().encode(pw);
-            crypto.subtle.digest('SHA-256', encoded).then(function(buffer) {
-                var hashArray = Array.from(new Uint8Array(buffer));
-                var hash = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+            crypto.subtle.digest('SHA-256', encoded).then(function(buf) {
+                var hash = Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2,'0'); }).join('');
                 if (hash === ADMIN_HASH) {
                     sessionStorage.setItem('gclax-authed', 'true');
-                    loadFromJson();
+                    init();
                 } else {
                     alert('Incorrect password.');
                     window.location.href = 'index.html';
@@ -455,9 +415,289 @@
             });
         }
 
-        // Init
+        // ===== TOKEN =====
+        function saveToken() {
+            var t = document.getElementById('gh-token').value.trim();
+            if (!t) return;
+            localStorage.setItem('gclax-gh-token', t);
+            document.getElementById('token-card').style.display = 'none';
+            showToast('Token saved!');
+            loadFromGitHub();
+        }
+
+        function getToken() { return localStorage.getItem('gclax-gh-token'); }
+
+        // ===== INIT =====
+        function init() {
+            var token = getToken();
+            if (token) {
+                document.getElementById('token-card').style.display = 'none';
+                loadFromGitHub();
+            } else {
+                // Load from local file for display but can't save
+                fetch('site-data.json').then(function(r){ return r.json(); }).then(function(d){
+                    siteData = d;
+                    populateForm(d);
+                });
+            }
+        }
+
+        // ===== LOAD FROM GITHUB =====
+        function loadFromGitHub() {
+            setStatus('Loading…');
+            fetch(GH_API + '?t=' + Date.now(), {
+                headers: { 'Authorization': 'token ' + getToken(), 'Accept': 'application/vnd.github.v3+json' }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.message) throw new Error(data.message);
+                currentSha = data.sha;
+                var json = JSON.parse(atob(data.content.replace(/\n/g, '')));
+                siteData = json;
+                populateForm(json);
+                setStatus('Loaded from GitHub ✓');
+            })
+            .catch(function(e) {
+                setStatus('Could not load from GitHub: ' + e.message);
+                // Fallback to local
+                fetch('site-data.json').then(function(r){ return r.json(); }).then(function(d){
+                    siteData = d;
+                    populateForm(d);
+                });
+            });
+        }
+
+        // ===== POPULATE FORM =====
+        function populateForm(d) {
+            var ann = d.announcement || {};
+            document.getElementById('ann-active').checked = ann.active !== false;
+            document.getElementById('ann-emoji').value = ann.emoji || '';
+            document.getElementById('ann-text').value = ann.text || '';
+
+            var links = d.links || {};
+            document.getElementById('link-store').value = links.teamStore || '';
+            document.getElementById('link-gs-parents').value = links.groupspotParents || '';
+            document.getElementById('link-gs-players').value = links.groupspotPlayers || '';
+            document.getElementById('link-signups').value = links.signupSheet || '';
+            document.getElementById('link-livestats').value = links.liveStats || '';
+
+            var sched = d.scheduleLinks || {};
+            document.getElementById('link-varsity').value = sched.varsity || '';
+            document.getElementById('link-jv').value = sched.jv || '';
+            document.getElementById('link-frosh').value = sched.frosh || '';
+
+            renderSections(d.sections || []);
+        }
+
+        // ===== SECTIONS =====
+        var sections = [];
+
+        function renderSections(data) {
+            sections = JSON.parse(JSON.stringify(data)); // deep clone
+            var list = document.getElementById('sections-list');
+            list.innerHTML = '';
+            sections.forEach(function(sec, i) {
+                list.appendChild(buildSectionEl(sec, i));
+            });
+        }
+
+        function buildSectionEl(sec, i) {
+            var div = document.createElement('div');
+            div.className = 'section-item';
+            div.dataset.index = i;
+
+            // Buttons HTML
+            var btnsHtml = (sec.buttons || []).map(function(btn, bi) {
+                return '<div class="button-item">' +
+                    '<input type="text" class="btn-label-input" placeholder="Button label" value="' + esc(btn.label) + '" onchange="updateBtn(' + i + ',' + bi + ',\'label\',this.value)">' +
+                    '<input type="url" class="btn-url-input" placeholder="https://..." value="' + esc(btn.url) + '" onchange="updateBtn(' + i + ',' + bi + ',\'url\',this.value)">' +
+                    '<label class="outline-toggle"><input type="checkbox" ' + (btn.outline ? 'checked' : '') + ' onchange="updateBtn(' + i + ',' + bi + ',\'outline\',this.checked)"> Outline</label>' +
+                    '<button class="btn btn-danger btn-sm" onclick="removeBtn(' + i + ',' + bi + ')">✕</button>' +
+                    '</div>';
+            }).join('');
+
+            div.innerHTML =
+                '<div class="section-header">' +
+                    '<span class="section-title-display">' + (sec.title || 'Untitled') + '</span>' +
+                    '<div class="section-actions">' +
+                        '<button class="btn btn-ghost btn-sm" onclick="moveSec(' + i + ',-1)" ' + (i === 0 ? 'disabled' : '') + '>↑</button>' +
+                        '<button class="btn btn-ghost btn-sm" onclick="moveSec(' + i + ',1)" ' + (i === sections.length - 1 ? 'disabled' : '') + '>↓</button>' +
+                        '<button class="btn btn-secondary btn-sm" onclick="toggleSec(this)">Edit</button>' +
+                        '<button class="btn btn-danger btn-sm" onclick="removeSec(' + i + ')">Delete</button>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="section-body">' +
+                    '<label>Title</label>' +
+                    '<input type="text" placeholder="Section title" value="' + esc(sec.title) + '" onchange="updateSec(' + i + ',\'title\',this.value);this.closest(\'.section-item\').querySelector(\'.section-title-display\').textContent=this.value">' +
+                    '<label>Description</label>' +
+                    '<textarea rows="3" placeholder="Body text..." onchange="updateSec(' + i + ',\'desc\',this.value)">' + esc(sec.desc) + '</textarea>' +
+                    '<label>Highlighted Note (optional)</label>' +
+                    '<input type="text" placeholder="Shows as a highlighted info box" value="' + esc(sec.note) + '" onchange="updateSec(' + i + ',\'note\',this.value)">' +
+                    '<label style="margin-top:0.25rem;">Buttons</label>' +
+                    '<div class="buttons-list" id="btns-' + i + '">' + btnsHtml + '</div>' +
+                    '<button class="btn btn-ghost btn-sm" onclick="addBtn(' + i + ')">+ Add Button</button>' +
+                '</div>';
+
+            return div;
+        }
+
+        function esc(s) { return (s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+        function toggleSec(btn) {
+            var body = btn.closest('.section-item').querySelector('.section-body');
+            var open = body.classList.toggle('open');
+            btn.textContent = open ? 'Done' : 'Edit';
+        }
+
+        function updateSec(i, key, val) { sections[i][key] = val; }
+
+        function moveSec(i, dir) {
+            var j = i + dir;
+            if (j < 0 || j >= sections.length) return;
+            var tmp = sections[i]; sections[i] = sections[j]; sections[j] = tmp;
+            renderSections(sections);
+        }
+
+        function removeSec(i) {
+            if (!confirm('Delete this section?')) return;
+            sections.splice(i, 1);
+            renderSections(sections);
+        }
+
+        function addSection() {
+            sections.push({ id: 'section-' + Date.now(), title: 'New Section', desc: '', note: '', buttons: [] });
+            renderSections(sections);
+            // Auto-open the new one
+            var items = document.querySelectorAll('.section-item');
+            var last = items[items.length - 1];
+            if (last) { last.querySelector('.section-body').classList.add('open'); last.querySelector('.btn-secondary').textContent = 'Done'; }
+        }
+
+        function addBtn(i) {
+            if (!sections[i].buttons) sections[i].buttons = [];
+            sections[i].buttons.push({ label: '', url: '', outline: false });
+            renderSections(sections);
+            // Re-open the section
+            var item = document.querySelector('.section-item[data-index="' + i + '"]');
+            if (item) { item.querySelector('.section-body').classList.add('open'); item.querySelector('.btn-secondary').textContent = 'Done'; }
+        }
+
+        function updateBtn(i, bi, key, val) { sections[i].buttons[bi][key] = val; }
+
+        function removeBtn(i, bi) {
+            sections[i].buttons.splice(bi, 1);
+            renderSections(sections);
+            // Re-open section
+            var item = document.querySelector('.section-item[data-index="' + i + '"]');
+            if (item) { item.querySelector('.section-body').classList.add('open'); item.querySelector('.btn-secondary').textContent = 'Done'; }
+        }
+
+        // ===== COLLECT FORM DATA =====
+        function collectData() {
+            return {
+                season: (siteData && siteData.season) || '2026',
+                announcement: {
+                    active: document.getElementById('ann-active').checked,
+                    emoji: document.getElementById('ann-emoji').value.trim(),
+                    text: document.getElementById('ann-text').value.trim()
+                },
+                links: {
+                    teamStore: document.getElementById('link-store').value.trim(),
+                    groupspotParents: document.getElementById('link-gs-parents').value.trim(),
+                    groupspotPlayers: document.getElementById('link-gs-players').value.trim(),
+                    signupSheet: document.getElementById('link-signups').value.trim(),
+                    liveStats: document.getElementById('link-livestats').value.trim()
+                },
+                scheduleLinks: {
+                    varsity: document.getElementById('link-varsity').value.trim(),
+                    jv: document.getElementById('link-jv').value.trim(),
+                    frosh: document.getElementById('link-frosh').value.trim()
+                },
+                sections: sections
+            };
+        }
+
+        // ===== SAVE TO GITHUB =====
+        function saveAll() {
+            var token = getToken();
+            if (!token) {
+                showToast('Enter your GitHub token first.', true);
+                document.getElementById('token-card').style.display = 'block';
+                return;
+            }
+
+            var btn = document.getElementById('save-btn');
+            btn.disabled = true;
+            btn.textContent = 'Saving…';
+            setStatus('Publishing…');
+
+            var data = collectData();
+            var content = JSON.stringify(data, null, 2);
+
+            // Need current SHA — fetch first if we don't have it
+            var doSave = function(sha) {
+                var body = { message: 'Update site content via admin', content: btoa(unescape(encodeURIComponent(content))) };
+                if (sha) body.sha = sha;
+
+                fetch(GH_API, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'token ' + token,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(body)
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(res) {
+                    if (res.content) {
+                        currentSha = res.content.sha;
+                        siteData = data;
+                        showToast('✓ Published! Site updates in ~30 seconds.');
+                        setStatus('Saved ✓ — site rebuilding now.');
+                    } else {
+                        throw new Error(res.message || 'Unknown error');
+                    }
+                })
+                .catch(function(e) {
+                    showToast('Error: ' + e.message, true);
+                    setStatus('Save failed: ' + e.message);
+                })
+                .finally(function() {
+                    btn.disabled = false;
+                    btn.textContent = '💾 Save & Publish';
+                });
+            };
+
+            if (currentSha) {
+                doSave(currentSha);
+            } else {
+                fetch(GH_API, { headers: { 'Authorization': 'token ' + token } })
+                .then(function(r) { return r.json(); })
+                .then(function(d) { currentSha = d.sha; doSave(currentSha); })
+                .catch(function() { doSave(null); });
+            }
+        }
+
+        // ===== UTILITIES =====
+        function testLink(id) {
+            var url = document.getElementById(id).value;
+            if (url) window.open(url, '_blank');
+        }
+
+        function setStatus(msg) {
+            document.getElementById('save-status').textContent = msg;
+        }
+
+        function showToast(msg, error) {
+            var t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast' + (error ? ' error' : '') + ' show';
+            setTimeout(function() { t.className = 'toast' + (error ? ' error' : ''); }, 3000);
+        }
+
+        // ===== START =====
         checkAuth();
     </script>
-
 </body>
 </html>
