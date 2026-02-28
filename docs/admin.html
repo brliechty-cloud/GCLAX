@@ -369,6 +369,29 @@
             </div>
         </div>
 
+        <!-- OFF-SEASON MODE -->
+        <div class="card">
+            <div class="card-title">🏁 Off-Season Mode</div>
+            <div class="toggle-row">
+                <label>Enable off-season mode</label>
+                <label class="toggle">
+                    <input type="checkbox" id="off-season-active">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="help">When on, hides all page sections and shows the message below instead.</p>
+            <label for="off-season-msg">Off-season message</label>
+            <input type="text" id="off-season-msg" placeholder="The 2026 season has ended. See you next year — Go Wolves!">
+        </div>
+
+        <!-- ANALYTICS -->
+        <div class="card">
+            <div class="card-title">📊 Analytics</div>
+            <p class="help" style="margin-bottom:0.75rem;">Paste your analytics <code style="background:#f0f4f2;padding:1px 5px;border-radius:3px;font-size:0.78rem;">&lt;script&gt;</code> tag here (Plausible, Cloudflare, Google Analytics, etc.). Leave blank to disable.</p>
+            <label for="analytics-script">Analytics script tag</label>
+            <textarea id="analytics-script" rows="3" placeholder='<script defer data-domain="greencanyonlacrosse.com" src="https://plausible.io/js/script.js"></script>'></textarea>
+        </div>
+
         <!-- SECTIONS MANAGER -->
         <div class="card">
             <div class="card-title">📄 Page Sections</div>
@@ -485,6 +508,10 @@
             document.getElementById('link-varsity').value = sched.varsity || '';
             document.getElementById('link-jv').value = sched.jv || '';
             document.getElementById('link-frosh').value = sched.frosh || '';
+
+            document.getElementById('off-season-active').checked = d.offSeason || false;
+            document.getElementById('off-season-msg').value = d.offSeasonMessage || '';
+            document.getElementById('analytics-script').value = d.analyticsScript || '';
 
             renderSections(d.sections || []);
         }
@@ -613,6 +640,9 @@
                     jv: document.getElementById('link-jv').value.trim(),
                     frosh: document.getElementById('link-frosh').value.trim()
                 },
+                offSeason: document.getElementById('off-season-active').checked,
+                offSeasonMessage: document.getElementById('off-season-msg').value.trim(),
+                analyticsScript: document.getElementById('analytics-script').value.trim(),
                 sections: sections
             };
         }

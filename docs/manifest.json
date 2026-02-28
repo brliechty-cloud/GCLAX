@@ -1,0 +1,23 @@
+{
+  "name": "Green Canyon Lacrosse",
+  "short_name": "GC Lax",
+  "description": "Your hub for GC Lacrosse — schedules, sign-ups, team store, and more. Go Wolves!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F1F14",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "assets/gc-wolves-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/apple-touch-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

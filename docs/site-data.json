@@ -17,6 +17,9 @@
     "jv": "https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/",
     "frosh": ""
   },
+  "offSeason": false,
+  "offSeasonMessage": "The 2026 season has ended. See you next year — Go Wolves!",
+  "analyticsScript": "",
   "sections": [
     {
       "id": "groupspot",
