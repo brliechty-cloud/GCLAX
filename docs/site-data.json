@@ -43,7 +43,7 @@
       "note": "Each family: 1 Concessions spot + 1 Lunch for an away game OR 2 Snacks for home games",
       "buttons": [
         {
-          "label": "Open Sign-Up Sheet ÃÂ¢ÃÂÃÂ",
+          "label": "Open Sign-Up Sheet",
           "url": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
           "outline": false
         }
@@ -56,7 +56,7 @@
       "note": "",
       "buttons": [
         {
-          "label": "Open Team Store ÃÂ¢ÃÂÃÂ",
+          "label": "Open Team Store",
           "url": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
           "outline": false
         }
