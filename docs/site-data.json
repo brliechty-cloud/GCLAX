@@ -2,8 +2,8 @@
   "season": "2026",
   "announcement": {
     "active": true,
-    "emoji": "ð¸",
-    "text": "Team photos â Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
+    "emoji": "Ã°ÂÂÂ¸",
+    "text": "Team photos Ã¢ÂÂ Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
   },
   "links": {
     "teamStore": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
@@ -21,16 +21,16 @@
     {
       "id": "groupspot",
       "title": "GroupSpot Communication",
-      "desc": "All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP â you won't want to miss important updates about games, practices, and events.",
+      "desc": "All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP Ã¢ÂÂ you won't want to miss important updates about games, practices, and events.",
       "note": "Parent invite code: QZLhY",
       "buttons": [
         {
-          "label": "Parents â Join GroupSpot â",
+          "label": "Parents Ã¢ÂÂ Join GroupSpot Ã¢ÂÂ",
           "url": "https://get.groupspot.app/QZLhY",
           "outline": false
         },
         {
-          "label": "Players â Join GroupSpot",
+          "label": "Players Ã¢ÂÂ Join GroupSpot",
           "url": "https://get.groupspot.app/RAaUG",
           "outline": true
         }
@@ -43,7 +43,7 @@
       "note": "Each family: 1 Concessions spot + 1 Lunch for an away game OR 2 Snacks for home games",
       "buttons": [
         {
-          "label": "Open Sign-Up Sheet â",
+          "label": "Open Sign-Up Sheet Ã¢ÂÂ",
           "url": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
           "outline": false
         }
@@ -56,7 +56,7 @@
       "note": "",
       "buttons": [
         {
-          "label": "Open Team Store â",
+          "label": "Open Team Store Ã¢ÂÂ",
           "url": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
           "outline": false
         }
