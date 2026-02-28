@@ -2,8 +2,8 @@
   "season": "2026",
   "announcement": {
     "active": true,
-    "emoji": "📸",
-    "text": "Team photos — Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
+    "emoji": "ð¸",
+    "text": "Team photos â Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
   },
   "links": {
     "teamStore": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
@@ -21,11 +21,19 @@
     {
       "id": "groupspot",
       "title": "GroupSpot Communication",
-      "desc": "All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP — you won't want to miss important updates about games, practices, and events.",
+      "desc": "All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP â you won't want to miss important updates about games, practices, and events.",
       "note": "Parent invite code: QZLhY",
       "buttons": [
-        { "label": "Parents — Join GroupSpot →", "url": "https://get.groupspot.app/QZLhY", "outline": false },
-        { "label": "Players — Join GroupSpot", "url": "https://get.groupspot.app/RAaUG", "outline": true }
+        {
+          "label": "Parents â Join GroupSpot â",
+          "url": "https://get.groupspot.app/QZLhY",
+          "outline": false
+        },
+        {
+          "label": "Players â Join GroupSpot",
+          "url": "https://get.groupspot.app/RAaUG",
+          "outline": true
+        }
       ]
     },
     {
@@ -34,7 +42,11 @@
       "desc": "Each family is asked to sign up for volunteer spots to help keep the season running. Signing up early helps the board so we don't have to track anyone down!",
       "note": "Each family: 1 Concessions spot + 1 Lunch for an away game OR 2 Snacks for home games",
       "buttons": [
-        { "label": "Open Sign-Up Sheet →", "url": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing", "outline": false }
+        {
+          "label": "Open Sign-Up Sheet â",
+          "url": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
+          "outline": false
+        }
       ]
     },
     {
@@ -43,7 +55,11 @@
       "desc": "Order official GC Lacrosse jerseys, shorts, hoodies, and fan gear through Team Up Athletics. Orders ship directly to you.",
       "note": "",
       "buttons": [
-        { "label": "Open Team Store →", "url": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home", "outline": false }
+        {
+          "label": "Open Team Store â",
+          "url": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
+          "outline": false
+        }
       ]
     }
   ]
