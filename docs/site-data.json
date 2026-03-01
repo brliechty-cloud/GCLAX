@@ -64,6 +64,29 @@
           "outline": false
         }
       ]
+    },
+    {
+      "id": "rules",
+      "title": "Rules & Resources",
+      "desc": "Official game rules and quick-reference materials for the 2026 season.",
+      "note": "",
+      "buttons": [
+        {
+          "label": "Rules — Part 1",
+          "url": "assets/lacrosse-rules-2026-p1.pdf",
+          "outline": false
+        },
+        {
+          "label": "Rules — Part 2",
+          "url": "assets/lacrosse-rules-2026-p2.pdf",
+          "outline": true
+        },
+        {
+          "label": "Rules Cheat Sheet",
+          "url": "assets/lacrosse-cheatsheet-2026.pdf",
+          "outline": true
+        }
+      ]
     }
   ]
 }

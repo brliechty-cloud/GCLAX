@@ -42,6 +42,24 @@
     { "id": "liveStats", "icon": "📊", "label": "Live Stats", "sub": "Game Cast on Statty", "style": "gold", "linkKey": "liveStats" },
     { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "linkKey": "signupSheet" },
     { "id": "groupspot", "icon": "📲", "label": "Join GroupSpot", "sub": "Parents", "style": "outline", "linkKey": "groupspotParents" },
-    { "id": "teamStore", "icon": "🛒", "label": "Team Store", "sub": "Jerseys & Gear", "style": "outline", "linkKey": "teamStore" }
+    { "id": "teamStore", "icon": "🛒", "label": "Team Store", "sub": "Jerseys & Gear", "style": "outline", "linkKey": "teamStore" },
+    { "id": "rules", "icon": "📖", "label": "Rules", "sub": "Game Rules & Cheat Sheet", "style": "outline", "action": "scrollToRules" }
+  ],
+  "resources": [
+    {
+      "title": "Lacrosse Rules 2026 — Part 1",
+      "description": "Official game rules, pages 1–half",
+      "file": "assets/lacrosse-rules-2026-p1.pdf"
+    },
+    {
+      "title": "Lacrosse Rules 2026 — Part 2",
+      "description": "Official game rules, continued",
+      "file": "assets/lacrosse-rules-2026-p2.pdf"
+    },
+    {
+      "title": "Rules Cheat Sheet 2026",
+      "description": "Quick-reference summary for parents & fans",
+      "file": "assets/lacrosse-cheatsheet-2026.pdf"
+    }
   ]
 }
