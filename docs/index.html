@@ -507,8 +507,9 @@
                 </div>
             </div>
             <div class="hero-btns">
-                <a href="#" class="hero-cta" id="hero-schedule-btn" onclick="openScheduleModal(event)">View Schedule →</a>
+                <a href="#" class="hero-cta" id="hero-schedule-btn" onclick="openScheduleModal(event)">Schedule →</a>
                 <a href="https://www.stattyapp.com/public" class="hero-cta" target="_blank" rel="noopener">Live Stats →</a>
+                <a href="#rules" class="hero-cta" onclick="scrollToRules(event)">Rules →</a>
             </div>
         </div>
     </header>
@@ -554,6 +555,13 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeScheduleModal();
         });
+
+        // ===== RULES SCROLL =====
+        function scrollToRules(e) {
+            if (e) e.preventDefault();
+            var el = document.getElementById('rules');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
         // ===== ADMIN LOGIN =====
         var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c';
@@ -647,7 +655,7 @@
                 if (!main) return;
                 main.innerHTML = '';
                 data.sections.forEach(function(sec) {
-                    var html = '<section class="section">';
+                    var html = '<section class="section"' + (sec.id ? ' id="' + sec.id + '"' : '') + '>';
                     html += '<h2 class="section-title">' + sec.title + '</h2>';
                     if (sec.desc) html += '<p class="section-desc">' + sec.desc + '</p>';
                     if (sec.note) html += '<div class="info-card"><p>' + sec.note + '</p></div>';
