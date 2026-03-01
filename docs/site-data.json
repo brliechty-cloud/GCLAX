@@ -72,12 +72,12 @@
       "note": "",
       "buttons": [
         {
-          "label": "Rules — Part 1",
+          "label": "Common Rules of Lacrosse",
           "url": "assets/lacrosse-rules-2026-p1.pdf",
           "outline": false
         },
         {
-          "label": "Rules — Part 2",
+          "label": "Legal vs Illegal Body Checks",
           "url": "assets/lacrosse-rules-2026-p2.pdf",
           "outline": true
         },
