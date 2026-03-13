@@ -673,7 +673,7 @@
                 <div class="hero-cta-row">
                     <a href="#" class="hero-cta hero-cta--secondary" onclick="openScheduleModal(event)">Schedule</a>
                     <a href="https://www.stattyapp.com/public" class="hero-cta hero-cta--secondary" target="_blank" rel="noopener">Live Stats</a>
-                    <a href="#rules" class="hero-cta hero-cta--secondary" onclick="scrollToRules(event)">Rules</a>
+                    <a href="#" class="hero-cta hero-cta--secondary" onclick="openRulesModal(event)">Rules</a>
                 </div>
             </div>
         </div>
@@ -777,6 +777,26 @@
         <button class="admin-gear" onclick="adminLogin()" title="Admin Settings" aria-label="Admin Settings">&#9881;</button>
     </footer>
 
+    <!-- RULES PDF MODAL -->
+    <div id="rules-modal" class="modal-overlay" onclick="closeRulesModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-title">Rules & Resources</div>
+            <div class="modal-subtitle">2026 Season</div>
+            <div class="modal-options">
+                <a href="assets/lacrosse-cheatsheet-2026.pdf" class="modal-option modal-option--varsity" target="_blank" rel="noopener">
+                    📋 Penalty Cheat Sheet
+                </a>
+                <a href="assets/lacrosse-rules-2026-p1.pdf" class="modal-option modal-option--jv" target="_blank" rel="noopener">
+                    📖 Common Rules (Part 1)
+                </a>
+                <a href="assets/lacrosse-rules-2026-p2.pdf" class="modal-option modal-option--jv" target="_blank" rel="noopener">
+                    📖 Legal vs Illegal Checks (Part 2)
+                </a>
+            </div>
+            <button class="modal-cancel" onclick="closeRulesModal()">Cancel</button>
+        </div>
+    </div>
+
     <!-- SCHEDULE TEAM PICKER MODAL -->
     <div id="schedule-modal" class="modal-overlay" onclick="closeScheduleModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
@@ -810,14 +830,18 @@
         }
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeScheduleModal();
+            if (e.key === 'Escape') { closeScheduleModal(); closeRulesModal(); }
         });
 
-        // ===== RULES SCROLL =====
-        function scrollToRules(e) {
+        // ===== RULES MODAL =====
+        function openRulesModal(e) {
             if (e) e.preventDefault();
-            var el = document.getElementById('rules');
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById('rules-modal').classList.add('active');
+        }
+
+        function closeRulesModal(e) {
+            if (e && e.target !== e.currentTarget) return;
+            document.getElementById('rules-modal').classList.remove('active');
         }
 
         // ===== ADMIN LOGIN (hashed password) =====
