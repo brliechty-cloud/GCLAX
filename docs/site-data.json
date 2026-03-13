@@ -40,10 +40,10 @@
   "quickActions": [
     { "id": "schedule", "icon": "📅", "label": "Schedule", "sub": "Games & Events", "style": "green", "action": "openScheduleModal" },
     { "id": "liveStats", "icon": "📊", "label": "Live Stats", "sub": "Game Cast on Statty", "style": "gold", "linkKey": "liveStats" },
-    { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "action": "scrollToSignups" },
+    { "id": "rules", "icon": "📖", "label": "Rules", "sub": "Game Rules & Cheat Sheet", "style": "outline", "action": "openRulesModal" },
     { "id": "groupspot", "icon": "📲", "label": "Join GroupSpot", "sub": "Parents", "style": "outline", "action": "scrollToGroupspot" },
     { "id": "teamStore", "icon": "🛒", "label": "Team Store", "sub": "Jerseys & Gear", "style": "outline", "linkKey": "teamStore" },
-    { "id": "rules", "icon": "📖", "label": "Rules", "sub": "Game Rules & Cheat Sheet", "style": "outline", "action": "openRulesModal" }
+    { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "action": "scrollToSignups" }
   ],
   "resources": [
     {
