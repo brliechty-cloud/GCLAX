@@ -7,21 +7,34 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gc-green: #1A5C35;
+            --gc-green-light: #236B40;
+            --gc-bg: #F8F9FA;
+            --gc-card: #FFFFFF;
+            --gc-text: #111827;
+            --gc-text-muted: #6B7280;
+            --gc-border: rgba(0,0,0,0.08);
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.12);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #f5f7f6;
-            color: #1a2e21;
+            background: var(--gc-bg);
+            color: var(--gc-text);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
         .admin-header {
-            background: #1a5632;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
             color: white;
-            padding: 1.5rem 2rem;
+            padding: 1.25rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -31,14 +44,19 @@
         }
 
         .admin-header h1 {
-            font-size: 1.25rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.2rem;
             font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
         .admin-header a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.65);
             font-size: 0.8rem;
+            font-weight: 500;
             text-decoration: none;
+            transition: color 0.15s;
         }
 
         .admin-header a:hover { color: white; }
@@ -50,17 +68,20 @@
         }
 
         .card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #dce5df;
+            background: var(--gc-card);
+            border-radius: 20px;
+            border: 1px solid var(--gc-border);
+            box-shadow: var(--shadow-sm);
             padding: 1.5rem;
             margin-bottom: 1rem;
         }
 
         .card-title {
-            font-size: 0.95rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            color: var(--gc-text);
+            margin-bottom: 1.25rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -68,11 +89,11 @@
 
         label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            color: #4a6352;
+            letter-spacing: 0.08em;
+            color: var(--gc-text-muted);
             margin-bottom: 0.35rem;
         }
 
@@ -80,21 +101,22 @@
         input[type="url"],
         textarea {
             width: 100%;
-            padding: 0.6rem 0.75rem;
-            border: 1px solid #dce5df;
-            border-radius: 8px;
+            padding: 0.65rem 0.85rem;
+            border: 1px solid var(--gc-border);
+            border-radius: 10px;
             font-family: inherit;
             font-size: 0.85rem;
-            color: #1a2e21;
-            background: white;
+            color: var(--gc-text);
+            background: var(--gc-bg);
             margin-bottom: 1rem;
-            transition: border-color 0.15s;
+            transition: border-color 0.15s, box-shadow 0.15s;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: #1a5632;
-            box-shadow: 0 0 0 3px rgba(26,86,50,0.1);
+            border-color: var(--gc-green);
+            box-shadow: 0 0 0 3px rgba(26,92,53,0.1);
+            background: white;
         }
 
         textarea { resize: vertical; min-height: 60px; }
@@ -120,7 +142,7 @@
         .toggle-slider {
             position: absolute;
             inset: 0;
-            background: #ccc;
+            background: #D1D5DB;
             border-radius: 24px;
             transition: 0.2s;
         }
@@ -135,10 +157,11 @@
             background: white;
             border-radius: 50%;
             transition: 0.2s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
 
         .toggle input:checked + .toggle-slider {
-            background: #1a5632;
+            background: var(--gc-green);
         }
 
         .toggle input:checked + .toggle-slider::before {
@@ -150,9 +173,9 @@
             align-items: center;
             gap: 0.4rem;
             padding: 0.7rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 999px;
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             transition: all 0.15s;
@@ -160,24 +183,24 @@
         }
 
         .btn-primary {
-            background: #1a5632;
+            background: linear-gradient(135deg, #1A5C35, #236B40);
             color: white;
+            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
         }
 
         .btn-primary:hover {
-            background: #0e3a20;
             transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(26,86,50,0.3);
+            box-shadow: 0 4px 14px rgba(26,92,53,0.35);
         }
 
         .btn-secondary {
-            background: #f0f4f2;
-            color: #1a5632;
-            border: 1px solid #dce5df;
+            background: transparent;
+            color: var(--gc-green);
+            border: 2px solid var(--gc-green);
         }
 
         .btn-secondary:hover {
-            border-color: #1a5632;
+            background: rgba(26,92,53,0.07);
         }
 
         .btn-group {
@@ -192,13 +215,13 @@
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: #1a5632;
+            background: linear-gradient(135deg, #1A5C35, #236B40);
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 10px;
+            border-radius: 999px;
             font-size: 0.85rem;
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(26,92,53,0.3);
             transition: transform 0.3s ease;
             z-index: 100;
         }
@@ -209,7 +232,7 @@
 
         .help-text {
             font-size: 0.75rem;
-            color: #4a6352;
+            color: var(--gc-text-muted);
             margin-top: -0.75rem;
             margin-bottom: 1rem;
             font-style: italic;
@@ -225,46 +248,27 @@
         .link-field input { margin-bottom: 0; }
 
         .link-test {
-            padding: 0.6rem 0.75rem;
-            background: #f0f4f2;
-            border: 1px solid #dce5df;
-            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            background: transparent;
+            border: 1.5px solid var(--gc-green);
+            border-radius: 999px;
             font-size: 0.75rem;
             font-weight: 600;
-            color: #1a5632;
+            color: var(--gc-green);
             cursor: pointer;
             text-decoration: none;
             white-space: nowrap;
+            transition: all 0.15s;
         }
 
-        .link-test:hover { border-color: #1a5632; }
+        .link-test:hover {
+            background: rgba(26,92,53,0.07);
+        }
 
         .divider {
             border: none;
-            border-top: 1px solid #dce5df;
+            border-top: 1px solid var(--gc-border);
             margin: 1rem 0;
-        }
-
-        /* ===== DARK MODE ===== */
-        @media (prefers-color-scheme: dark) {
-            body { background: #121a14; color: #e8f0eb; }
-            .admin-header { background: #0e3a20; }
-            .card { background: #1a2e21; border-color: #2a4a35; }
-            .card-title { color: #e8f0eb; }
-            label { color: #a8b5ad; }
-            input[type="text"], input[type="url"], textarea {
-                background: #162419; border-color: #2a4a35; color: #e8f0eb;
-            }
-            input:focus, textarea:focus {
-                border-color: #2a7a4a; box-shadow: 0 0 0 3px rgba(42,122,74,0.2);
-            }
-            .toggle-slider { background: #2a4a35; }
-            .btn-secondary { background: #1a2e21; color: #8cc8a0; border-color: #2a4a35; }
-            .btn-secondary:hover { border-color: #2a7a4a; }
-            .help-text { color: #a8b5ad; }
-            .link-test { background: #1a2e21; border-color: #2a4a35; color: #8cc8a0; }
-            .divider { border-top-color: #2a4a35; }
-            .toast { background: #2a7a4a; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
         }
     </style>
 </head>
@@ -276,23 +280,6 @@
     </header>
 
     <div class="admin-container">
-
-        <!-- ANNOUNCEMENT -->
-        <div class="card">
-            <div class="card-title">📢 Announcement Banner</div>
-            <div class="toggle-row">
-                <label>Show announcement</label>
-                <label class="toggle">
-                    <input type="checkbox" id="admin-announce-active" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <label for="admin-announce-emoji">Emoji</label>
-            <input type="text" id="admin-announce-emoji" value="📸">
-            <label for="admin-announce-text">Banner text</label>
-            <textarea id="admin-announce-text" rows="2"></textarea>
-            <p class="help-text">Tip: Use emoji at the start to grab attention. Keep it short.</p>
-        </div>
 
         <!-- LINKS -->
         <div class="card">
@@ -368,9 +355,11 @@
             <input type="text" id="admin-signup-food">
         </div>
 
-        <p class="help-text" style="margin-top: 1rem;">
-            This page shows current site settings (read-only). To make changes, edit <code>site-data.json</code> in the repo and push to GitHub.
-        </p>
+        <div style="margin-top: 1.5rem; padding-bottom: 2rem;">
+            <button class="btn btn-primary" id="save-btn" onclick="saveToGitHub()" style="width:100%; justify-content:center; font-size:1rem; padding: 1rem;">
+                Save Changes
+            </button>
+        </div>
 
     </div>
 
@@ -389,15 +378,14 @@
             setTimeout(function() { toast.classList.remove('show'); }, 2500);
         }
 
-        // Load site-data.json and populate the form (read-only view)
+        var siteData = {};
+
+        // Load site-data.json and populate the form
         function loadFromJson() {
             fetch('site-data.json')
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
-                    // Announcement
-                    document.getElementById('admin-announce-active').checked = data.announcement ? data.announcement.active : true;
-                    document.getElementById('admin-announce-emoji').value = (data.announcement && data.announcement.emoji) || '';
-                    document.getElementById('admin-announce-text').value = (data.announcement && data.announcement.text) || '';
+                    siteData = data;
 
                     // Links
                     var links = data.links || {};
@@ -426,7 +414,62 @@
                 });
         }
 
-        // ===== ADMIN LOGIN (hashed password) =====
+        // Build updated data object from form fields
+        function collectFormData() {
+            var data = JSON.parse(JSON.stringify(siteData));
+            data.links = data.links || {};
+            data.links.teamStore = document.getElementById('admin-link-store').value;
+            data.links.groupspotParents = document.getElementById('admin-link-groupspot-parents').value;
+            data.links.groupspotPlayers = document.getElementById('admin-link-groupspot-players').value;
+            data.links.signupSheet = document.getElementById('admin-link-signups').value;
+            data.links.liveStats = document.getElementById('admin-link-livestats').value;
+            data.groupspot = data.groupspot || {};
+            data.groupspot.parentCode = document.getElementById('admin-parent-code').value;
+            data.scheduleLinks = data.scheduleLinks || {};
+            data.scheduleLinks.varsity = document.getElementById('admin-link-schedule-varsity').value;
+            data.scheduleLinks.jv = document.getElementById('admin-link-schedule-jv').value;
+            data.scheduleLinks.frosh = document.getElementById('admin-link-schedule-frosh').value;
+            data.signups = data.signups || {};
+            data.signups.concessions = document.getElementById('admin-signup-concessions').value;
+            data.signups.food = document.getElementById('admin-signup-food').value;
+            return data;
+        }
+
+        // Save to GitHub via Netlify function
+        async function saveToGitHub() {
+            var btn = document.getElementById('save-btn');
+            btn.textContent = 'Saving…';
+            btn.disabled = true;
+
+            var pw = sessionStorage.getItem('gclax-admin-pw');
+            if (!pw) {
+                btn.textContent = 'Save Changes';
+                btn.disabled = false;
+                showToast('Session expired — please reload and log in again.');
+                return;
+            }
+
+            try {
+                var res = await fetch('/.netlify/functions/save-data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: pw, data: collectFormData() })
+                });
+                var result = await res.json();
+                if (res.ok && result.success) {
+                    showToast('✓ Saved! Site will update in ~30 seconds.');
+                } else {
+                    showToast('Error: ' + (result.error || 'Unknown error'));
+                }
+            } catch (e) {
+                showToast('Network error — check your connection.');
+            }
+
+            btn.textContent = 'Save Changes';
+            btn.disabled = false;
+        }
+
+        // ===== ADMIN LOGIN =====
         var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c';
 
         function checkAuth() {
@@ -447,6 +490,7 @@
                 var hash = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
                 if (hash === ADMIN_HASH) {
                     sessionStorage.setItem('gclax-authed', 'true');
+                    sessionStorage.setItem('gclax-admin-pw', pw);
                     loadFromJson();
                 } else {
                     alert('Incorrect password.');

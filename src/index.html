@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Green Canyon Lacrosse | GC Lax</title>
+    <title>GC LAX | Green Canyon Lacrosse</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/gc-wolves-logo.png">
@@ -27,29 +27,29 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.svg">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#1A5C35">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --gc-green: #1A5C35;
-            --gc-green-dark: #0F1F14;
-            --gc-green-mid: #162B1C;
-            --gc-green-card: #1C3322;
-            --gc-green-hover: #224028;
-            --gc-gold: #000000;
-            --gc-gold-light: #1A5C35;
-            --gc-gold-glow: rgba(0,0,0,0.3);
+            --gc-green-dark: #0F3D20;
+            --gc-green-light: #236B40;
             --gc-white: #FFFFFF;
-            --gc-text: #D4E8D4;
-            --gc-text-muted: #8BAE8B;
-            --gc-border: rgba(255,255,255,0.1);
-            --radius: 10px;
+            --gc-bg: #F8F9FA;
+            --gc-card: #FFFFFF;
+            --gc-text: #111827;
+            --gc-text-muted: #6B7280;
+            --gc-border: rgba(0,0,0,0.08);
+            --radius: 20px;
+            --radius-sm: 14px;
             --transition: all 0.2s ease;
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.12);
         }
 
         * {
@@ -63,7 +63,7 @@
         }
 
         body {
-            background-color: var(--gc-green-dark);
+            background-color: var(--gc-bg);
             color: var(--gc-text);
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
@@ -72,51 +72,21 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* ===== ANNOUNCEMENT BANNER ===== */
-        .announcement-bar {
-            background: #000000;
-            color: rgba(255,255,255,0.85);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .banner-logo {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-            flex-shrink: 0;
-        }
-
-        .pulse-dot {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            background: #4ADE80;
-            border-radius: 50%;
-            margin-right: 6px;
-            vertical-align: middle;
-            animation: pulse 1.8s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.35; transform: scale(0.7); }
-        }
-
         /* ===== HERO ===== */
         .hero {
-            background: #000000;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
             position: relative;
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            opacity: 0.05;
+            pointer-events: none;
         }
 
         .hero-inner {
@@ -127,7 +97,9 @@
             gap: 48px;
             max-width: 900px;
             margin: 0 auto;
-            padding: 48px 32px 64px;
+            padding: 52px 32px 72px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-logo-col {
@@ -135,9 +107,9 @@
         }
 
         .hero-logo-col img {
-            width: 220px;
+            width: 200px;
             height: auto;
-            filter: drop-shadow(0 0 24px rgba(255,255,255,0.12));
+            filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
         }
 
         .hero-text-col {
@@ -145,13 +117,30 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 14px;
+            gap: 12px;
+        }
+
+        .season-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.9);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 999px;
+            backdrop-filter: blur(4px);
         }
 
         .hero-text-col h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.8rem;
-            letter-spacing: 0.06em;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
             color: #FFFFFF;
             margin: 0;
             line-height: 1;
@@ -159,30 +148,51 @@
 
         .hero-text-col .site-tagline {
             font-family: 'Inter', sans-serif;
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.55);
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
             margin: 0;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
         }
 
         .hero-cta {
             display: inline-block;
-            background: #1A5C35;
-            color: #FFFFFF;
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding: 13px 28px;
-            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 12px 24px;
+            border-radius: 999px;
             text-decoration: none;
             transition: var(--transition);
-            box-shadow: 0 4px 18px rgba(0,0,0,0.3);
-            margin-top: 4px;
         }
 
-        .hero-cta:hover {
-            background: #236B40;
+        .hero-cta--primary {
+            background: #FFFFFF;
+            color: var(--gc-green);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .hero-cta--primary:hover {
+            background: #F0F0F0;
             transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-cta--secondary {
+            background: rgba(255,255,255,0.12);
+            color: #FFFFFF;
+            border: 1.5px solid rgba(255,255,255,0.35);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-cta--secondary:hover {
+            background: rgba(255,255,255,0.22);
+            transform: translateY(-2px);
         }
 
         .hero-divider {
@@ -209,12 +219,13 @@
 
         /* ===== ACTION CARDS ===== */
         .action-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 12px;
             max-width: 900px;
             margin: -24px auto 0;
-            padding: 0 20px 32px;
+            padding: 0 20px 40px;
             position: relative;
             z-index: 3;
         }
@@ -223,20 +234,21 @@
         .action-card.action-card--green,
         .action-card.action-card--gold,
         .action-card.action-card--outline {
-            background: var(--gc-green-card);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-left: 3px solid rgba(255,255,255,0.3);
+            background: var(--gc-card);
+            border: 1px solid var(--gc-border);
             border-radius: var(--radius);
-            padding: 20px 12px;
+            box-shadow: var(--shadow-sm);
+            padding: 22px 16px 18px;
             text-align: center;
             text-decoration: none;
-            color: var(--gc-white);
+            color: var(--gc-text);
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
+            flex: 0 0 calc(33.333% - 8px);
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -244,23 +256,26 @@
         .action-card.action-card--green:hover,
         .action-card.action-card--gold:hover,
         .action-card.action-card--outline:hover {
-            background: var(--gc-green-hover);
-            box-shadow: 0 0 0 2px #FFFFFF, 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-md);
             transform: translateY(-3px);
+            border-color: var(--gc-green);
         }
 
         .action-card .action-icon {
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--gc-green);
             line-height: 1;
         }
 
         .action-card .action-label {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
-            color: #FFFFFF;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--gc-text);
             line-height: 1.2;
         }
 
@@ -270,18 +285,10 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Center the 5th (odd) button on its own row */
-        .action-grid .action-card:last-child:nth-child(odd) {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: calc(20% - 0.25rem);
-            min-width: 140px;
-        }
-
         /* ===== SECTIONS ===== */
         .section {
-            padding: 32px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 48px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
         }
 
         .section:last-child {
@@ -289,38 +296,41 @@
         }
 
         .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.9rem;
-            letter-spacing: 0.06em;
-            color: #FFFFFF;
-            margin: 0 0 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--gc-text);
+            margin: 0 0 6px;
             padding-left: 16px;
-            border-left: 4px solid #FFFFFF;
+            border-left: 4px solid var(--gc-green);
             line-height: 1.2;
         }
 
         .section-desc {
-            color: var(--gc-text);
+            color: var(--gc-text-muted);
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
             line-height: 1.65;
             margin-top: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         /* ===== INFO CARDS ===== */
         .info-card {
-            background: var(--gc-green-card);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-left: 4px solid rgba(255,255,255,0.35);
-            border-radius: var(--radius);
-            padding: 16px 20px;
+            background: var(--gc-card);
+            border: 1px solid var(--gc-border);
+            border-left: 4px solid var(--gc-green);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            padding: 18px 20px;
             margin-bottom: 12px;
             transition: var(--transition);
         }
 
         .info-card:hover {
-            background: var(--gc-green-hover);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
         }
 
         .info-card h4 {
@@ -329,7 +339,7 @@
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.55);
+            color: var(--gc-text-muted);
             margin-bottom: 4px;
         }
 
@@ -341,41 +351,43 @@
         }
 
         .info-card .highlight {
-            color: var(--gc-white);
+            color: var(--gc-green);
             font-weight: 700;
         }
 
         /* ===== LINK BUTTONS ===== */
         .link-btn {
             display: inline-block;
-            background: #1A5C35;
+            background: linear-gradient(135deg, #1A5C35, #236B40);
             color: #FFFFFF;
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 0.9rem;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 13px 28px;
+            border-radius: 999px;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
         }
 
         .link-btn:hover {
-            background: #236B40;
+            background: linear-gradient(135deg, #236B40, #2A7A4A);
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 18px rgba(26,92,53,0.35);
         }
 
         .link-btn--outline {
             background: transparent;
-            color: #FFFFFF;
-            border: 2px solid rgba(255,255,255,0.4);
+            color: var(--gc-green);
+            border: 2px solid var(--gc-green);
+            box-shadow: none;
         }
 
         .link-btn--outline:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: #FFFFFF;
+            background: rgba(26,92,53,0.07);
+            box-shadow: none;
             transform: translateY(-2px);
         }
 
@@ -391,11 +403,12 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.5);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             padding: 1.5rem;
+            backdrop-filter: blur(4px);
         }
 
         .modal-overlay.active {
@@ -403,14 +416,14 @@
         }
 
         .modal {
-            background: var(--gc-green-card);
+            background: var(--gc-card);
             border: 1px solid var(--gc-border);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 2rem 1.5rem;
             max-width: 340px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
             animation: modalSlideUp 0.25s ease-out;
         }
 
@@ -420,10 +433,11 @@
         }
 
         .modal-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 0.05em;
-            color: var(--gc-white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--gc-text);
             margin-bottom: 0.25rem;
         }
 
@@ -441,36 +455,37 @@
 
         .modal-option {
             display: block;
-            padding: 0.85rem 1rem;
-            border-radius: var(--radius);
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
             -webkit-tap-highlight-color: transparent;
         }
 
         .modal-option--varsity {
-            background: #1A5C35;
+            background: linear-gradient(135deg, #1A5C35, #236B40);
             color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
         }
         .modal-option--varsity:hover, .modal-option--varsity:active {
-            background: #236B40;
             transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(26,92,53,0.35);
         }
 
         .modal-option--jv {
-            background: var(--gc-green-hover);
-            color: var(--gc-white);
+            background: #F3F4F6;
+            color: var(--gc-text);
             border: 1px solid var(--gc-border);
         }
         .modal-option--jv:hover, .modal-option--jv:active {
-            border-color: #FFFFFF;
+            background: #E9EBEE;
             transform: scale(1.02);
         }
 
         .modal-option--frosh {
-            background: var(--gc-green-mid);
+            background: #F9FAFB;
             color: var(--gc-text-muted);
             border: 1px solid var(--gc-border);
             cursor: default;
@@ -491,15 +506,15 @@
         }
 
         .modal-cancel:hover {
-            color: var(--gc-white);
+            color: var(--gc-text);
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            background: var(--gc-green-dark);
-            border-top: 2px solid rgba(255,255,255,0.1);
-            padding: 28px 20px;
-            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
+            background: var(--gc-card);
+            border-top: 1px solid var(--gc-border);
+            padding: 32px 20px;
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
             text-align: center;
             position: relative;
             margin-top: 1rem;
@@ -513,7 +528,7 @@
         }
 
         .footer strong {
-            color: var(--gc-white);
+            color: var(--gc-text);
         }
 
         .footer a {
@@ -526,7 +541,7 @@
             right: 1rem;
             background: none;
             border: none;
-            color: rgba(255,255,255,0.15);
+            color: rgba(0,0,0,0.15);
             font-size: 1.2rem;
             cursor: pointer;
             padding: 0.5rem;
@@ -535,14 +550,13 @@
         }
 
         .admin-gear:hover {
-            color: rgba(255,255,255,0.5);
+            color: rgba(0,0,0,0.4);
         }
 
         /* ===== SCHEDULE TABLE ===== */
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
         }
 
         .schedule-table th {
@@ -574,34 +588,36 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
         }
 
         .badge--home {
-            background: var(--gc-green);
-            color: #fff;
+            background: rgba(26,92,53,0.12);
+            color: var(--gc-green);
         }
 
         .badge--away {
-            background: rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.06);
             color: var(--gc-text-muted);
         }
 
         .schedule-wrapper {
-            background: var(--gc-green-card);
-            border-radius: 14px;
+            background: var(--gc-card);
+            border-radius: 16px;
             border: 1px solid var(--gc-border);
+            box-shadow: var(--shadow-sm);
             overflow: hidden;
             margin-top: 1rem;
         }
 
         /* ===== PHOTO SECTION ===== */
         .photo-card {
-            background: var(--gc-green-card);
+            background: var(--gc-card);
             border: 1px solid var(--gc-border);
-            border-left: 4px solid rgba(255,255,255,0.35);
-            border-radius: 14px;
+            border-left: 4px solid var(--gc-green);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
             padding: 1.5rem;
             margin-top: 1rem;
         }
@@ -612,7 +628,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: rgba(255,255,255,0.55);
+            color: var(--gc-text-muted);
             margin-bottom: 0.5rem;
         }
 
@@ -629,45 +645,33 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .action-grid {
-                grid-template-columns: repeat(3, 1fr);
-                margin-top: -16px;
-            }
-            .action-grid .action-card:last-child:nth-child(odd) {
-                grid-column: auto;
-                justify-self: stretch;
-                width: auto;
-                min-width: auto;
-            }
-        }
-
         @media (max-width: 640px) {
             .hero-inner {
                 flex-direction: column;
                 text-align: center;
                 gap: 24px;
-                padding: 36px 20px 48px;
+                padding: 40px 20px 56px;
             }
             .hero-text-col {
                 align-items: center;
             }
             .hero-logo-col img {
-                width: 150px;
+                width: 140px;
             }
             .hero-text-col h1 {
-                font-size: 2.8rem;
+                font-size: 2.6rem;
+            }
+            .hero-cta-row {
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
-            .action-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .action-grid .action-card:last-child:nth-child(odd) {
-                grid-column: 1 / -1;
-                justify-self: center;
-                width: calc(50% - 6px);
+            .action-card,
+            .action-card.action-card--green,
+            .action-card.action-card--gold,
+            .action-card.action-card--outline {
+                flex: 0 0 calc(50% - 6px);
             }
             .schedule-table th,
             .schedule-table td {
@@ -679,28 +683,25 @@
 </head>
 <body>
 
-    <!-- ANNOUNCEMENT BANNER -->
-    <div id="announcement-banner" class="announcement-bar">
-        <img src="assets/gc-wolves-logo.svg" alt="" class="banner-logo">
-        <span class="pulse-dot"></span>📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM
-    </div>
 
     <!-- HERO -->
     <header class="hero">
         <div class="hero-inner">
             <div class="hero-logo-col">
-                <img src="assets/gc-wolves-logo.svg" alt="GC Wolves Logo">
+                <img src="assets/gc-wolves-logo.png" alt="GC Wolves Logo">
             </div>
             <div class="hero-text-col">
-                <h1>Green Canyon Lacrosse</h1>
-                <p class="site-tagline">Play Hard. Run Fast. Go Wolves.</p>
-                <a href="#" class="hero-cta" id="hero-schedule-btn" onclick="openScheduleModal(event)">Schedule →</a>
-                <a href="#rules" class="hero-cta" onclick="scrollToRules(event)">Rules →</a>
+                <h1>GC LAX</h1>
+                <div class="hero-cta-row">
+                    <a href="https://www.stattyapp.com/public" class="hero-cta hero-cta--primary" target="_blank" rel="noopener">Live Stats</a>
+                    <a href="#rules" class="hero-cta hero-cta--secondary" onclick="scrollToRules(event)">Rules</a>
+                </div>
             </div>
         </div>
         <div class="hero-divider">
             <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z" fill="#0F1F14"/>
+                <path d="M0,30 C300,60 900,0 1200,30 L1200,60 L0,60 Z" fill="#F8F9FA"/>
+
             </svg>
         </div>
     </header>
@@ -711,27 +712,22 @@
         <section id="quick-links">
             <div class="action-grid" id="action-grid">
                 <a class="action-card" href="#" onclick="openScheduleModal(event)">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
                     <span class="action-label">Schedule</span>
                     <span class="action-sub">Games &amp; Events</span>
                 </a>
-                <a class="action-card" href="https://www.stattyapp.com/public" target="_blank" rel="noopener">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-                    <span class="action-label">Live Stats</span>
-                    <span class="action-sub">Game Cast on Statty</span>
-                </a>
-                <a class="action-card" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
+<a class="action-card" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
                     <span class="action-label">Sign-Ups</span>
                     <span class="action-sub">Concessions &amp; Snacks</span>
                 </a>
                 <a class="action-card" href="https://get.groupspot.app/QZLhY" target="_blank" rel="noopener">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
                     <span class="action-label">Join GroupSpot</span>
                     <span class="action-sub">Parents</span>
                 </a>
                 <a class="action-card" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
                     <span class="action-label">Team Store</span>
                     <span class="action-sub">Jerseys &amp; Gear</span>
                 </a>
@@ -795,56 +791,6 @@
             </div>
         </section>
 
-        <!-- RULES & RESOURCES -->
-        <section id="rules" class="section">
-            <h2 class="section-title">Rules & Resources</h2>
-            <p class="section-desc">
-                Official game rules and quick-reference materials for the 2026 season.
-            </p>
-            <div id="resources-list"></div>
-        </section>
-
-        <!-- GAME SCHEDULE -->
-        <section id="schedule" class="section">
-            <h2 class="section-title">Game Schedule</h2>
-            <p class="section-desc">
-                Check the upcoming games below, or tap a team to view the full schedule on MaxPreps.
-            </p>
-            <div class="schedule-wrapper">
-                <table class="schedule-table" id="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Opponent</th>
-                            <th>Time</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="schedule-body">
-                        <tr><td>Mar 7</td><td>Mountain Crest</td><td>4:00 PM</td><td><span class="badge badge--home">Home</span></td></tr>
-                        <tr><td>Mar 14</td><td>Sky View</td><td>4:00 PM</td><td><span class="badge badge--away">Away</span></td></tr>
-                        <tr><td>Mar 21</td><td>Logan</td><td>4:00 PM</td><td><span class="badge badge--home">Home</span></td></tr>
-                        <tr><td>Mar 28</td><td>Ridgeline</td><td>4:00 PM</td><td><span class="badge badge--away">Away</span></td></tr>
-                        <tr><td>Apr 4</td><td>Bear River</td><td>4:00 PM</td><td><span class="badge badge--home">Home</span></td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="link-btn-group" style="margin-top: 1.5rem;">
-                <a href="#" class="link-btn" onclick="openScheduleModal(event)">
-                    Full Schedule on MaxPreps →
-                </a>
-            </div>
-        </section>
-
-        <!-- TEAM PHOTOS -->
-        <section id="photos" class="section">
-            <h2 class="section-title">Team Photos</h2>
-            <div class="photo-card">
-                <h4>Photo Day</h4>
-                <p id="photo-date">Monday, March 2nd at 5:00 PM</p>
-                <p class="photo-note" id="photo-note">After practice. Parent Night follows at 6:30 PM.</p>
-            </div>
-        </section>
 
     </main>
 
@@ -927,11 +873,11 @@
 
         // ===== SVG ICON MAP =====
         var iconSvgs = {
-            'schedule': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
-            'liveStats': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
-            'signups': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>',
-            'groupspot': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-            'teamStore': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>'
+            'schedule': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+            'liveStats': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+            'signups': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>',
+            'groupspot': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+            'teamStore': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>'
         };
 
         // ===== JSON DATA LAYER =====
@@ -980,15 +926,6 @@
 
             // Apply all data from site-data.json to the page
             function applyJsonData(data) {
-                var banner = document.getElementById('announcement-banner');
-                if (banner && data.announcement) {
-                    if (!data.announcement.active) {
-                        banner.style.display = 'none';
-                    } else {
-                        var emoji = data.announcement.emoji ? data.announcement.emoji + ' ' : '';
-                        banner.innerHTML = '<img src="assets/gc-wolves-logo.svg" alt="" class="banner-logo"><span class="pulse-dot"></span>' + emoji + data.announcement.text;
-                    }
-                }
 
                 if (data.links) {
                     if (data.links.groupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', data.links.groupspotParents);
