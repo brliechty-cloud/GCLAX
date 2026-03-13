@@ -27,7 +27,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.svg">
-    <meta name="theme-color" content="#1A5C35">
+    <meta name="theme-color" content="#245b4e">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,9 +36,9 @@
 
     <style>
         :root {
-            --gc-green: #1A5C35;
-            --gc-green-dark: #0F3D20;
-            --gc-green-light: #236B40;
+            --gc-green: #245b4e;
+            --gc-green-dark: #1a4038;
+            --gc-green-light: #2d6e61;
             --gc-white: #FFFFFF;
             --gc-bg: #F8F9FA;
             --gc-card: #FFFFFF;
@@ -94,7 +94,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 48px;
+            gap: 28px;
             max-width: 900px;
             margin: 0 auto;
             padding: 48px 32px 60px;
@@ -107,13 +107,13 @@
         }
 
         .hero-logo-col img {
-            width: 200px;
+            width: 160px;
             height: auto;
             filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
         }
 
         .hero-text-col {
-            flex: 1;
+            flex: 0 0 auto;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -155,7 +155,7 @@
 
         /* ===== SECTION HIGHLIGHT ===== */
         @keyframes sectionHighlight {
-            0%   { background-color: rgba(26,92,53,0.10); }
+            0%   { background-color: rgba(36,91,78,0.10); }
             100% { background-color: transparent; }
         }
 
@@ -193,7 +193,7 @@
             border: 1px solid var(--gc-border);
             border-radius: var(--radius);
             box-shadow: var(--shadow-sm);
-            padding: 22px 16px 18px;
+            padding: 26px 18px 22px;
             text-align: center;
             text-decoration: none;
             color: var(--gc-text);
@@ -202,7 +202,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             flex: 0 0 calc(33.333% - 8px);
             -webkit-tap-highlight-color: transparent;
         }
@@ -226,7 +226,7 @@
 
         .action-card .action-label {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.92rem;
             font-weight: 800;
             letter-spacing: 0.04em;
             text-transform: uppercase;
@@ -235,7 +235,7 @@
         }
 
         .action-card .action-sub {
-            font-size: 0.72rem;
+            font-size: 0.8rem;
             color: var(--gc-text-muted);
             font-family: 'Inter', sans-serif;
         }
@@ -313,7 +313,7 @@
         /* ===== LINK BUTTONS ===== */
         .link-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #1A5C35, #236B40);
+            background: linear-gradient(135deg, #245b4e, #2d6e61);
             color: #FFFFFF;
             font-family: 'Inter', sans-serif;
             font-weight: 600;
@@ -324,13 +324,13 @@
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
+            box-shadow: 0 2px 8px rgba(36,91,78,0.25);
         }
 
         .link-btn:hover {
-            background: linear-gradient(135deg, #236B40, #2A7A4A);
+            background: linear-gradient(135deg, #2d6e61, #336b5e);
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(26,92,53,0.35);
+            box-shadow: 0 6px 18px rgba(36,91,78,0.35);
         }
 
         .link-btn--outline {
@@ -341,7 +341,7 @@
         }
 
         .link-btn--outline:hover {
-            background: rgba(26,92,53,0.07);
+            background: rgba(36,91,78,0.07);
             box-shadow: none;
             transform: translateY(-2px);
         }
@@ -420,13 +420,13 @@
         }
 
         .modal-option--varsity {
-            background: linear-gradient(135deg, #1A5C35, #236B40);
+            background: linear-gradient(135deg, #245b4e, #2d6e61);
             color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
+            box-shadow: 0 2px 8px rgba(36,91,78,0.25);
         }
         .modal-option--varsity:hover, .modal-option--varsity:active {
             transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(26,92,53,0.35);
+            box-shadow: 0 4px 16px rgba(36,91,78,0.35);
         }
 
         .modal-option--jv {
@@ -548,7 +548,7 @@
         }
 
         .badge--home {
-            background: rgba(26,92,53,0.12);
+            background: rgba(36,91,78,0.12);
             color: var(--gc-green);
         }
 
@@ -602,14 +602,14 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
             .hero-inner {
-                gap: 20px;
+                gap: 16px;
                 padding: 28px 20px 44px;
             }
             .hero-logo-col img {
-                width: 110px;
+                width: 100px;
             }
             .hero-text-col h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
         }
 
@@ -649,32 +649,32 @@
         <section id="quick-links">
             <div class="action-grid" id="action-grid">
                 <a class="action-card" href="#" onclick="openScheduleModal(event)">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                    <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
                     <span class="action-label">Schedule</span>
                     <span class="action-sub">Games &amp; Events</span>
                 </a>
 <a class="action-card" href="#signups" onclick="scrollToSection('signups', event)">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
+                    <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
                     <span class="action-label">Sign-Ups</span>
                     <span class="action-sub">Concessions &amp; Snacks</span>
                 </a>
                 <a class="action-card" href="#communication" onclick="scrollToSection('communication', event)">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
                     <span class="action-label">Join GroupSpot</span>
                     <span class="action-sub">Parents</span>
                 </a>
                 <a class="action-card" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+                    <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
                     <span class="action-label">Team Store</span>
                     <span class="action-sub">Jerseys &amp; Gear</span>
                 </a>
                 <a class="action-card" href="https://www.stattyapp.com/public" target="_blank" rel="noopener">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
                     <span class="action-label">Live Stats</span>
                     <span class="action-sub">Game Cast on Statty</span>
                 </a>
                 <a class="action-card" href="#" onclick="openRulesModal(event)">
-                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+                    <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
                     <span class="action-label">Rules</span>
                     <span class="action-sub">Game Rules &amp; Cheat Sheet</span>
                 </a>
@@ -859,12 +859,12 @@
 
         // ===== SVG ICON MAP =====
         var iconSvgs = {
-            'schedule': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
-            'liveStats': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
-            'signups': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>',
-            'groupspot': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-            'teamStore': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
-            'rules': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>'
+            'schedule': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+            'liveStats': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+            'signups': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>',
+            'groupspot': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+            'teamStore': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+            'rules': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>'
         };
 
         // ===== JSON DATA LAYER =====
