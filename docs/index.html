@@ -153,46 +153,15 @@
             margin: 0;
         }
 
-        .hero-cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 4px;
+        /* ===== SECTION HIGHLIGHT ===== */
+        @keyframes sectionHighlight {
+            0%   { background-color: rgba(26,92,53,0.10); }
+            100% { background-color: transparent; }
         }
 
-        .hero-cta {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 12px 24px;
-            border-radius: 999px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .hero-cta--primary {
-            background: #FFFFFF;
-            color: var(--gc-green);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        }
-
-        .hero-cta--primary:hover {
-            background: #F0F0F0;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .hero-cta--secondary {
-            background: rgba(255,255,255,0.12);
-            color: #FFFFFF;
-            border: 1.5px solid rgba(255,255,255,0.35);
-            backdrop-filter: blur(4px);
-        }
-
-        .hero-cta--secondary:hover {
-            background: rgba(255,255,255,0.22);
-            transform: translateY(-2px);
+        .section--highlighted {
+            animation: sectionHighlight 1.6s ease-out forwards;
+            border-radius: var(--radius-sm);
         }
 
 
@@ -684,12 +653,12 @@
                     <span class="action-label">Schedule</span>
                     <span class="action-sub">Games &amp; Events</span>
                 </a>
-<a class="action-card" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
+<a class="action-card" href="#signups" onclick="scrollToSection('signups', event)">
                     <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
                     <span class="action-label">Sign-Ups</span>
                     <span class="action-sub">Concessions &amp; Snacks</span>
                 </a>
-                <a class="action-card" href="https://get.groupspot.app/QZLhY" target="_blank" rel="noopener">
+                <a class="action-card" href="#communication" onclick="scrollToSection('communication', event)">
                     <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
                     <span class="action-label">Join GroupSpot</span>
                     <span class="action-sub">Parents</span>
@@ -823,6 +792,21 @@
     </div>
 
     <script>
+        // ===== SCROLL + HIGHLIGHT =====
+        function scrollToSection(id, e) {
+            if (e) e.preventDefault();
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            el.classList.remove('section--highlighted');
+            void el.offsetWidth; // reflow to restart animation
+            el.classList.add('section--highlighted');
+            setTimeout(function() { el.classList.remove('section--highlighted'); }, 1700);
+        }
+
+        function scrollToSignups(e) { scrollToSection('signups', e); }
+        function scrollToGroupspot(e) { scrollToSection('communication', e); }
+
         // ===== SCHEDULE MODAL =====
         function openScheduleModal(e) {
             if (e) e.preventDefault();
