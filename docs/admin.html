@@ -7,50 +7,84 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gc-green: #1A5C35;
+            --gc-green-light: #236B40;
+            --gc-bg: #F8F9FA;
+            --gc-card: #FFFFFF;
+            --gc-text: #111827;
+            --gc-text-muted: #6B7280;
+            --gc-border: rgba(0,0,0,0.08);
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.12);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #f5f7f6;
-            color: #1a2e21;
+            background: var(--gc-bg);
+            color: var(--gc-text);
             min-height: 100vh;
-            padding-bottom: 6rem;
+            -webkit-font-smoothing: antialiased;
         }
 
         .admin-header {
-            background: #1a5632;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
             color: white;
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 50;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        .admin-header h1 { font-size: 1.1rem; font-weight: 800; }
-        .admin-header a { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-decoration: none; }
+        .admin-header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .admin-header a {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
         .admin-header a:hover { color: white; }
 
-        .admin-container { max-width: 640px; margin: 0 auto; padding: 1.25rem; }
+        .admin-container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
 
         .card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #dce5df;
-            padding: 1.25rem;
+            background: var(--gc-card);
+            border-radius: 20px;
+            border: 1px solid var(--gc-border);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
             margin-bottom: 1rem;
         }
 
         .card-title {
-            font-size: 0.9rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
             font-weight: 800;
-            margin-bottom: 1rem;
-            color: #1a2e21;
+            color: var(--gc-text);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         label {
@@ -58,28 +92,31 @@
             font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #4a6352;
-            margin-bottom: 0.3rem;
+            letter-spacing: 0.08em;
+            color: var(--gc-text-muted);
+            margin-bottom: 0.35rem;
         }
 
-        input[type="text"], input[type="url"], textarea {
+        input[type="text"],
+        input[type="url"],
+        textarea {
             width: 100%;
-            padding: 0.55rem 0.7rem;
-            border: 1px solid #dce5df;
-            border-radius: 8px;
+            padding: 0.65rem 0.85rem;
+            border: 1px solid var(--gc-border);
+            border-radius: 10px;
             font-family: inherit;
             font-size: 0.85rem;
-            color: #1a2e21;
-            background: white;
-            margin-bottom: 0.85rem;
-            transition: border-color 0.15s;
+            color: var(--gc-text);
+            background: var(--gc-bg);
+            margin-bottom: 1rem;
+            transition: border-color 0.15s, box-shadow 0.15s;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: #1a5632;
-            box-shadow: 0 0 0 3px rgba(26,86,50,0.1);
+            border-color: var(--gc-green);
+            box-shadow: 0 0 0 3px rgba(26,92,53,0.1);
+            background: white;
         }
 
         textarea { resize: vertical; min-height: 60px; }
@@ -88,349 +125,373 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 0.85rem;
+            margin-bottom: 1rem;
         }
 
         .toggle-row label { margin-bottom: 0; }
 
-        .toggle { position: relative; width: 44px; height: 24px; cursor: pointer; flex-shrink: 0; }
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            cursor: pointer;
+        }
+
         .toggle input { opacity: 0; width: 0; height: 0; }
-        .toggle-slider { position: absolute; inset: 0; background: #ccc; border-radius: 24px; transition: 0.2s; }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: #D1D5DB;
+            border-radius: 24px;
+            transition: 0.2s;
+        }
+
         .toggle-slider::before {
             content: '';
             position: absolute;
-            width: 18px; height: 18px;
-            left: 3px; top: 3px;
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            top: 3px;
             background: white;
             border-radius: 50%;
             transition: 0.2s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
-        .toggle input:checked + .toggle-slider { background: #1a5632; }
-        .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+        .toggle input:checked + .toggle-slider {
+            background: var(--gc-green);
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-size: 0.82rem;
-            font-weight: 700;
+            padding: 0.7rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             transition: all 0.15s;
             font-family: inherit;
-            text-decoration: none;
         }
 
-        .btn-primary { background: #1a5632; color: white; }
-        .btn-primary:hover { background: #0e3a20; }
-        .btn-secondary { background: #f0f4f2; color: #1a5632; border: 1px solid #dce5df; }
-        .btn-secondary:hover { border-color: #1a5632; }
-        .btn-danger { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
-        .btn-danger:hover { background: #fecaca; }
-        .btn-ghost { background: none; color: #4a6352; border: 1px solid #dce5df; }
-        .btn-ghost:hover { border-color: #1a5632; color: #1a5632; }
-        .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.75rem; }
+        .btn-primary {
+            background: linear-gradient(135deg, #1A5C35, #236B40);
+            color: white;
+            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
+        }
 
-        .divider { border: none; border-top: 1px solid #dce5df; margin: 1rem 0; }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(26,92,53,0.35);
+        }
 
-        .link-row {
+        .btn-secondary {
+            background: transparent;
+            color: var(--gc-green);
+            border: 2px solid var(--gc-green);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(26,92,53,0.07);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #1A5C35, #236B40);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(26,92,53,0.3);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .help-text {
+            font-size: 0.75rem;
+            color: var(--gc-text-muted);
+            margin-top: -0.75rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .link-field {
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 0.5rem;
             align-items: start;
-            margin-bottom: 0.85rem;
         }
-        .link-row input { margin-bottom: 0; }
+
+        .link-field input { margin-bottom: 0; }
+
         .link-test {
-            padding: 0.55rem 0.7rem;
-            background: #f0f4f2;
-            border: 1px solid #dce5df;
-            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            background: transparent;
+            border: 1.5px solid var(--gc-green);
+            border-radius: 999px;
             font-size: 0.75rem;
             font-weight: 600;
-            color: #1a5632;
+            color: var(--gc-green);
             cursor: pointer;
             text-decoration: none;
             white-space: nowrap;
-        }
-        .link-test:hover { border-color: #1a5632; }
-
-        /* ===== TOKEN SETUP ===== */
-        .token-card { border-color: #f59e0b; background: #fffbeb; }
-        .token-card .card-title { color: #92400e; }
-        .token-steps { font-size: 0.82rem; color: #78350f; line-height: 1.8; margin-bottom: 1rem; }
-        .token-steps a { color: #1a5632; }
-        .token-steps code { background: #fde68a; padding: 1px 5px; border-radius: 3px; font-size: 0.78rem; }
-
-        /* ===== SAVE BAR ===== */
-        .save-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid #dce5df;
-            padding: 0.85rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            z-index: 100;
-            box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+            transition: all 0.15s;
         }
 
-        .save-status { font-size: 0.8rem; color: #4a6352; }
-
-        /* ===== SECTIONS MANAGER ===== */
-        .section-item {
-            border: 1px solid #dce5df;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            background: #f9fbfa;
+        .link-test:hover {
+            background: rgba(26,92,53,0.07);
         }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
+        .divider {
+            border: none;
+            border-top: 1px solid var(--gc-border);
+            margin: 1rem 0;
         }
-
-        .section-title-display {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #1a2e21;
-            flex: 1;
-        }
-
-        .section-actions { display: flex; gap: 0.3rem; flex-shrink: 0; }
-
-        .section-body { display: none; }
-        .section-body.open { display: block; }
-
-        .btn-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
-
-        .button-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            border: 1px solid #dce5df;
-            border-radius: 6px;
-            padding: 0.5rem 0.6rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .button-item input[type="text"],
-        .button-item input[type="url"] {
-            margin-bottom: 0;
-            padding: 0.3rem 0.5rem;
-            font-size: 0.78rem;
-        }
-
-        .button-item .btn-label-input { width: 140px; flex-shrink: 0; }
-        .button-item .btn-url-input { flex: 1; min-width: 0; }
-
-        .outline-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: #4a6352;
-            white-space: nowrap;
-            cursor: pointer;
-        }
-
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed;
-            bottom: 5rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(120px);
-            background: #1a5632;
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border-radius: 10px;
-            font-size: 0.83rem;
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            z-index: 200;
-            white-space: nowrap;
-        }
-        .toast.error { background: #dc2626; }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-
-        .help { font-size: 0.72rem; color: #4a6352; font-style: italic; margin-top: -0.6rem; margin-bottom: 0.85rem; }
     </style>
 </head>
 <body>
 
     <header class="admin-header">
-        <h1>⚙️ GC Lax Admin</h1>
+        <h1>GC Lax Admin</h1>
         <a href="index.html">← View Site</a>
     </header>
 
     <div class="admin-container">
 
-        <!-- GITHUB TOKEN SETUP -->
-        <div class="card token-card" id="token-card">
-            <div class="card-title">🔑 GitHub Token (one-time setup)</div>
-            <p class="token-steps">
-                To save changes live to the site, you need a GitHub token:<br>
-                1. Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
-                2. Give it a name (e.g. "GC Lax Admin")<br>
-                3. Set expiration to <code>No expiration</code><br>
-                4. Check the <code>repo</code> scope box<br>
-                5. Click Generate token, paste it below
-            </p>
-            <label for="gh-token">Personal Access Token</label>
-            <input type="text" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-            <button class="btn btn-primary" onclick="saveToken()">Save Token</button>
-        </div>
-
-        <!-- ANNOUNCEMENT BANNER -->
-        <div class="card">
-            <div class="card-title">📢 Announcement Banner</div>
-            <div class="toggle-row">
-                <label>Show banner</label>
-                <label class="toggle">
-                    <input type="checkbox" id="ann-active" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <label for="ann-emoji">Emoji</label>
-            <input type="text" id="ann-emoji" placeholder="📸" maxlength="4">
-            <label for="ann-text">Banner text</label>
-            <textarea id="ann-text" rows="2" placeholder="Team photos Mon, March 2nd @ 5 PM..."></textarea>
-        </div>
-
         <!-- LINKS -->
         <div class="card">
             <div class="card-title">🔗 Links</div>
 
-            <label>Team Store URL</label>
-            <div class="link-row">
-                <input type="url" id="link-store" placeholder="https://shop.teamupathletics.com/...">
-                <a class="link-test" onclick="testLink('link-store')">Test ↗</a>
+            <label for="admin-link-store">Team Store URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-store">
+                <a class="link-test" onclick="testLink('admin-link-store')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
-            <label>GroupSpot — Parents URL</label>
-            <div class="link-row">
-                <input type="url" id="link-gs-parents" placeholder="https://get.groupspot.app/...">
-                <a class="link-test" onclick="testLink('link-gs-parents')">Test ↗</a>
+            <label for="admin-link-groupspot-parents">GroupSpot — Parents URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-groupspot-parents">
+                <a class="link-test" onclick="testLink('admin-link-groupspot-parents')">Test ↗</a>
             </div>
 
-            <label>GroupSpot — Players URL</label>
-            <div class="link-row">
-                <input type="url" id="link-gs-players" placeholder="https://get.groupspot.app/...">
-                <a class="link-test" onclick="testLink('link-gs-players')">Test ↗</a>
+            <label for="admin-link-groupspot-players">GroupSpot — Players URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-groupspot-players">
+                <a class="link-test" onclick="testLink('admin-link-groupspot-players')">Test ↗</a>
+            </div>
+
+            <label for="admin-parent-code">Parent Invite Code</label>
+            <input type="text" id="admin-parent-code">
+
+            <hr class="divider">
+
+            <label for="admin-link-signups">Sign-Up Sheet URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-signups">
+                <a class="link-test" onclick="testLink('admin-link-signups')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
-            <label>Sign-Up Sheet URL</label>
-            <div class="link-row">
-                <input type="url" id="link-signups" placeholder="https://docs.google.com/...">
-                <a class="link-test" onclick="testLink('link-signups')">Test ↗</a>
-            </div>
-
-            <label>Live Stats URL</label>
-            <div class="link-row">
-                <input type="url" id="link-livestats" placeholder="https://www.stattyapp.com/public">
-                <a class="link-test" onclick="testLink('link-livestats')">Test ↗</a>
+            <label for="admin-link-livestats">Live Stats URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-livestats">
+                <a class="link-test" onclick="testLink('admin-link-livestats')">Test ↗</a>
             </div>
 
             <hr class="divider">
 
-            <label>Schedule — Varsity URL</label>
-            <div class="link-row">
-                <input type="url" id="link-varsity" placeholder="https://www.maxpreps.com/...">
-                <a class="link-test" onclick="testLink('link-varsity')">Test ↗</a>
+            <label for="admin-link-schedule-varsity">Schedule — Varsity URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-schedule-varsity">
+                <a class="link-test" onclick="testLink('admin-link-schedule-varsity')">Test ↗</a>
             </div>
 
-            <label>Schedule — JV URL</label>
-            <div class="link-row">
-                <input type="url" id="link-jv" placeholder="https://www.maxpreps.com/...">
-                <a class="link-test" onclick="testLink('link-jv')">Test ↗</a>
+            <label for="admin-link-schedule-jv">Schedule — JV URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-schedule-jv">
+                <a class="link-test" onclick="testLink('admin-link-schedule-jv')">Test ↗</a>
             </div>
 
-            <label>Schedule — Frosh URL</label>
-            <div class="link-row">
-                <input type="url" id="link-frosh" placeholder="Leave blank = Coming Soon">
-                <a class="link-test" onclick="testLink('link-frosh')">Test ↗</a>
+            <label for="admin-link-schedule-frosh">Schedule — Frosh URL</label>
+            <div class="link-field">
+                <input type="url" id="admin-link-schedule-frosh">
+                <a class="link-test" onclick="testLink('admin-link-schedule-frosh')">Test ↗</a>
             </div>
+            <p class="help-text">Leave blank to show "Coming Soon"</p>
         </div>
 
-        <!-- OFF-SEASON MODE -->
+        <!-- SIGN-UP REQUIREMENTS -->
         <div class="card">
-            <div class="card-title">🏁 Off-Season Mode</div>
-            <div class="toggle-row">
-                <label>Enable off-season mode</label>
-                <label class="toggle">
-                    <input type="checkbox" id="off-season-active">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <p class="help">When on, hides all page sections and shows the message below instead.</p>
-            <label for="off-season-msg">Off-season message</label>
-            <input type="text" id="off-season-msg" placeholder="The 2026 season has ended. See you next year — Go Wolves!">
+            <div class="card-title">📋 Sign-Up Requirements</div>
+            <label for="admin-signup-concessions">Concessions requirement</label>
+            <input type="text" id="admin-signup-concessions">
+            <label for="admin-signup-food">Food requirement</label>
+            <input type="text" id="admin-signup-food">
         </div>
 
-        <!-- ANALYTICS -->
-        <div class="card">
-            <div class="card-title">📊 Analytics</div>
-            <p class="help" style="margin-bottom:0.75rem;">Paste your analytics <code style="background:#f0f4f2;padding:1px 5px;border-radius:3px;font-size:0.78rem;">&lt;script&gt;</code> tag here (Plausible, Cloudflare, Google Analytics, etc.). Leave blank to disable.</p>
-            <label for="analytics-script">Analytics script tag</label>
-            <textarea id="analytics-script" rows="3" placeholder='<script defer data-domain="greencanyonlacrosse.com" src="https://plausible.io/js/script.js"></script>'></textarea>
-        </div>
-
-        <!-- SECTIONS MANAGER -->
-        <div class="card">
-            <div class="card-title">📄 Page Sections</div>
-            <p class="help" style="margin-bottom:1rem;">These are the content sections on the main page. Drag the ↕ arrows to reorder, or use the buttons to edit, move, and delete.</p>
-            <div id="sections-list"></div>
-            <button class="btn btn-secondary" style="width:100%;margin-top:0.5rem;" onclick="addSection()">+ Add Section</button>
+        <div style="margin-top: 1.5rem; padding-bottom: 2rem;">
+            <button class="btn btn-primary" id="save-btn" onclick="saveToGitHub()" style="width:100%; justify-content:center; font-size:1rem; padding: 1rem;">
+                Save Changes
+            </button>
         </div>
 
     </div>
 
-    <!-- SAVE BAR -->
-    <div class="save-bar">
-        <span class="save-status" id="save-status">Changes will go live in ~30 seconds after saving.</span>
-        <button class="btn btn-primary" onclick="saveAll()" id="save-btn">💾 Save &amp; Publish</button>
-    </div>
-
-    <div id="toast" class="toast"></div>
+    <div id="toast" class="toast">Copied!</div>
 
     <script>
+        function testLink(inputId) {
+            var url = document.getElementById(inputId).value;
+            if (url) window.open(url, '_blank');
+        }
+
+        function showToast(msg) {
+            var toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(function() { toast.classList.remove('show'); }, 2500);
+        }
+
+        var siteData = {};
+
+        // Load site-data.json and populate the form
+        function loadFromJson() {
+            fetch('site-data.json')
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    siteData = data;
+
+                    // Links
+                    var links = data.links || {};
+                    document.getElementById('admin-link-store').value = links.teamStore || '';
+                    document.getElementById('admin-link-groupspot-parents').value = links.groupspotParents || '';
+                    document.getElementById('admin-link-groupspot-players').value = links.groupspotPlayers || '';
+                    document.getElementById('admin-link-signups').value = links.signupSheet || '';
+                    document.getElementById('admin-link-livestats').value = links.liveStats || '';
+
+                    // Parent code
+                    document.getElementById('admin-parent-code').value = (data.groupspot && data.groupspot.parentCode) || '';
+
+                    // Schedule links
+                    var sched = data.scheduleLinks || {};
+                    document.getElementById('admin-link-schedule-varsity').value = sched.varsity || '';
+                    document.getElementById('admin-link-schedule-jv').value = sched.jv || '';
+                    document.getElementById('admin-link-schedule-frosh').value = sched.frosh || '';
+
+                    // Sign-up requirements
+                    var signups = data.signups || {};
+                    document.getElementById('admin-signup-concessions').value = signups.concessions || '';
+                    document.getElementById('admin-signup-food').value = signups.food || '';
+                })
+                .catch(function() {
+                    showToast('Error loading site-data.json');
+                });
+        }
+
+        // Build updated data object from form fields
+        function collectFormData() {
+            var data = JSON.parse(JSON.stringify(siteData));
+            data.links = data.links || {};
+            data.links.teamStore = document.getElementById('admin-link-store').value;
+            data.links.groupspotParents = document.getElementById('admin-link-groupspot-parents').value;
+            data.links.groupspotPlayers = document.getElementById('admin-link-groupspot-players').value;
+            data.links.signupSheet = document.getElementById('admin-link-signups').value;
+            data.links.liveStats = document.getElementById('admin-link-livestats').value;
+            data.groupspot = data.groupspot || {};
+            data.groupspot.parentCode = document.getElementById('admin-parent-code').value;
+            data.scheduleLinks = data.scheduleLinks || {};
+            data.scheduleLinks.varsity = document.getElementById('admin-link-schedule-varsity').value;
+            data.scheduleLinks.jv = document.getElementById('admin-link-schedule-jv').value;
+            data.scheduleLinks.frosh = document.getElementById('admin-link-schedule-frosh').value;
+            data.signups = data.signups || {};
+            data.signups.concessions = document.getElementById('admin-signup-concessions').value;
+            data.signups.food = document.getElementById('admin-signup-food').value;
+            return data;
+        }
+
+        // Save to GitHub via Netlify function
+        async function saveToGitHub() {
+            var btn = document.getElementById('save-btn');
+            btn.textContent = 'Saving…';
+            btn.disabled = true;
+
+            var pw = sessionStorage.getItem('gclax-admin-pw');
+            if (!pw) {
+                btn.textContent = 'Save Changes';
+                btn.disabled = false;
+                showToast('Session expired — please reload and log in again.');
+                return;
+            }
+
+            try {
+                var res = await fetch('/.netlify/functions/save-data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: pw, data: collectFormData() })
+                });
+                var result = await res.json();
+                if (res.ok && result.success) {
+                    showToast('✓ Saved! Site will update in ~30 seconds.');
+                } else {
+                    showToast('Error: ' + (result.error || 'Unknown error'));
+                }
+            } catch (e) {
+                showToast('Network error — check your connection.');
+            }
+
+            btn.textContent = 'Save Changes';
+            btn.disabled = false;
+        }
+
+        // ===== ADMIN LOGIN =====
         var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c';
-        var GH_OWNER = 'brliechty-cloud';
-        var GH_REPO = 'GCLAX';
-        var GH_FILE = 'docs/site-data.json';
-        var GH_API = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_FILE;
 
-        var currentSha = null;
-        var siteData = null;
-
-        // ===== AUTH =====
         function checkAuth() {
-            if (sessionStorage.getItem('gclax-authed') === 'true') { init(); return; }
+            if (sessionStorage.getItem('gclax-authed') === 'true') {
+                loadFromJson();
+                return;
+            }
+
             var pw = prompt('Enter admin password:');
-            if (!pw) { window.location.href = 'index.html'; return; }
+            if (pw === null) {
+                window.location.href = 'index.html';
+                return;
+            }
+
             var encoded = new TextEncoder().encode(pw);
-            crypto.subtle.digest('SHA-256', encoded).then(function(buf) {
-                var hash = Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2,'0'); }).join('');
+            crypto.subtle.digest('SHA-256', encoded).then(function(buffer) {
+                var hashArray = Array.from(new Uint8Array(buffer));
+                var hash = hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
                 if (hash === ADMIN_HASH) {
                     sessionStorage.setItem('gclax-authed', 'true');
-                    init();
+                    sessionStorage.setItem('gclax-admin-pw', pw);
+                    loadFromJson();
                 } else {
                     alert('Incorrect password.');
                     window.location.href = 'index.html';
@@ -438,296 +499,9 @@
             });
         }
 
-        // ===== TOKEN =====
-        function saveToken() {
-            var t = document.getElementById('gh-token').value.trim();
-            if (!t) return;
-            localStorage.setItem('gclax-gh-token', t);
-            document.getElementById('token-card').style.display = 'none';
-            showToast('Token saved!');
-            loadFromGitHub();
-        }
-
-        function getToken() { return localStorage.getItem('gclax-gh-token'); }
-
-        // ===== INIT =====
-        function init() {
-            var token = getToken();
-            if (token) {
-                document.getElementById('token-card').style.display = 'none';
-                loadFromGitHub();
-            } else {
-                // Load from local file for display but can't save
-                fetch('site-data.json').then(function(r){ return r.json(); }).then(function(d){
-                    siteData = d;
-                    populateForm(d);
-                });
-            }
-        }
-
-        // ===== LOAD FROM GITHUB =====
-        function loadFromGitHub() {
-            setStatus('Loading…');
-            fetch(GH_API + '?t=' + Date.now(), {
-                headers: { 'Authorization': 'token ' + getToken(), 'Accept': 'application/vnd.github.v3+json' }
-            })
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                if (data.message) throw new Error(data.message);
-                currentSha = data.sha;
-                var json = JSON.parse(atob(data.content.replace(/\n/g, '')));
-                siteData = json;
-                populateForm(json);
-                setStatus('Loaded from GitHub ✓');
-            })
-            .catch(function(e) {
-                setStatus('Could not load from GitHub: ' + e.message);
-                // Fallback to local
-                fetch('site-data.json').then(function(r){ return r.json(); }).then(function(d){
-                    siteData = d;
-                    populateForm(d);
-                });
-            });
-        }
-
-        // ===== POPULATE FORM =====
-        function populateForm(d) {
-            var ann = d.announcement || {};
-            document.getElementById('ann-active').checked = ann.active !== false;
-            document.getElementById('ann-emoji').value = ann.emoji || '';
-            document.getElementById('ann-text').value = ann.text || '';
-
-            var links = d.links || {};
-            document.getElementById('link-store').value = links.teamStore || '';
-            document.getElementById('link-gs-parents').value = links.groupspotParents || '';
-            document.getElementById('link-gs-players').value = links.groupspotPlayers || '';
-            document.getElementById('link-signups').value = links.signupSheet || '';
-            document.getElementById('link-livestats').value = links.liveStats || '';
-
-            var sched = d.scheduleLinks || {};
-            document.getElementById('link-varsity').value = sched.varsity || '';
-            document.getElementById('link-jv').value = sched.jv || '';
-            document.getElementById('link-frosh').value = sched.frosh || '';
-
-            document.getElementById('off-season-active').checked = d.offSeason || false;
-            document.getElementById('off-season-msg').value = d.offSeasonMessage || '';
-            document.getElementById('analytics-script').value = d.analyticsScript || '';
-
-            renderSections(d.sections || []);
-        }
-
-        // ===== SECTIONS =====
-        var sections = [];
-
-        function renderSections(data) {
-            sections = JSON.parse(JSON.stringify(data)); // deep clone
-            var list = document.getElementById('sections-list');
-            list.innerHTML = '';
-            sections.forEach(function(sec, i) {
-                list.appendChild(buildSectionEl(sec, i));
-            });
-        }
-
-        function buildSectionEl(sec, i) {
-            var div = document.createElement('div');
-            div.className = 'section-item';
-            div.dataset.index = i;
-
-            // Buttons HTML
-            var btnsHtml = (sec.buttons || []).map(function(btn, bi) {
-                return '<div class="button-item">' +
-                    '<input type="text" class="btn-label-input" placeholder="Button label" value="' + esc(btn.label) + '" onchange="updateBtn(' + i + ',' + bi + ',\'label\',this.value)">' +
-                    '<input type="url" class="btn-url-input" placeholder="https://..." value="' + esc(btn.url) + '" onchange="updateBtn(' + i + ',' + bi + ',\'url\',this.value)">' +
-                    '<label class="outline-toggle"><input type="checkbox" ' + (btn.outline ? 'checked' : '') + ' onchange="updateBtn(' + i + ',' + bi + ',\'outline\',this.checked)"> Outline</label>' +
-                    '<button class="btn btn-danger btn-sm" onclick="removeBtn(' + i + ',' + bi + ')">✕</button>' +
-                    '</div>';
-            }).join('');
-
-            div.innerHTML =
-                '<div class="section-header">' +
-                    '<span class="section-title-display">' + (sec.title || 'Untitled') + '</span>' +
-                    '<div class="section-actions">' +
-                        '<button class="btn btn-ghost btn-sm" onclick="moveSec(' + i + ',-1)" ' + (i === 0 ? 'disabled' : '') + '>↑</button>' +
-                        '<button class="btn btn-ghost btn-sm" onclick="moveSec(' + i + ',1)" ' + (i === sections.length - 1 ? 'disabled' : '') + '>↓</button>' +
-                        '<button class="btn btn-secondary btn-sm" onclick="toggleSec(this)">Edit</button>' +
-                        '<button class="btn btn-danger btn-sm" onclick="removeSec(' + i + ')">Delete</button>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="section-body">' +
-                    '<label>Title</label>' +
-                    '<input type="text" placeholder="Section title" value="' + esc(sec.title) + '" onchange="updateSec(' + i + ',\'title\',this.value);this.closest(\'.section-item\').querySelector(\'.section-title-display\').textContent=this.value">' +
-                    '<label>Description</label>' +
-                    '<textarea rows="3" placeholder="Body text..." onchange="updateSec(' + i + ',\'desc\',this.value)">' + esc(sec.desc) + '</textarea>' +
-                    '<label>Highlighted Note (optional)</label>' +
-                    '<input type="text" placeholder="Shows as a highlighted info box" value="' + esc(sec.note) + '" onchange="updateSec(' + i + ',\'note\',this.value)">' +
-                    '<label style="margin-top:0.25rem;">Buttons</label>' +
-                    '<div class="buttons-list" id="btns-' + i + '">' + btnsHtml + '</div>' +
-                    '<button class="btn btn-ghost btn-sm" onclick="addBtn(' + i + ')">+ Add Button</button>' +
-                '</div>';
-
-            return div;
-        }
-
-        function esc(s) { return (s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
-
-        function toggleSec(btn) {
-            var body = btn.closest('.section-item').querySelector('.section-body');
-            var open = body.classList.toggle('open');
-            btn.textContent = open ? 'Done' : 'Edit';
-        }
-
-        function updateSec(i, key, val) { sections[i][key] = val; }
-
-        function moveSec(i, dir) {
-            var j = i + dir;
-            if (j < 0 || j >= sections.length) return;
-            var tmp = sections[i]; sections[i] = sections[j]; sections[j] = tmp;
-            renderSections(sections);
-        }
-
-        function removeSec(i) {
-            if (!confirm('Delete this section?')) return;
-            sections.splice(i, 1);
-            renderSections(sections);
-        }
-
-        function addSection() {
-            sections.push({ id: 'section-' + Date.now(), title: 'New Section', desc: '', note: '', buttons: [] });
-            renderSections(sections);
-            // Auto-open the new one
-            var items = document.querySelectorAll('.section-item');
-            var last = items[items.length - 1];
-            if (last) { last.querySelector('.section-body').classList.add('open'); last.querySelector('.btn-secondary').textContent = 'Done'; }
-        }
-
-        function addBtn(i) {
-            if (!sections[i].buttons) sections[i].buttons = [];
-            sections[i].buttons.push({ label: '', url: '', outline: false });
-            renderSections(sections);
-            // Re-open the section
-            var item = document.querySelector('.section-item[data-index="' + i + '"]');
-            if (item) { item.querySelector('.section-body').classList.add('open'); item.querySelector('.btn-secondary').textContent = 'Done'; }
-        }
-
-        function updateBtn(i, bi, key, val) { sections[i].buttons[bi][key] = val; }
-
-        function removeBtn(i, bi) {
-            sections[i].buttons.splice(bi, 1);
-            renderSections(sections);
-            // Re-open section
-            var item = document.querySelector('.section-item[data-index="' + i + '"]');
-            if (item) { item.querySelector('.section-body').classList.add('open'); item.querySelector('.btn-secondary').textContent = 'Done'; }
-        }
-
-        // ===== COLLECT FORM DATA =====
-        function collectData() {
-            return {
-                season: (siteData && siteData.season) || '2026',
-                announcement: {
-                    active: document.getElementById('ann-active').checked,
-                    emoji: document.getElementById('ann-emoji').value.trim(),
-                    text: document.getElementById('ann-text').value.trim()
-                },
-                links: {
-                    teamStore: document.getElementById('link-store').value.trim(),
-                    groupspotParents: document.getElementById('link-gs-parents').value.trim(),
-                    groupspotPlayers: document.getElementById('link-gs-players').value.trim(),
-                    signupSheet: document.getElementById('link-signups').value.trim(),
-                    liveStats: document.getElementById('link-livestats').value.trim()
-                },
-                scheduleLinks: {
-                    varsity: document.getElementById('link-varsity').value.trim(),
-                    jv: document.getElementById('link-jv').value.trim(),
-                    frosh: document.getElementById('link-frosh').value.trim()
-                },
-                offSeason: document.getElementById('off-season-active').checked,
-                offSeasonMessage: document.getElementById('off-season-msg').value.trim(),
-                analyticsScript: document.getElementById('analytics-script').value.trim(),
-                sections: sections
-            };
-        }
-
-        // ===== SAVE TO GITHUB =====
-        function saveAll() {
-            var token = getToken();
-            if (!token) {
-                showToast('Enter your GitHub token first.', true);
-                document.getElementById('token-card').style.display = 'block';
-                return;
-            }
-
-            var btn = document.getElementById('save-btn');
-            btn.disabled = true;
-            btn.textContent = 'Saving…';
-            setStatus('Publishing…');
-
-            var data = collectData();
-            var content = JSON.stringify(data, null, 2);
-
-            // Need current SHA — fetch first if we don't have it
-            var doSave = function(sha) {
-                var body = { message: 'Update site content via admin', content: btoa(unescape(encodeURIComponent(content))) };
-                if (sha) body.sha = sha;
-
-                fetch(GH_API, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': 'token ' + token,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify(body)
-                })
-                .then(function(r) { return r.json(); })
-                .then(function(res) {
-                    if (res.content) {
-                        currentSha = res.content.sha;
-                        siteData = data;
-                        showToast('✓ Published! Site updates in ~30 seconds.');
-                        setStatus('Saved ✓ — site rebuilding now.');
-                    } else {
-                        throw new Error(res.message || 'Unknown error');
-                    }
-                })
-                .catch(function(e) {
-                    showToast('Error: ' + e.message, true);
-                    setStatus('Save failed: ' + e.message);
-                })
-                .finally(function() {
-                    btn.disabled = false;
-                    btn.textContent = '💾 Save & Publish';
-                });
-            };
-
-            if (currentSha) {
-                doSave(currentSha);
-            } else {
-                fetch(GH_API, { headers: { 'Authorization': 'token ' + token } })
-                .then(function(r) { return r.json(); })
-                .then(function(d) { currentSha = d.sha; doSave(currentSha); })
-                .catch(function() { doSave(null); });
-            }
-        }
-
-        // ===== UTILITIES =====
-        function testLink(id) {
-            var url = document.getElementById(id).value;
-            if (url) window.open(url, '_blank');
-        }
-
-        function setStatus(msg) {
-            document.getElementById('save-status').textContent = msg;
-        }
-
-        function showToast(msg, error) {
-            var t = document.getElementById('toast');
-            t.textContent = msg;
-            t.className = 'toast' + (error ? ' error' : '') + ' show';
-            setTimeout(function() { t.className = 'toast' + (error ? ' error' : ''); }, 3000);
-        }
-
-        // ===== START =====
+        // Init
         checkAuth();
     </script>
+
 </body>
 </html>

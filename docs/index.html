@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Green Canyon Lacrosse | GC Lax</title>
+    <title>GC LAX | Green Canyon Lacrosse</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/gc-wolves-logo.png">
@@ -27,357 +27,390 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.svg">
-    <meta name="theme-color" content="#000000">
-
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1A5C35">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --gc-green: #1A5C35;
-            --gc-green-dark: #0F1F14;
-            --gc-green-mid: #162B1C;
-            --gc-green-card: #1C3322;
-            --gc-green-hover: #224028;
+            --gc-green-dark: #0F3D20;
+            --gc-green-light: #236B40;
             --gc-white: #FFFFFF;
-            --gc-text: #D4E8D4;
-            --gc-text-muted: #8BAE8B;
-            --gc-border: rgba(255,255,255,0.1);
-            --radius: 10px;
+            --gc-bg: #F8F9FA;
+            --gc-card: #FFFFFF;
+            --gc-text: #111827;
+            --gc-text-muted: #6B7280;
+            --gc-border: rgba(0,0,0,0.08);
+            --radius: 20px;
+            --radius-sm: 14px;
             --transition: all 0.2s ease;
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.12);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            background-color: var(--gc-green-dark);
+            background-color: var(--gc-bg);
             color: var(--gc-text);
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
             -webkit-font-smoothing: antialiased;
             -webkit-text-size-adjust: 100%;
         }
 
-        /* ===== ANNOUNCEMENT BANNER ===== */
-        .announcement-bar {
-            background: #000;
-            color: rgba(255,255,255,0.85);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-align: center;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .pulse-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #4ADE80;
-            border-radius: 50%;
-            flex-shrink: 0;
-            animation: pulse 1.8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.35; transform: scale(0.7); }
-        }
-
         /* ===== HERO ===== */
         .hero {
-            background: #000;
-            padding: 52px 24px 68px;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            opacity: 0.05;
+            pointer-events: none;
         }
 
         .hero-inner {
-            max-width: 860px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .hero-top {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 24px;
+            gap: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 52px 32px 72px;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-btns {
+        .hero-logo-col {
+            flex: 0 0 auto;
+        }
+
+        .hero-logo-col img {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
+        }
+
+        .hero-text-col {
+            flex: 1;
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 12px;
         }
 
-        .hero-logo {
-            width: 200px;
-            height: auto;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 28px rgba(255,255,255,0.10));
+        .season-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.9);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 999px;
+            backdrop-filter: blur(4px);
         }
 
-        .hero-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .hero-text h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2.6rem, 8vw, 4.5rem);
-            letter-spacing: 0.06em;
-            color: #fff;
+        .hero-text-col h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin: 0;
             line-height: 1;
         }
 
-        .hero-tagline {
-            color: rgba(255,255,255,0.50);
+        .hero-text-col .site-tagline {
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+            margin: 0;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
         }
 
         .hero-cta {
             display: inline-block;
-            background: var(--gc-green);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.85rem;
-            padding: 11px 20px;
-            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 12px 24px;
+            border-radius: 999px;
             text-decoration: none;
             transition: var(--transition);
-            align-self: flex-start;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-            margin-top: 4px;
         }
 
-        .hero-cta:hover {
-            background: #236B40;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+        .hero-cta--primary {
+            background: #FFFFFF;
+            color: var(--gc-green);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
+
+        .hero-cta--primary:hover {
+            background: #F0F0F0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-cta--secondary {
+            background: rgba(255,255,255,0.12);
+            color: #FFFFFF;
+            border: 1.5px solid rgba(255,255,255,0.35);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-cta--secondary:hover {
+            background: rgba(255,255,255,0.22);
+            transform: translateY(-2px);
+        }
+
 
         /* ===== MAIN CONTENT ===== */
         .container {
-            max-width: 860px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .section {
-            padding: 36px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+        /* ===== ACTION CARDS ===== */
+        .action-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 900px;
+            margin: -24px auto 0;
+            padding: 0 20px 40px;
+            position: relative;
+            z-index: 3;
         }
 
-        .section:last-child { border-bottom: none; }
+        .action-card,
+        .action-card.action-card--green,
+        .action-card.action-card--gold,
+        .action-card.action-card--outline {
+            background: var(--gc-card);
+            border: 1px solid var(--gc-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 22px 16px 18px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--gc-text);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 calc(33.333% - 8px);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .action-card:hover,
+        .action-card.action-card--green:hover,
+        .action-card.action-card--gold:hover,
+        .action-card.action-card--outline:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+            border-color: var(--gc-green);
+        }
+
+        .action-card .action-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gc-green);
+            line-height: 1;
+        }
+
+        .action-card .action-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--gc-text);
+            line-height: 1.2;
+        }
+
+        .action-card .action-sub {
+            font-size: 0.72rem;
+            color: var(--gc-text-muted);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 48px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
 
         .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            letter-spacing: 0.06em;
-            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--gc-text);
+            margin: 0 0 6px;
             padding-left: 16px;
-            border-left: 4px solid #fff;
-            line-height: 1.1;
-            margin-bottom: 10px;
+            border-left: 4px solid var(--gc-green);
+            line-height: 1.2;
         }
 
         .section-desc {
-            color: var(--gc-text);
+            color: var(--gc-text-muted);
+            font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
             line-height: 1.65;
-            margin-bottom: 20px;
+            margin-top: 8px;
+            margin-bottom: 1.25rem;
         }
 
         /* ===== INFO CARDS ===== */
         .info-card {
-            background: var(--gc-green-card);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-left: 4px solid rgba(255,255,255,0.30);
-            border-radius: var(--radius);
-            padding: 16px 20px;
-            margin-bottom: 10px;
+            background: var(--gc-card);
+            border: 1px solid var(--gc-border);
+            border-left: 4px solid var(--gc-green);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
         }
 
         .info-card h4 {
+            font-family: 'Inter', sans-serif;
             font-size: 0.68rem;
             font-weight: 700;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.50);
-            margin-bottom: 5px;
+            color: var(--gc-text-muted);
+            margin-bottom: 4px;
         }
 
         .info-card p {
             color: var(--gc-text);
-            font-size: 0.92rem;
-            line-height: 1.5;
+            font-size: 0.9rem;
             margin: 0;
+            line-height: 1.5;
         }
 
-        .highlight {
-            color: #fff;
+        .info-card .highlight {
+            color: var(--gc-green);
             font-weight: 700;
         }
 
-        /* ===== BUTTONS ===== */
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
+        /* ===== LINK BUTTONS ===== */
         .link-btn {
             display: inline-block;
-            background: var(--gc-green);
-            color: #fff;
-            font-weight: 700;
+            background: linear-gradient(135deg, #1A5C35, #236B40);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             font-size: 0.9rem;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 13px 28px;
+            border-radius: 999px;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
         }
 
         .link-btn:hover {
-            background: #236B40;
+            background: linear-gradient(135deg, #236B40, #2A7A4A);
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 18px rgba(26,92,53,0.35);
         }
 
         .link-btn--outline {
             background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.35);
+            color: var(--gc-green);
+            border: 2px solid var(--gc-green);
+            box-shadow: none;
         }
 
         .link-btn--outline:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: #fff;
+            background: rgba(26,92,53,0.07);
+            box-shadow: none;
             transform: translateY(-2px);
         }
 
-        /* ===== SCHEDULE TABLE ===== */
-        .schedule-wrapper {
-            background: var(--gc-green-card);
-            border-radius: 14px;
-            border: 1px solid var(--gc-border);
-            overflow: hidden;
-            margin-top: 4px;
+        .link-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
         }
 
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .schedule-table th {
-            text-align: left;
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gc-text-muted);
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--gc-border);
-        }
-
-        .schedule-table td {
-            padding: 12px 16px;
-            font-size: 0.93rem;
-            color: var(--gc-text);
-            border-bottom: 1px solid var(--gc-border);
-        }
-
-        .schedule-table tr:last-child td { border-bottom: none; }
-
-        .badge {
-            display: inline-block;
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-
-        .badge--home { background: var(--gc-green); color: #fff; }
-        .badge--away { background: rgba(255,255,255,0.10); color: var(--gc-text-muted); }
-
-        /* ===== PHOTO CARD ===== */
-        .photo-card {
-            background: var(--gc-green-card);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-left: 4px solid rgba(255,255,255,0.30);
-            border-radius: 14px;
-            padding: 20px 24px;
-        }
-
-        .photo-card h4 {
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: rgba(255,255,255,0.50);
-            margin-bottom: 6px;
-        }
-
-        .photo-card .photo-date {
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .photo-card .photo-note {
-            color: var(--gc-text-muted);
-            font-size: 0.88rem;
-        }
-
-        /* ===== MODAL ===== */
+        /* ===== MODAL (Schedule team picker) ===== */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.65);
+            background: rgba(0,0,0,0.5);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             padding: 1.5rem;
+            backdrop-filter: blur(4px);
         }
 
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active {
+            display: flex;
+        }
 
         .modal {
-            background: var(--gc-green-card);
+            background: var(--gc-card);
             border: 1px solid var(--gc-border);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 2rem 1.5rem;
             max-width: 340px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.55);
-            animation: modalSlideUp 0.22s ease-out;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: modalSlideUp 0.25s ease-out;
         }
 
         @keyframes modalSlideUp {
@@ -386,11 +419,12 @@
         }
 
         .modal-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
-            letter-spacing: 0.05em;
-            color: #fff;
-            margin-bottom: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--gc-text);
+            margin-bottom: 0.25rem;
         }
 
         .modal-subtitle {
@@ -399,31 +433,45 @@
             margin-bottom: 1.25rem;
         }
 
-        .modal-options { display: flex; flex-direction: column; gap: 10px; }
+        .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
         .modal-option {
             display: block;
-            padding: 14px 16px;
-            border-radius: var(--radius);
-            font-size: 0.92rem;
-            font-weight: 700;
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
             -webkit-tap-highlight-color: transparent;
         }
 
-        .modal-option--varsity { background: var(--gc-green); color: #fff; }
-        .modal-option--varsity:hover { background: #236B40; transform: scale(1.02); }
+        .modal-option--varsity {
+            background: linear-gradient(135deg, #1A5C35, #236B40);
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(26,92,53,0.25);
+        }
+        .modal-option--varsity:hover, .modal-option--varsity:active {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(26,92,53,0.35);
+        }
 
         .modal-option--jv {
-            background: var(--gc-green-hover);
-            color: #fff;
+            background: #F3F4F6;
+            color: var(--gc-text);
             border: 1px solid var(--gc-border);
         }
-        .modal-option--jv:hover { border-color: #fff; transform: scale(1.02); }
+        .modal-option--jv:hover, .modal-option--jv:active {
+            background: #E9EBEE;
+            transform: scale(1.02);
+        }
 
         .modal-option--frosh {
-            background: var(--gc-green-mid);
+            background: #F9FAFB;
             color: var(--gc-text-muted);
             border: 1px solid var(--gc-border);
             cursor: default;
@@ -432,35 +480,46 @@
 
         .modal-cancel {
             display: inline-block;
-            margin-top: 14px;
-            padding: 6px 12px;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
             font-size: 0.8rem;
             font-weight: 600;
             color: var(--gc-text-muted);
             background: none;
             border: none;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .modal-cancel:hover { color: #fff; }
+        .modal-cancel:hover {
+            color: var(--gc-text);
+        }
 
         /* ===== FOOTER ===== */
         .footer {
-            border-top: 1px solid rgba(255,255,255,0.10);
+            background: var(--gc-card);
+            border-top: 1px solid var(--gc-border);
             padding: 32px 20px;
             padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
             text-align: center;
             position: relative;
-            margin-top: 8px;
+            margin-top: 1rem;
         }
 
         .footer p {
             color: var(--gc-text-muted);
+            font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             margin: 4px 0;
         }
 
-        .footer strong { color: #fff; }
+        .footer strong {
+            color: var(--gc-text);
+        }
+
+        .footer a {
+            color: var(--gc-text-muted);
+        }
 
         .admin-gear {
             position: absolute;
@@ -468,7 +527,7 @@
             right: 1rem;
             background: none;
             border: none;
-            color: rgba(255,255,255,0.12);
+            color: rgba(0,0,0,0.15);
             font-size: 1.2rem;
             cursor: pointer;
             padding: 0.5rem;
@@ -476,54 +535,245 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .admin-gear:hover { color: rgba(255,255,255,0.45); }
+        .admin-gear:hover {
+            color: rgba(0,0,0,0.4);
+        }
+
+        /* ===== SCHEDULE TABLE ===== */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th {
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gc-text-muted);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--gc-border);
+        }
+
+        .schedule-table td {
+            padding: 0.85rem 1rem;
+            font-size: 0.95rem;
+            color: var(--gc-text);
+            border-bottom: 1px solid var(--gc-border);
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .schedule-table .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+        }
+
+        .badge--home {
+            background: rgba(26,92,53,0.12);
+            color: var(--gc-green);
+        }
+
+        .badge--away {
+            background: rgba(0,0,0,0.06);
+            color: var(--gc-text-muted);
+        }
+
+        .schedule-wrapper {
+            background: var(--gc-card);
+            border-radius: 16px;
+            border: 1px solid var(--gc-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        /* ===== PHOTO SECTION ===== */
+        .photo-card {
+            background: var(--gc-card);
+            border: 1px solid var(--gc-border);
+            border-left: 4px solid var(--gc-green);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .photo-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gc-text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-card p {
+            font-size: 1rem;
+            color: var(--gc-text);
+            line-height: 1.6;
+        }
+
+        .photo-card .photo-note {
+            font-size: 0.85rem;
+            color: var(--gc-text-muted);
+            margin-top: 0.5rem;
+        }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 560px) {
-            .hero { padding: 28px 20px 44px; }
-            .hero-logo { width: 90px; }
+        @media (max-width: 640px) {
+            .hero-inner {
+                gap: 20px;
+                padding: 32px 20px 52px;
+            }
+            .hero-logo-col img {
+                width: 110px;
+            }
+            .hero-text-col h1 {
+                font-size: 3rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .schedule-table th, .schedule-table td { padding: 10px 12px; font-size: 0.85rem; }
+            .action-card,
+            .action-card.action-card--green,
+            .action-card.action-card--gold,
+            .action-card.action-card--outline {
+                flex: 0 0 calc(50% - 6px);
+            }
+            .schedule-table th,
+            .schedule-table td {
+                padding: 0.65rem 0.6rem;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ANNOUNCEMENT BANNER -->
-    <div id="announcement-banner" class="announcement-bar">
-        <span class="pulse-dot"></span>
-        <span>📸 Team photos Mon, March 2nd @ 5 PM (after practice) &bull; Parent Night @ 6:30 PM</span>
-    </div>
 
     <!-- HERO -->
     <header class="hero">
         <div class="hero-inner">
-            <div class="hero-top">
-                <img src="assets/gc-wolves-logo.png" alt="GC Wolves" class="hero-logo">
-                <div class="hero-text">
-                    <h1>GC LAX</h1>
-                </div>
+            <div class="hero-logo-col">
+                <img src="assets/gc-wolves-logo.png" alt="GC Wolves Logo">
             </div>
-            <div class="hero-btns">
-                <a href="#" class="hero-cta" id="hero-schedule-btn" onclick="openScheduleModal(event)">Schedule</a>
-                <a href="https://www.stattyapp.com/public" class="hero-cta" target="_blank" rel="noopener">Live Stats</a>
-                <a href="#rules" class="hero-cta" onclick="scrollToRules(event)">Rules</a>
+            <div class="hero-text-col">
+                <h1>GC LAX</h1>
+                <div class="hero-cta-row">
+                    <a href="https://www.stattyapp.com/public" class="hero-cta hero-cta--secondary" target="_blank" rel="noopener">Live Stats</a>
+                    <a href="#rules" class="hero-cta hero-cta--secondary" onclick="scrollToRules(event)">Rules</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="container" id="main-sections">
-        <!-- Sections are rendered here by JS from site-data.json -->
+    <main class="container">
+
+        <!-- QUICK ACTION BUTTONS — JS will replace these with dynamic versions -->
+        <section id="quick-links">
+            <div class="action-grid" id="action-grid">
+                <a class="action-card" href="#" onclick="openScheduleModal(event)">
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                    <span class="action-label">Schedule</span>
+                    <span class="action-sub">Games &amp; Events</span>
+                </a>
+<a class="action-card" href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" target="_blank" rel="noopener">
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
+                    <span class="action-label">Sign-Ups</span>
+                    <span class="action-sub">Concessions &amp; Snacks</span>
+                </a>
+                <a class="action-card" href="https://get.groupspot.app/QZLhY" target="_blank" rel="noopener">
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                    <span class="action-label">Join GroupSpot</span>
+                    <span class="action-sub">Parents</span>
+                </a>
+                <a class="action-card" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
+                    <span class="action-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+                    <span class="action-label">Team Store</span>
+                    <span class="action-sub">Jerseys &amp; Gear</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- GROUPSPOT / COMMUNICATION -->
+        <section id="communication" class="section">
+            <h2 class="section-title">GroupSpot Communication</h2>
+            <p class="section-desc">
+                All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP — you won't want to miss important updates about games, practices, and events.
+            </p>
+            <div class="info-card">
+                <h4>Parents</h4>
+                <p>Join using invite code: <span class="highlight">QZLhY</span></p>
+            </div>
+            <div class="info-card">
+                <h4>Players</h4>
+                <p>Players should join through their own link below.</p>
+            </div>
+            <div class="link-btn-group">
+                <a href="https://get.groupspot.app/QZLhY" class="link-btn" target="_blank" rel="noopener">
+                    Parents — Join GroupSpot →
+                </a>
+                <a href="https://get.groupspot.app/RAaUG" class="link-btn link-btn--outline" target="_blank" rel="noopener">
+                    Players — Join GroupSpot
+                </a>
+            </div>
+        </section>
+
+        <!-- SIGN-UPS -->
+        <section id="signups" class="section">
+            <h2 class="section-title">Concessions, Lunch &amp; Snack Sign-Ups</h2>
+            <p class="section-desc">
+                Each family is asked to sign up for volunteer spots to help keep the season running. Signing up early helps the board so we don't have to track anyone down!
+            </p>
+            <div class="info-card">
+                <h4>Each family, please sign up for:</h4>
+                <p>
+                    <span class="highlight" id="signup-concessions">1 Concessions spot</span> +
+                    <span class="highlight" id="signup-food">1 Lunch for an away game OR 2 Snacks for home games</span>
+                </p>
+            </div>
+            <div class="link-btn-group">
+                <a href="https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing" class="link-btn" target="_blank" rel="noopener">
+                    Open Sign-Up Sheet →
+                </a>
+            </div>
+        </section>
+
+        <!-- TEAM STORE -->
+        <section id="team-store" class="section">
+            <h2 class="section-title">Team Store</h2>
+            <p class="section-desc">
+                Order official GC Lacrosse jerseys, shorts, hoodies, and fan gear through our Team Up Athletics store. Orders ship directly to you.
+            </p>
+            <div class="link-btn-group">
+                <a href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" class="link-btn" target="_blank" rel="noopener">
+                    Open Team Store →
+                </a>
+            </div>
+        </section>
+
+
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
         <p><strong>Green Canyon Lacrosse</strong></p>
         <p>North Logan, Utah</p>
-        <p style="margin-top: 10px; font-size: 0.72rem; opacity: 0.55;">&copy; 2026 Green Canyon Lacrosse Booster Club</p>
-        <button class="admin-gear" onclick="adminLogin()" title="Admin" aria-label="Admin Settings">&#9881;</button>
+        <p style="margin-top: 0.75rem; font-size: 0.7rem; opacity: 0.6;">
+            &copy; 2026 Green Canyon Lacrosse Booster Club
+        </p>
+        <button class="admin-gear" onclick="adminLogin()" title="Admin Settings" aria-label="Admin Settings">&#9881;</button>
     </footer>
 
     <!-- SCHEDULE TEAM PICKER MODAL -->
@@ -532,9 +782,15 @@
             <div class="modal-title">Choose a Team</div>
             <div class="modal-subtitle">View schedule on MaxPreps</div>
             <div class="modal-options">
-                <a href="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/" class="modal-option modal-option--varsity" target="_blank" rel="noopener">Varsity</a>
-                <a href="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/" class="modal-option modal-option--jv" target="_blank" rel="noopener">JV</a>
-                <div class="modal-option modal-option--frosh">Frosh — Coming Soon</div>
+                <a href="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/" class="modal-option modal-option--varsity" target="_blank" rel="noopener">
+                    🥇 Varsity
+                </a>
+                <a href="https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/" class="modal-option modal-option--jv" target="_blank" rel="noopener">
+                    🥈 JV
+                </a>
+                <div class="modal-option modal-option--frosh">
+                    🏃 Frosh — Coming Soon
+                </div>
             </div>
             <button class="modal-cancel" onclick="closeScheduleModal()">Cancel</button>
         </div>
@@ -563,51 +819,92 @@
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // ===== ADMIN LOGIN =====
-        var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c';
+        // ===== ADMIN LOGIN (hashed password) =====
+        // Password is verified via SHA-256 hash instead of plaintext.
+        // To change the password, update the hash below. Generate a new one at:
+        // https://emn178.github.io/online-tools/sha256.html
+        var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c'; // hash of 'gclax'
 
         async function hashPassword(pw) {
             var encoded = new TextEncoder().encode(pw);
             var buffer = await crypto.subtle.digest('SHA-256', encoded);
-            return Array.from(new Uint8Array(buffer)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+            var hashArray = Array.from(new Uint8Array(buffer));
+            return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
         }
 
-        var adminLoginInProgress = false;
         async function adminLogin() {
-            if (adminLoginInProgress) return;
-            adminLoginInProgress = true;
             var pw = prompt('Enter admin password:');
-            if (pw === null) { adminLoginInProgress = false; return; }
+            if (pw === null) return;
             var hash = await hashPassword(pw);
             if (hash === ADMIN_HASH) {
-                sessionStorage.setItem('gclax-authed', 'true');
                 window.location.href = 'admin.html';
             } else {
-                adminLoginInProgress = false;
                 alert('Incorrect password.');
             }
         }
 
+        // ===== SVG ICON MAP =====
+        var iconSvgs = {
+            'schedule': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+            'liveStats': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+            'signups': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>',
+            'groupspot': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+            'teamStore': '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>'
+        };
+
         // ===== JSON DATA LAYER =====
+        // Loads site-data.json and populates the page. All config lives in site-data.json.
         (function() {
+            // Helper to set href on elements by selector
             function setLink(selector, url) {
                 if (!url) return;
-                document.querySelectorAll(selector).forEach(function(el) { el.href = url; });
+                var els = document.querySelectorAll(selector);
+                els.forEach(function(el) { el.href = url; });
             }
 
-            function applyJsonData(data) {
-                // Announcement
-                var banner = document.getElementById('announcement-banner');
-                if (banner && data.announcement) {
-                    if (!data.announcement.active) {
-                        banner.style.display = 'none';
-                    } else {
-                        var emoji = data.announcement.emoji ? data.announcement.emoji + ' ' : '';
-                        banner.innerHTML = '<span class="pulse-dot"></span><span>' + emoji + data.announcement.text + '</span>';
+            // Render quick action buttons from JSON data
+            function renderActionButtons(data) {
+                var grid = document.getElementById('action-grid');
+                if (!grid) return;
+                if (!data || !data.quickActions || !data.quickActions.length) return;
+
+                var buttons = data.quickActions;
+                var links = data.links || {};
+
+                grid.innerHTML = '';
+
+                buttons.forEach(function(btn) {
+                    var el = document.createElement('a');
+                    el.className = 'action-card action-card--' + btn.style;
+
+                    if (btn.action) {
+                        el.href = '#';
+                        el.setAttribute('onclick', btn.action + '(event)');
+                    } else if (btn.linkKey) {
+                        el.href = links[btn.linkKey] || '#';
+                        el.target = '_blank';
+                        el.rel = 'noopener';
                     }
+
+                    var iconHtml = iconSvgs[btn.id] || btn.icon;
+                    el.innerHTML =
+                        '<span class="action-icon">' + iconHtml + '</span>' +
+                        '<span class="action-label">' + btn.label + '</span>' +
+                        '<span class="action-sub">' + btn.sub + '</span>';
+
+                    grid.appendChild(el);
+                });
+            }
+
+            // Apply all data from site-data.json to the page
+            function applyJsonData(data) {
+
+                if (data.links) {
+                    if (data.links.groupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', data.links.groupspotParents);
+                    if (data.links.groupspotPlayers) setLink('a[href*="groupspot.app/RAaUG"]', data.links.groupspotPlayers);
+                    if (data.links.signupSheet) setLink('a[href*="docs.google.com/spreadsheets"]', data.links.signupSheet);
                 }
 
-                // Schedule modal links
                 if (data.scheduleLinks) {
                     if (data.scheduleLinks.varsity) setLink('a[href*="maxpreps"][href*="lacrosse/schedule"]', data.scheduleLinks.varsity);
                     if (data.scheduleLinks.jv) setLink('a[href*="maxpreps"][href*="/jv/"]', data.scheduleLinks.jv);
@@ -619,63 +916,112 @@
                             link.className = 'modal-option modal-option--jv';
                             link.target = '_blank';
                             link.rel = 'noopener';
-                            link.textContent = 'Frosh';
+                            link.textContent = '🏃 Frosh';
                             froshEl.parentNode.replaceChild(link, froshEl);
                         }
                     }
                 }
 
-                // Off-season mode
-                if (data.offSeason) {
-                    var main = document.getElementById('main-sections');
-                    if (main) {
-                        var msg = data.offSeasonMessage || 'The season has ended. See you next year!';
-                        main.innerHTML = '<section class="section"><p class="section-desc" style="text-align:center;padding:2rem 0;">' + msg + '</p></section>';
-                    }
-                    return; // skip rendering sections
+                if (data.groupspot && data.groupspot.parentCode) {
+                    var codeEls = document.querySelectorAll('.highlight');
+                    codeEls.forEach(function(el) {
+                        if (el.textContent.trim() === 'QZLhY') {
+                            el.textContent = data.groupspot.parentCode;
+                        }
+                    });
                 }
 
-                // Analytics
-                if (data.analyticsScript) {
-                    var div = document.createElement('div');
-                    div.innerHTML = data.analyticsScript;
-                    var scripts = div.querySelectorAll('script');
-                    scripts.forEach(function(s) {
-                        var script = document.createElement('script');
-                        Array.from(s.attributes).forEach(function(a) { script.setAttribute(a.name, a.value); });
-                        if (s.textContent) script.textContent = s.textContent;
-                        document.head.appendChild(script);
-                    });
+                if (data.signups) {
+                    if (data.signups.concessions) {
+                        var concEl = document.getElementById('signup-concessions');
+                        if (concEl) concEl.textContent = data.signups.concessions;
+                    }
+                    if (data.signups.food) {
+                        var foodEl = document.getElementById('signup-food');
+                        if (foodEl) foodEl.textContent = data.signups.food;
+                    }
+                }
+
+                // Schedule table
+                if (data.schedule && data.schedule.length) {
+                    var tbody = document.getElementById('schedule-body');
+                    if (tbody) {
+                        tbody.innerHTML = '';
+                        data.schedule.forEach(function(game) {
+                            var isHome = game.location === 'home';
+                            var badgeClass = isHome ? 'badge--home' : 'badge--away';
+                            var badgeText = isHome ? 'Home' : 'Away';
+                            var tr = document.createElement('tr');
+                            tr.innerHTML =
+                                '<td>' + game.date + '</td>' +
+                                '<td>' + game.opponent + '</td>' +
+                                '<td>' + game.time + '</td>' +
+                                '<td><span class="badge ' + badgeClass + '">' + badgeText + '</span></td>';
+                            tbody.appendChild(tr);
+                        });
+                    }
+                }
+
+                // Photo day
+                if (data.photoDay) {
+                    var photoDate = document.getElementById('photo-date');
+                    if (photoDate) {
+                        photoDate.textContent = data.photoDay.date + ' at ' + data.photoDay.time;
+                    }
+                    var photoNote = document.getElementById('photo-note');
+                    if (photoNote && data.photoDay.note) {
+                        photoNote.textContent = data.photoDay.note;
+                    }
+                }
+
+                // Team store link
+                if (data.links && data.links.teamStore) {
+                    setLink('#team-store .link-btn', data.links.teamStore);
+                }
+
+                // Hero CTA link
+                var heroBtn = document.getElementById('hero-schedule-btn');
+                if (heroBtn) {
+                    var scheduleCard = document.querySelector('.action-card');
+                    if (scheduleCard) {
+                        heroBtn.href = scheduleCard.href || scheduleCard.dataset.url || '#';
+                    }
                 }
             }
 
-            function renderSections(data) {
-                if (!data.sections || !data.sections.length) return;
-                var main = document.getElementById('main-sections');
-                if (!main) return;
-                main.innerHTML = '';
-                data.sections.forEach(function(sec) {
-                    var html = '<section class="section"' + (sec.id ? ' id="' + sec.id + '"' : '') + '>';
-                    html += '<h2 class="section-title">' + sec.title + '</h2>';
-                    if (sec.desc) html += '<p class="section-desc">' + sec.desc + '</p>';
-                    if (sec.note) html += '<div class="info-card"><p>' + sec.note + '</p></div>';
-                    if (sec.buttons && sec.buttons.length) {
-                        html += '<div class="btn-group">';
-                        sec.buttons.forEach(function(btn) {
-                            var cls = 'link-btn' + (btn.outline ? ' link-btn--outline' : '');
-                            html += '<a href="' + btn.url + '" class="' + cls + '" target="_blank" rel="noopener">' + btn.label + '</a>';
-                        });
-                        html += '</div>';
-                    }
-                    html += '</section>';
-                    main.innerHTML += html;
+            // Render resources (PDF cards) from data.resources
+            function renderResources(data) {
+                var container = document.getElementById('resources-list');
+                if (!container || !data.resources || !data.resources.length) return;
+                container.innerHTML = '';
+                data.resources.forEach(function(res) {
+                    var card = document.createElement('div');
+                    card.className = 'photo-card';
+                    card.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:0.75rem;';
+                    card.innerHTML =
+                        '<div>' +
+                            '<h4 style="margin-bottom:0.25rem;">' + res.title + '</h4>' +
+                            '<p style="font-size:0.85rem;opacity:0.75;">' + res.description + '</p>' +
+                        '</div>' +
+                        '<a href="' + res.file + '" class="link-btn" target="_blank" rel="noopener" style="white-space:nowrap;flex-shrink:0;">View PDF →</a>';
+                    container.appendChild(card);
                 });
             }
 
+            // Fetch JSON and upgrade the page (hardcoded HTML buttons show as fallback)
             fetch('site-data.json')
-                .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
-                .then(function(data) { applyJsonData(data); renderSections(data); })
-                .catch(function() { /* hardcoded HTML is the fallback */ });
+                .then(function(res) {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.json();
+                })
+                .then(function(data) {
+                    renderActionButtons(data);
+                    applyJsonData(data);
+                    renderResources(data);
+                })
+                .catch(function() {
+                    // Hardcoded HTML buttons are already visible as fallback
+                });
         })();
     </script>
 

@@ -2,91 +2,64 @@
   "season": "2026",
   "announcement": {
     "active": true,
-    "emoji": "",
-    "text": ""
+    "emoji": "📸",
+    "text": "Team photos — Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
   },
   "links": {
     "teamStore": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
     "groupspotParents": "https://get.groupspot.app/QZLhY",
     "groupspotPlayers": "https://get.groupspot.app/RAaUG",
     "signupSheet": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
-    "liveStats": "https://www.stattyapp.com/public"
+    "liveStats": "https://www.stattyapp.com/public",
+    "teamApp": ""
   },
   "scheduleLinks": {
     "varsity": "https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/schedule/",
     "jv": "https://www.maxpreps.com/ut/north-logan/green-canyon-wolves/lacrosse/jv/schedule/",
     "frosh": ""
   },
-  "offSeason": false,
-  "offSeasonMessage": "The 2026 season has ended. See you next year ÃÂ¢ÃÂÃÂ Go Wolves!",
-  "analyticsScript": "",
-  "sections": [
+  "groupspot": {
+    "parentCode": "QZLhY"
+  },
+  "schedule": [
+    { "date": "Mar 7", "opponent": "Mountain Crest", "time": "4:00 PM", "location": "home" },
+    { "date": "Mar 14", "opponent": "Sky View", "time": "4:00 PM", "location": "away" },
+    { "date": "Mar 21", "opponent": "Logan", "time": "4:00 PM", "location": "home" },
+    { "date": "Mar 28", "opponent": "Ridgeline", "time": "4:00 PM", "location": "away" },
+    { "date": "Apr 4", "opponent": "Bear River", "time": "4:00 PM", "location": "home" }
+  ],
+  "photoDay": {
+    "date": "Monday, March 2nd",
+    "time": "5:00 PM",
+    "note": "After practice. Parent Night follows at 6:30 PM."
+  },
+  "signups": {
+    "concessions": "1 Concessions spot",
+    "food": "1 Lunch for an away game OR 2 Snacks for home games"
+  },
+  "quickActions": [
+    { "id": "schedule", "icon": "📅", "label": "Schedule", "sub": "Games & Events", "style": "green", "action": "openScheduleModal" },
+    { "id": "liveStats", "icon": "📊", "label": "Live Stats", "sub": "Game Cast on Statty", "style": "gold", "linkKey": "liveStats" },
+    { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "linkKey": "signupSheet" },
+    { "id": "groupspot", "icon": "📲", "label": "Join GroupSpot", "sub": "Parents", "style": "outline", "linkKey": "groupspotParents" },
+    { "id": "teamStore", "icon": "🛒", "label": "Team Store", "sub": "Jerseys & Gear", "style": "outline", "linkKey": "teamStore" },
+    { "id": "rules", "icon": "📖", "label": "Rules", "sub": "Game Rules & Cheat Sheet", "style": "outline", "action": "scrollToRules" }
+  ],
+  "resources": [
     {
-      "id": "groupspot",
-      "title": "GroupSpot Communication",
-      "desc": "All team communication goes through GroupSpot. If you haven't joined yet, please do so ASAP you won't want to miss important updates about games, practices, and events.",
-      "note": "Parent invite code: QZLhY",
-      "buttons": [
-        {
-          "label": "Parents Join GroupSpot",
-          "url": "https://get.groupspot.app/QZLhY",
-          "outline": false
-        },
-        {
-          "label": "Players Join GroupSpot",
-          "url": "https://get.groupspot.app/RAaUG",
-          "outline": true
-        }
-      ]
+      "title": "Common Rules of Lacrosse",
+      "description": "Official game rules, pages 1–half",
+      "file": "assets/lacrosse-rules-2026-p1.pdf"
     },
     {
-      "id": "signups",
-      "title": "Concessions, Lunch & Snack Sign-Ups",
-      "desc": "Each family is asked to sign up for volunteer spots to help keep the season running. Signing up early helps the board so we don't have to track anyone down!",
-      "note": "Each family: 1 Concessions spot + 1 Lunch for an away game OR 2 Snacks for home games",
-      "buttons": [
-        {
-          "label": "Open Sign-Up Sheet",
-          "url": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
-          "outline": false
-        }
-      ]
+      "title": "Legal vs Illegal Body Checks",
+      "description": "Official game rules, continued",
+      "file": "assets/lacrosse-rules-2026-p2.pdf"
     },
     {
-      "id": "store",
-      "title": "Team Store",
-      "desc": "Order official GC Lacrosse jerseys, shorts, hoodies, and fan gear through Team Up Athletics. Orders ship directly to you.",
-      "note": "",
-      "buttons": [
-        {
-          "label": "Open Team Store",
-          "url": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
-          "outline": false
-        }
-      ]
-    },
-    {
-      "id": "rules",
-      "title": "Rules & Resources",
-      "desc": "Official game rules and quick-reference materials for the 2026 season.",
-      "note": "",
-      "buttons": [
-        {
-          "label": "Common Rules of Lacrosse",
-          "url": "assets/lacrosse-rules-2026-p1.pdf",
-          "outline": false
-        },
-        {
-          "label": "Legal vs Illegal Body Checks",
-          "url": "assets/lacrosse-rules-2026-p2.pdf",
-          "outline": true
-        },
-        {
-          "label": "Penalty Cheat Sheet",
-          "url": "assets/lacrosse-cheatsheet-2026.pdf",
-          "outline": true
-        }
-      ]
+      "title": "Penalty Cheat Sheet",
+      "description": "Quick reference guide to penalties and violations",
+      "file": "assets/lacrosse-cheatsheet-2026.pdf"
     }
   ]
 }
