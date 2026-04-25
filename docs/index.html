@@ -876,28 +876,8 @@
             document.getElementById('rules-modal').classList.remove('active');
         }
 
-        // ===== ADMIN LOGIN (hashed password) =====
-        // Password is verified via SHA-256 hash instead of plaintext.
-        // To change the password, update the hash below. Generate a new one at:
-        // https://emn178.github.io/online-tools/sha256.html
-        var ADMIN_HASH = 'a8e9230c76af385a9a20a6c715267d63e2c0d4d0a97c8856740f26fe5bc3050c'; // hash of 'gclax'
-
-        async function hashPassword(pw) {
-            var encoded = new TextEncoder().encode(pw);
-            var buffer = await crypto.subtle.digest('SHA-256', encoded);
-            var hashArray = Array.from(new Uint8Array(buffer));
-            return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-        }
-
-        async function adminLogin() {
-            var pw = prompt('Enter admin password:');
-            if (pw === null) return;
-            var hash = await hashPassword(pw);
-            if (hash === ADMIN_HASH) {
-                window.location.href = 'admin.html';
-            } else {
-                alert('Incorrect password.');
-            }
+        function adminLogin() {
+            window.location.href = 'admin.html';
         }
 
         // ===== SVG ICON MAP =====
