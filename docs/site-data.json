@@ -2,7 +2,7 @@
   "season": "2026",
   "announcement": {
     "active": false,
-    "emoji": "ð¸",
+    "emoji": "Ã°ÂÂÂ¸",
     "text": ""
   },
   "links": {
@@ -10,7 +10,7 @@
     "groupspotParents": "https://get.groupspot.app/QZLhY",
     "groupspotPlayers": "https://get.groupspot.app/RAaUG",
     "signupSheet": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
-    "liveStats": "https://www.app.stattyapp.com/public",
+    "liveStats": "https://app.stattyapp.com",
     "teamApp": ""
   },
   "scheduleLinks": {
@@ -65,7 +65,7 @@
   "quickActions": [
     {
       "id": "schedule",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "label": "Schedule",
       "sub": "Games & Events",
       "style": "green",
@@ -73,7 +73,7 @@
     },
     {
       "id": "liveStats",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "label": "Live Stats",
       "sub": "Game Cast on Statty",
       "style": "gold",
@@ -81,7 +81,7 @@
     },
     {
       "id": "rules",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "label": "Rules",
       "sub": "Game Rules & Cheat Sheet",
       "style": "outline",
@@ -89,7 +89,7 @@
     },
     {
       "id": "groupspot",
-      "icon": "ð²",
+      "icon": "Ã°ÂÂÂ²",
       "label": "Join GroupSpot",
       "sub": "Parents",
       "style": "outline",
@@ -97,7 +97,7 @@
     },
     {
       "id": "teamStore",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "label": "Team Store",
       "sub": "Jerseys & Gear",
       "style": "outline",
@@ -105,7 +105,7 @@
     },
     {
       "id": "signups",
-      "icon": "ð",
+      "icon": "Ã°ÂÂÂ",
       "label": "Sign-Ups",
       "sub": "Concessions & Snacks",
       "style": "outline",
@@ -115,7 +115,7 @@
   "resources": [
     {
       "title": "Common Rules of Lacrosse",
-      "description": "Official game rules, pages 1âhalf",
+      "description": "Official game rules, pages 1Ã¢ÂÂhalf",
       "file": "assets/lacrosse-rules-2026-p1.pdf"
     },
     {
