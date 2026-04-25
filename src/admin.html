@@ -463,11 +463,16 @@
 
         var siteData = {};
 
-        // Load site-data.json and populate the form
+        // Load site-data.json directly from GitHub API (bypasses CDN cache)
         function loadFromJson() {
-            fetch('site-data.json')
+            var token = sessionStorage.getItem('gclax-admin-pw');
+            var apiUrl = 'https://api.github.com/repos/brliechty-cloud/GCLAX/contents/docs/site-data.json';
+            fetch(apiUrl, {
+                headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }
+            })
                 .then(function(res) { return res.json(); })
-                .then(function(data) {
+                .then(function(fileData) {
+                    var data = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
                     siteData = data;
 
                     // Links
