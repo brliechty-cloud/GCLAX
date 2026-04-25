@@ -582,7 +582,15 @@
                     showToast('✓ Saved! Site will update in ~30 seconds.');
                 } else {
                     var err = await putRes.json();
-                    showToast('Error: ' + (err.message || 'Save failed'));
+                    if (putRes.status === 401 || putRes.status === 403) {
+                        sessionStorage.removeItem('gclax-admin-pw');
+                        alert('Token is invalid or expired. Please re-enter it.');
+                        document.getElementById('admin-body').style.display = 'none';
+                        document.getElementById('login-overlay').classList.remove('hidden');
+                        document.getElementById('token-input').value = '';
+                    } else {
+                        showToast('Error: ' + (err.message || 'Save failed'));
+                    }
                 }
             } catch (e) {
                 showToast('Failed: ' + (e.message || 'Could not reach GitHub'));
