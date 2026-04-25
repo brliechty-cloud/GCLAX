@@ -2,7 +2,7 @@
   "season": "2026",
   "announcement": {
     "active": false,
-    "emoji": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ¸",
+    "emoji": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¸",
     "text": ""
   },
   "links": {
@@ -65,7 +65,7 @@
   "quickActions": [
     {
       "id": "schedule",
-      "icon": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+      "icon": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
       "label": "Schedule",
       "sub": "Games & Events",
       "style": "green",
@@ -73,7 +73,7 @@
     },
     {
       "id": "liveStats",
-      "icon": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+      "icon": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
       "label": "Live Stats",
       "sub": "Game Cast on Statty",
       "style": "gold",
@@ -81,7 +81,7 @@
     },
     {
       "id": "rules",
-      "icon": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+      "icon": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
       "label": "Rules",
       "sub": "Game Rules & Cheat Sheet",
       "style": "outline",
@@ -89,7 +89,7 @@
     },
     {
       "id": "groupspot",
-      "icon": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ²",
+      "icon": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ²",
       "label": "Join GroupSpot",
       "sub": "Parents",
       "style": "outline",
@@ -97,7 +97,7 @@
     },
     {
       "id": "teamStore",
-      "icon": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+      "icon": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
       "label": "Team Store",
       "sub": "Jerseys & Gear",
       "style": "outline",
@@ -105,7 +105,7 @@
     },
     {
       "id": "signups",
-      "icon": "ÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂ",
+      "icon": "ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ",
       "label": "Sign-Ups",
       "sub": "Concessions & Snacks",
       "style": "outline",
@@ -115,7 +115,7 @@
   "resources": [
     {
       "title": "Common Rules of Lacrosse",
-      "description": "Official game rules, pages 1ÃÂÃÂ¢ÃÂÃÂÃÂÃÂhalf",
+      "description": "Official game rules, pages 1ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂhalf",
       "file": "assets/lacrosse-rules-2026-p1.pdf"
     },
     {
