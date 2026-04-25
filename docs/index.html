@@ -877,7 +877,12 @@
         }
 
         function adminLogin() {
-            window.location.href = 'admin.html';
+            var pw = prompt('Enter admin password:');
+            if (pw === 'gclax') {
+                window.location.href = 'admin.html';
+            } else if (pw !== null) {
+                alert('Incorrect password.');
+            }
         }
 
         // ===== SVG ICON MAP =====
