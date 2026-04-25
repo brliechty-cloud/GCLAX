@@ -281,6 +281,22 @@
 
     <div class="admin-container">
 
+        <!-- ANNOUNCEMENT BANNER -->
+        <div class="card">
+            <div class="card-title">📢 Announcement Banner</div>
+            <div class="toggle-row">
+                <label for="admin-announce-active">Show announcement at top of page</label>
+                <label class="toggle">
+                    <input type="checkbox" id="admin-announce-active">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <label for="admin-announce-emoji">Emoji (optional)</label>
+            <input type="text" id="admin-announce-emoji" placeholder="📸" style="max-width: 90px;">
+            <label for="admin-announce-text">Announcement text</label>
+            <textarea id="admin-announce-text" rows="2" placeholder="Team photos — Monday, March 2nd at 5:00 PM after practice!"></textarea>
+        </div>
+
         <!-- LINKS -->
         <div class="card">
             <div class="card-title">🔗 Links</div>
@@ -355,6 +371,18 @@
             <input type="text" id="admin-signup-food">
         </div>
 
+        <!-- PHOTO DAY -->
+        <div class="card">
+            <div class="card-title">📸 Photo Day</div>
+            <p class="help-text" style="margin-top: -0.5rem; margin-bottom: 1rem;">Leave Date blank to hide this section from the site.</p>
+            <label for="admin-photo-date">Date</label>
+            <input type="text" id="admin-photo-date" placeholder="Monday, March 2nd">
+            <label for="admin-photo-time">Time</label>
+            <input type="text" id="admin-photo-time" placeholder="5:00 PM">
+            <label for="admin-photo-note">Note</label>
+            <textarea id="admin-photo-note" placeholder="After practice. Parent Night follows at 6:30 PM."></textarea>
+        </div>
+
         <div style="margin-top: 1.5rem; padding-bottom: 2rem;">
             <button class="btn btn-primary" id="save-btn" onclick="saveToGitHub()" style="width:100%; justify-content:center; font-size:1rem; padding: 1rem;">
                 Save Changes
@@ -408,6 +436,18 @@
                     var signups = data.signups || {};
                     document.getElementById('admin-signup-concessions').value = signups.concessions || '';
                     document.getElementById('admin-signup-food').value = signups.food || '';
+
+                    // Announcement
+                    var announce = data.announcement || {};
+                    document.getElementById('admin-announce-active').checked = !!announce.active;
+                    document.getElementById('admin-announce-emoji').value = announce.emoji || '';
+                    document.getElementById('admin-announce-text').value = announce.text || '';
+
+                    // Photo day
+                    var photo = data.photoDay || {};
+                    document.getElementById('admin-photo-date').value = photo.date || '';
+                    document.getElementById('admin-photo-time').value = photo.time || '';
+                    document.getElementById('admin-photo-note').value = photo.note || '';
                 })
                 .catch(function() {
                     showToast('Error loading site-data.json');
@@ -432,6 +472,19 @@
             data.signups = data.signups || {};
             data.signups.concessions = document.getElementById('admin-signup-concessions').value;
             data.signups.food = document.getElementById('admin-signup-food').value;
+
+            data.announcement = {
+                active: document.getElementById('admin-announce-active').checked,
+                emoji: document.getElementById('admin-announce-emoji').value,
+                text: document.getElementById('admin-announce-text').value
+            };
+
+            data.photoDay = {
+                date: document.getElementById('admin-photo-date').value,
+                time: document.getElementById('admin-photo-time').value,
+                note: document.getElementById('admin-photo-note').value
+            };
+
             return data;
         }
 
@@ -459,10 +512,11 @@
                 if (res.ok && result.success) {
                     showToast('✓ Saved! Site will update in ~30 seconds.');
                 } else {
-                    showToast('Error: ' + (result.error || 'Unknown error'));
+                    showToast('Error ' + res.status + ': ' + (result.error || 'Unknown error'));
                 }
             } catch (e) {
-                showToast('Network error — check your connection.');
+                showToast('Failed: ' + (e.message || 'function unreachable'));
+                console.error('Save error:', e);
             }
 
             btn.textContent = 'Save Changes';
