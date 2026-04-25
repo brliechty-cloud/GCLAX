@@ -2,7 +2,7 @@
   "season": "2026",
   "announcement": {
     "active": false,
-    "emoji": "📸",
+    "emoji": "ð¸",
     "text": ""
   },
   "links": {
@@ -65,7 +65,7 @@
   "quickActions": [
     {
       "id": "schedule",
-      "icon": "📅",
+      "icon": "ð",
       "label": "Schedule",
       "sub": "Games & Events",
       "style": "green",
@@ -73,7 +73,7 @@
     },
     {
       "id": "liveStats",
-      "icon": "📊",
+      "icon": "ð",
       "label": "Live Stats",
       "sub": "Game Cast on Statty",
       "style": "gold",
@@ -81,7 +81,7 @@
     },
     {
       "id": "rules",
-      "icon": "📖",
+      "icon": "ð",
       "label": "Rules",
       "sub": "Game Rules & Cheat Sheet",
       "style": "outline",
@@ -89,7 +89,7 @@
     },
     {
       "id": "groupspot",
-      "icon": "📲",
+      "icon": "ð²",
       "label": "Join GroupSpot",
       "sub": "Parents",
       "style": "outline",
@@ -97,7 +97,7 @@
     },
     {
       "id": "teamStore",
-      "icon": "🛒",
+      "icon": "ð",
       "label": "Team Store",
       "sub": "Jerseys & Gear",
       "style": "outline",
@@ -105,7 +105,7 @@
     },
     {
       "id": "signups",
-      "icon": "📋",
+      "icon": "ð",
       "label": "Sign-Ups",
       "sub": "Concessions & Snacks",
       "style": "outline",
@@ -115,7 +115,7 @@
   "resources": [
     {
       "title": "Common Rules of Lacrosse",
-      "description": "Official game rules, pages 1–half",
+      "description": "Official game rules, pages 1âhalf",
       "file": "assets/lacrosse-rules-2026-p1.pdf"
     },
     {
