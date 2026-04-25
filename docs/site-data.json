@@ -1,7 +1,7 @@
 {
   "season": "2026",
   "announcement": {
-    "active": true,
+    "active": false,
     "emoji": "📸",
     "text": "Team photos — Monday, March 2nd at 5:00 PM after practice! Parent Night at 6:30 PM."
   },
@@ -22,11 +22,36 @@
     "parentCode": "QZLhY"
   },
   "schedule": [
-    { "date": "Mar 7", "opponent": "Mountain Crest", "time": "4:00 PM", "location": "home" },
-    { "date": "Mar 14", "opponent": "Sky View", "time": "4:00 PM", "location": "away" },
-    { "date": "Mar 21", "opponent": "Logan", "time": "4:00 PM", "location": "home" },
-    { "date": "Mar 28", "opponent": "Ridgeline", "time": "4:00 PM", "location": "away" },
-    { "date": "Apr 4", "opponent": "Bear River", "time": "4:00 PM", "location": "home" }
+    {
+      "date": "Mar 7",
+      "opponent": "Mountain Crest",
+      "time": "4:00 PM",
+      "location": "home"
+    },
+    {
+      "date": "Mar 14",
+      "opponent": "Sky View",
+      "time": "4:00 PM",
+      "location": "away"
+    },
+    {
+      "date": "Mar 21",
+      "opponent": "Logan",
+      "time": "4:00 PM",
+      "location": "home"
+    },
+    {
+      "date": "Mar 28",
+      "opponent": "Ridgeline",
+      "time": "4:00 PM",
+      "location": "away"
+    },
+    {
+      "date": "Apr 4",
+      "opponent": "Bear River",
+      "time": "4:00 PM",
+      "location": "home"
+    }
   ],
   "photoDay": {
     "date": "Monday, March 2nd",
@@ -38,12 +63,54 @@
     "food": "1 Lunch for an away game OR 2 Snacks for home games"
   },
   "quickActions": [
-    { "id": "schedule", "icon": "📅", "label": "Schedule", "sub": "Games & Events", "style": "green", "action": "openScheduleModal" },
-    { "id": "liveStats", "icon": "📊", "label": "Live Stats", "sub": "Game Cast on Statty", "style": "gold", "linkKey": "liveStats" },
-    { "id": "rules", "icon": "📖", "label": "Rules", "sub": "Game Rules & Cheat Sheet", "style": "outline", "action": "openRulesModal" },
-    { "id": "groupspot", "icon": "📲", "label": "Join GroupSpot", "sub": "Parents", "style": "outline", "action": "scrollToGroupspot" },
-    { "id": "teamStore", "icon": "🛒", "label": "Team Store", "sub": "Jerseys & Gear", "style": "outline", "linkKey": "teamStore" },
-    { "id": "signups", "icon": "📋", "label": "Sign-Ups", "sub": "Concessions & Snacks", "style": "outline", "action": "scrollToSignups" }
+    {
+      "id": "schedule",
+      "icon": "📅",
+      "label": "Schedule",
+      "sub": "Games & Events",
+      "style": "green",
+      "action": "openScheduleModal"
+    },
+    {
+      "id": "liveStats",
+      "icon": "📊",
+      "label": "Live Stats",
+      "sub": "Game Cast on Statty",
+      "style": "gold",
+      "linkKey": "liveStats"
+    },
+    {
+      "id": "rules",
+      "icon": "📖",
+      "label": "Rules",
+      "sub": "Game Rules & Cheat Sheet",
+      "style": "outline",
+      "action": "openRulesModal"
+    },
+    {
+      "id": "groupspot",
+      "icon": "📲",
+      "label": "Join GroupSpot",
+      "sub": "Parents",
+      "style": "outline",
+      "action": "scrollToGroupspot"
+    },
+    {
+      "id": "teamStore",
+      "icon": "🛒",
+      "label": "Team Store",
+      "sub": "Jerseys & Gear",
+      "style": "outline",
+      "linkKey": "teamStore"
+    },
+    {
+      "id": "signups",
+      "icon": "📋",
+      "label": "Sign-Ups",
+      "sub": "Concessions & Snacks",
+      "style": "outline",
+      "action": "scrollToSignups"
+    }
   ],
   "resources": [
     {
