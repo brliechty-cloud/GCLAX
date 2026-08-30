@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="Green Canyon Lacrosse">
     <meta name="twitter:description" content="Your one-stop hub for GC Lacrosse team info, schedules, sign-ups, the team store, and more. Go Wolves!">
     <meta name="twitter:image" content="https://greencanyonlacrosse.com/assets/og-image.svg">
-    <meta name="description" content="Green Canyon High School Lacrosse — team store, schedules, sign-ups, GroupSpot links, and everything parents and players need for the 2026 season.">
+    <meta name="description" content="Green Canyon High School Lacrosse — team store, schedules, sign-ups, GroupSpot links, and everything parents and players need for the 2026–2027 season.">
 
     <!-- Apple / iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -215,6 +215,13 @@
             box-shadow: var(--shadow-md);
             transform: translateY(-3px);
             border-color: var(--gc-green);
+        }
+
+        .action-card.action-card--disabled {
+            opacity: 0.45;
+            filter: grayscale(1);
+            cursor: default;
+            pointer-events: none;
         }
 
         .action-card .action-icon {
@@ -678,10 +685,10 @@
                     <span class="action-label">Join GroupSpot</span>
                     <span class="action-sub">Parents</span>
                 </a>
-                <a class="action-card" href="https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home" target="_blank" rel="noopener">
+                <a class="action-card action-card--disabled" href="#" onclick="return false;">
                     <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
                     <span class="action-label">Team Store</span>
-                    <span class="action-sub">Jerseys &amp; Gear</span>
+                    <span class="action-sub">Currently Closed</span>
                 </a>
                 <a class="action-card" href="https://www.stattyapp.com/public" target="_blank" rel="noopener">
                     <span class="action-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
@@ -733,7 +740,7 @@
     <div id="rules-modal" class="modal-overlay" onclick="closeRulesModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-title">Rules & Resources</div>
-            <div class="modal-subtitle">2026 Season</div>
+            <div class="modal-subtitle">2026–2027 Season</div>
             <div class="modal-options" id="rules-modal-options">
                 <a href="assets/lacrosse-cheatsheet-2026.pdf" class="modal-option modal-option--varsity" target="_blank" rel="noopener">
                     📋 Penalty Cheat Sheet
@@ -850,7 +857,11 @@
                     var el = document.createElement('a');
                     el.className = 'action-card action-card--' + btn.style;
 
-                    if (btn.action) {
+                    if (btn.disabled) {
+                        el.classList.add('action-card--disabled');
+                        el.href = '#';
+                        el.setAttribute('onclick', 'return false;');
+                    } else if (btn.action) {
                         el.href = '#';
                         el.setAttribute('onclick', btn.action + '(event)');
                     } else if (btn.linkKey) {
