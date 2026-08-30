@@ -9,7 +9,6 @@
     "teamStore": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
     "groupspotParents": "https://get.groupspot.app/QZLhY",
     "groupspotPlayers": "https://get.groupspot.app/RAaUG",
-    "signupSheet": "https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing",
     "liveStats": "https://www.stattyapp.com/org/2f003f08-67a0-4765-8bfe-ef00bc852f8a?sport=lacrosse"
   },
   "scheduleLinks": {
@@ -21,10 +20,6 @@
   "offSeasonMessage": "The 2026 season has wrapped up. Thanks for an incredible year, Wolves! Check back this winter for 2027 tryout info and season updates.",
   "groupspot": {
     "parentCode": "QZLhY"
-  },
-  "signups": {
-    "concessions": "1 Concessions spot",
-    "food": "1 Lunch for an away game OR 2 Snacks for home games"
   },
   "quickActions": [
     {
@@ -66,14 +61,6 @@
       "sub": "Jerseys & Gear",
       "style": "outline",
       "linkKey": "teamStore"
-    },
-    {
-      "id": "signups",
-      "icon": "📋",
-      "label": "Sign-Ups",
-      "sub": "Concessions & Snacks",
-      "style": "outline",
-      "action": "scrollToSignups"
     }
   ],
   "resources": [

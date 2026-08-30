@@ -396,14 +396,6 @@
 
             <hr class="divider">
 
-            <label for="admin-link-signups">Sign-Up Sheet URL</label>
-            <div class="link-field">
-                <input type="url" id="admin-link-signups">
-                <a class="link-test" onclick="testLink('admin-link-signups')">Test ↗</a>
-            </div>
-
-            <hr class="divider">
-
             <label for="admin-link-livestats">Live Stats URL</label>
             <div class="link-field">
                 <input type="url" id="admin-link-livestats">
@@ -430,15 +422,6 @@
                 <a class="link-test" onclick="testLink('admin-link-schedule-frosh')">Test ↗</a>
             </div>
             <p class="help-text">Leave blank to show "Coming Soon"</p>
-        </div>
-
-        <!-- SIGN-UP REQUIREMENTS -->
-        <div class="card">
-            <div class="card-title">📋 Sign-Up Requirements</div>
-            <label for="admin-signup-concessions">Concessions requirement</label>
-            <input type="text" id="admin-signup-concessions">
-            <label for="admin-signup-food">Food requirement</label>
-            <input type="text" id="admin-signup-food">
         </div>
 
         <!-- RULES & RESOURCES -->
@@ -508,7 +491,6 @@
                     document.getElementById('admin-link-store').value = links.teamStore || '';
                     document.getElementById('admin-link-groupspot-parents').value = links.groupspotParents || '';
                     document.getElementById('admin-link-groupspot-players').value = links.groupspotPlayers || '';
-                    document.getElementById('admin-link-signups').value = links.signupSheet || '';
                     document.getElementById('admin-link-livestats').value = links.liveStats || '';
 
                     // Parent code
@@ -519,11 +501,6 @@
                     document.getElementById('admin-link-schedule-varsity').value = sched.varsity || '';
                     document.getElementById('admin-link-schedule-jv').value = sched.jv || '';
                     document.getElementById('admin-link-schedule-frosh').value = sched.frosh || '';
-
-                    // Sign-up requirements
-                    var signups = data.signups || {};
-                    document.getElementById('admin-signup-concessions').value = signups.concessions || '';
-                    document.getElementById('admin-signup-food').value = signups.food || '';
 
                     // Announcement
                     var announce = data.announcement || {};
@@ -556,7 +533,6 @@
             data.links.teamStore = document.getElementById('admin-link-store').value;
             data.links.groupspotParents = document.getElementById('admin-link-groupspot-parents').value;
             data.links.groupspotPlayers = document.getElementById('admin-link-groupspot-players').value;
-            data.links.signupSheet = document.getElementById('admin-link-signups').value;
             data.links.liveStats = document.getElementById('admin-link-livestats').value;
             data.groupspot = data.groupspot || {};
             data.groupspot.parentCode = document.getElementById('admin-parent-code').value;
@@ -564,9 +540,6 @@
             data.scheduleLinks.varsity = document.getElementById('admin-link-schedule-varsity').value;
             data.scheduleLinks.jv = document.getElementById('admin-link-schedule-jv').value;
             data.scheduleLinks.frosh = document.getElementById('admin-link-schedule-frosh').value;
-            data.signups = data.signups || {};
-            data.signups.concessions = document.getElementById('admin-signup-concessions').value;
-            data.signups.food = document.getElementById('admin-signup-food').value;
 
             data.announcement = {
                 active: document.getElementById('admin-announce-active').checked,
