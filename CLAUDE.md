@@ -2,118 +2,60 @@
 
 ## Project Overview
 
-This is a landing page for **Green Canyon High School Lacrosse** (North Logan, Utah). The goal is to replace long parent emails with a single website at a domain like `gclax.com` where parents, players, and fans can find everything they need — team store links, communication app sign-ups, volunteer sign-ups, game schedules, photos, and announcements.
+Landing page for **Green Canyon High School Lacrosse** (North Logan, Utah), the Wolves. One-stop hub for parents/players: team store, GroupSpot sign-up, volunteer sign-ups, live stats, and rules — replacing long parent emails.
 
-## Current State
+Live at **https://greencanyonlacrosse.com**.
 
-There is a working **prototype** in `src/index.html`. It's a single-file HTML page with embedded CSS that demonstrates the layout, sections, and design direction. It uses:
+## Deployment — read this before touching file paths
 
-- Google Fonts (Inter)
-- CSS custom properties for theming
-- Mobile-first responsive design
-- Sticky navigation pills
-- Card-based section layout
+**`docs/` is the only real copy of the site and the only thing that's live.** It's served by **GitHub Pages** (repo Settings → Pages → source: `main` branch, `/docs`), not Netlify — there is no Netlify deployment despite the domain name suggesting otherwise; an earlier Netlify migration was abandoned and removed (2026-08-29) because DNS was never repointed to it. GitHub Pages already has the HTTPS cert for the custom domain.
 
-The prototype is functional and can be opened in any browser as-is.
+There used to be a duplicate `src/` folder that diverged from `docs/` for weeks without anyone noticing (that's exactly the kind of bug to avoid — see incident note below). It's been deleted. **Do not recreate a second copy of the site.** If you ever add a build step or asset pipeline, make sure it still outputs directly into `docs/`, or update the GitHub Pages source setting to match.
+
+## Structure
+
+```
+docs/
+├── index.html          ← public landing page (single-file HTML/CSS/JS)
+├── admin.html           ← in-browser admin panel for non-technical board members
+├── site-data.json       ← all editable content (links, announcement, sign-ups, etc.)
+├── CNAME                ← greencanyonlacrosse.com (required by GitHub Pages)
+├── manifest.json        ← PWA manifest
+├── assets/               ← logo, favicon, rules PDFs
+└── parent-email-reference.md  ← source material for site copy
+```
+
+`index.html` fetches `site-data.json` on load and populates the page (announcement banner, quick action links, sign-up text, GroupSpot code, etc.). Fallback hardcoded HTML is shown if the fetch fails.
+
+## Admin panel (`admin.html`)
+
+Lets non-technical booster board members update site content without touching code. Flow:
+1. Board member opens `admin.html`, pastes a GitHub personal access token (entered each session, never stored in code — only in `sessionStorage`).
+2. On load, it fetches `docs/site-data.json` via the GitHub Contents API, decodes it, and populates the form.
+3. On save, it PUTs the updated JSON back to the same file via the GitHub API, which commits directly to `main` → GitHub Pages redeploys automatically (~30s–1min).
+
+**Encoding gotcha (fixed 2026-08-29, don't reintroduce):** GitHub's Contents API returns file content as base64. Plain `atob()` does NOT correctly reverse the UTF-8-safe encoding used on save (`btoa(unescape(encodeURIComponent(json)))`) — it corrupts any multi-byte character (emoji, en dashes, etc.) on load, and re-saving then writes the corrupted version back, compounding over time. The load path must mirror the encode: `JSON.parse(decodeURIComponent(escape(atob(...))))`. If you ever touch this code, keep both sides symmetric.
+
+**Known gap:** admin.html has form fields (e.g. "Photo Day") for content that no longer renders anywhere on the public page, and the `resources` (rules PDFs) array in `site-data.json` isn't editable from admin at all — the live Rules modal uses hardcoded hrefs instead. Worth reconciling next time someone's in there.
 
 ## Brand / Design
 
-- **School colors:** Forest green (`#1a5632`) and silver (`#a8b5ad`), with black and white accents. Gold accent (`#c8a951`) also used.
-- **Mascot:** Wolves
-- **Logo:** A wolf head SVG placeholder is currently inline in the hero. Replace with the real GC Wolves logo by dropping the image file in `assets/` and swapping the SVG for `<img src="assets/gc-wolves-logo.png">` — there's a comment in the HTML marking exactly where.
-- **Style:** Clean, professional, mobile-first. Parents will mostly view this on phones.
-- **Fonts:** Inter (or similar clean sans-serif)
-- **Tone:** Friendly but organized. This is a booster club site, not a corporate site.
+- **Colors:** forest green `#245b4e` (dark `#1a4038`, light `#2d6e61`), white/black, gold accent `#c8a951`.
+- **Mascot:** Wolves.
+- **Fonts:** Inter (body), Plus Jakarta Sans (headings), via Google Fonts.
+- **Style:** clean, mobile-first — parents mostly view this on phones. Friendly booster-club tone, not corporate.
 
-## Sections (current and planned)
-
-### Currently in the prototype:
-1. **Announcement Banner** — Swappable top bar for time-sensitive info (photo day, order deadlines, etc.)
-2. **Hero** — GC LAX branding, 2026 season badge
-3. **Quick Action Grid** — 4 big tap targets: Team Store, Join GroupSpot, Sign-Ups, Schedule
-4. **Team Store** — Description + link to https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home
-5. **GroupSpot Communication** — Parent and player join links (parent code: QZLhY)
-6. **Concessions/Snack Sign-Ups** — Link to Google Sheets sign-up
-7. **Game Schedule** — Table with home/away badges (placeholder data currently)
-8. **Team Photos** — Photo day info
-9. **Footer** — Basic booster club info
-
-### Sections to consider adding later:
-- Coach and board contact info
-- Fundraising / sponsor section
-- FAQ (common parent questions)
-- Photo gallery (post-season)
-- Link to the team's custom app (Quad Code project, separate repo)
-
-## Key Links (real, from the team email)
+## Key Links
 
 | What | URL |
 |------|-----|
 | Team Store | https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home |
 | GroupSpot (Parents) | https://get.groupspot.app/QZLhY |
 | GroupSpot (Players) | https://get.groupspot.app/RAaUG |
-| Volunteer Sign-Up Sheet | https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit?usp=sharing |
-| Team App | TBD (Quad Code project) |
+| Volunteer Sign-Up Sheet | https://docs.google.com/spreadsheets/d/1QA8yNgIIZlBfNOS42R4fHIm_hfpebGl9dKtjTnj9y8k/edit |
+| Live Stats (Statty) | https://www.app.stattyapp.com/public |
+| Schedule (MaxPreps, Varsity/JV) | linked via `scheduleLinks` in site-data.json |
 
-## Technical Direction
+## Incident log
 
-This should stay **simple and easy to maintain** by non-developers on the booster club board. Recommendations:
-
-- **Keep it as a static site.** No server-side code needed. The content changes a few times per season, not daily.
-- **Single HTML file is fine for now.** If it grows, consider splitting into a simple multi-page site or using a lightweight static site generator.
-- **Hosting:** GitHub Pages (free) or Netlify (free tier). Domain: register something like gclax.com (~$12/year).
-- **Editing workflow:** Board members can edit the HTML directly in GitHub's web editor, or you could add a simple JSON config file for links/dates that the page reads.
-
-## Data-Driven Approach (optional enhancement)
-
-To make the site easier for non-technical board members to update, consider extracting the changing data into a `site-data.json` file:
-
-```json
-{
-  "season": "2026",
-  "announcement": {
-    "active": true,
-    "text": "Team photos — Monday, March 2nd at 5:00 PM after practice!"
-  },
-  "links": {
-    "teamStore": "https://shop.teamupathletics.com/...",
-    "groupspotParents": "https://get.groupspot.app/QZLhY",
-    "groupspotPlayers": "https://get.groupspot.app/RAaUG",
-    "signupSheet": "https://docs.google.com/spreadsheets/d/...",
-    "teamApp": ""
-  },
-  "schedule": [
-    { "date": "Mar 7", "opponent": "Mountain Crest", "time": "4:00 PM", "location": "home" },
-    { "date": "Mar 14", "opponent": "Sky View", "time": "4:00 PM", "location": "away" }
-  ],
-  "photoDay": {
-    "date": "Monday, March 2nd",
-    "time": "5:00 PM",
-    "note": "After practice. Parent Night follows at 6:30 PM."
-  }
-}
-```
-
-Then the HTML reads this JSON on load and populates the page. Board members only ever edit the JSON file — no touching HTML.
-
-## File Structure
-
-```
-gclax-site/
-├── CLAUDE.md          ← This file (project context for Claude Code)
-├── src/
-│   └── index.html     ← Working prototype
-├── docs/
-│   └── parent-email-reference.md  ← Example of current parent communications
-└── assets/            ← Future: logo, photos, favicon
-```
-
-## Next Steps / Task List
-
-1. **Polish the prototype** — Review the current HTML, tighten up spacing, ensure it looks great on iPhone Safari
-2. **Add the JSON data layer** — Extract schedule, links, and announcement into a data file
-3. **Add a favicon and open graph tags** — So link previews look good when shared
-4. **Set up GitHub repo** — Initialize git, push to GitHub, enable GitHub Pages
-5. **Register domain** — gclax.com or similar, point DNS to GitHub Pages
-6. **Add the team app button** — Once the Quad Code app URL is known, add it as a prominent CTA
-7. **Ongoing:** Update schedule, announcement banner, and links as the season progresses
+- **2026-08-29:** Discovered admin.html had been silently writing to a stale duplicate the whole time content drifted — actually it was the reverse: `src/site-data.json` (an abandoned Netlify-migration copy) had gone stale while `docs/site-data.json` (the real, live one) kept receiving admin edits correctly. The actual bug was a UTF-8 encode/decode mismatch corrupting emoji and special characters on every load→save round trip. Fixed the encoding, repaired the already-corrupted fields, and deleted the abandoned `src/`, `netlify.toml`, and `netlify/functions/` to remove the duplicate-copy trap entirely.
