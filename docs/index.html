@@ -28,6 +28,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.svg">
     <meta name="theme-color" content="#245b4e">
+    <link rel="manifest" href="manifest.json">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -657,7 +658,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main-sections">
 
         <!-- QUICK ACTION BUTTONS — JS will replace these with dynamic versions -->
         <section id="quick-links">
@@ -758,7 +759,7 @@
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-title">Rules & Resources</div>
             <div class="modal-subtitle">2026 Season</div>
-            <div class="modal-options">
+            <div class="modal-options" id="rules-modal-options">
                 <a href="assets/lacrosse-cheatsheet-2026.pdf" class="modal-option modal-option--varsity" target="_blank" rel="noopener">
                     📋 Penalty Cheat Sheet
                 </a>
@@ -895,22 +896,46 @@
                 });
             }
 
-            // Apply all data from site-data.json to the page
-            function applyJsonData(data) {
-
-                // Announcement banner
-                if (data.announcement) {
-                    var banner = document.getElementById('announcement-banner');
-                    if (banner) {
-                        if (data.announcement.active && data.announcement.text) {
-                            var prefix = data.announcement.emoji ? data.announcement.emoji + ' ' : '';
-                            banner.textContent = prefix + data.announcement.text;
-                            banner.style.display = 'block';
-                        } else {
-                            banner.style.display = 'none';
-                        }
-                    }
+            // Announcement banner — shown regardless of season
+            function applyAnnouncement(data) {
+                var banner = document.getElementById('announcement-banner');
+                if (!banner) return;
+                var announcement = data.announcement || {};
+                if (announcement.active && announcement.text) {
+                    var prefix = announcement.emoji ? announcement.emoji + ' ' : '';
+                    banner.textContent = prefix + announcement.text;
+                    banner.style.display = 'block';
+                } else {
+                    banner.style.display = 'none';
                 }
+            }
+
+            // Off-season mode: replace the main content with a single message
+            function renderOffSeason(data) {
+                var main = document.getElementById('main-sections');
+                if (!main) return;
+                var msg = (data.offSeasonMessage && data.offSeasonMessage.trim()) || 'The season has ended. Check back soon — Go Wolves!';
+                main.innerHTML = '<section class="section"><p class="section-desc" style="text-align:center;padding:2.5rem 0;font-size:1.05rem;">' + msg + '</p></section>';
+            }
+
+            // Rules modal — driven by data.resources so it's editable from admin
+            function renderRulesModal(data) {
+                var container = document.getElementById('rules-modal-options');
+                if (!container || !data.resources || !data.resources.length) return;
+                container.innerHTML = '';
+                data.resources.forEach(function(res, i) {
+                    var a = document.createElement('a');
+                    a.href = res.file;
+                    a.className = 'modal-option ' + (i === 0 ? 'modal-option--varsity' : 'modal-option--jv');
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    a.textContent = '📄 ' + res.title;
+                    container.appendChild(a);
+                });
+            }
+
+            // Apply all data from site-data.json to the page (in-season only)
+            function applyJsonData(data) {
 
                 if (data.links) {
                     if (data.links.groupspotParents) setLink('a[href*="groupspot.app/QZLhY"]', data.links.groupspotParents);
@@ -955,72 +980,6 @@
                     }
                 }
 
-                // Schedule table
-                if (data.schedule && data.schedule.length) {
-                    var tbody = document.getElementById('schedule-body');
-                    if (tbody) {
-                        tbody.innerHTML = '';
-                        data.schedule.forEach(function(game) {
-                            var isHome = game.location === 'home';
-                            var badgeClass = isHome ? 'badge--home' : 'badge--away';
-                            var badgeText = isHome ? 'Home' : 'Away';
-                            var tr = document.createElement('tr');
-                            tr.innerHTML =
-                                '<td>' + game.date + '</td>' +
-                                '<td>' + game.opponent + '</td>' +
-                                '<td>' + game.time + '</td>' +
-                                '<td><span class="badge ' + badgeClass + '">' + badgeText + '</span></td>';
-                            tbody.appendChild(tr);
-                        });
-                    }
-                }
-
-                // Photo day
-                if (data.photoDay && data.photoDay.date) {
-                    var photosSection = document.getElementById('photos');
-                    if (photosSection) photosSection.style.display = '';
-                    var photoDate = document.getElementById('photo-date');
-                    if (photoDate) {
-                        photoDate.textContent = data.photoDay.date + (data.photoDay.time ? ' at ' + data.photoDay.time : '');
-                    }
-                    var photoNote = document.getElementById('photo-note');
-                    if (photoNote && data.photoDay.note) {
-                        photoNote.textContent = data.photoDay.note;
-                    }
-                }
-
-                // Team store link
-                if (data.links && data.links.teamStore) {
-                    setLink('#team-store .link-btn', data.links.teamStore);
-                }
-
-                // Hero CTA link
-                var heroBtn = document.getElementById('hero-schedule-btn');
-                if (heroBtn) {
-                    var scheduleCard = document.querySelector('.action-card');
-                    if (scheduleCard) {
-                        heroBtn.href = scheduleCard.href || scheduleCard.dataset.url || '#';
-                    }
-                }
-            }
-
-            // Render resources (PDF cards) from data.resources
-            function renderResources(data) {
-                var container = document.getElementById('resources-list');
-                if (!container || !data.resources || !data.resources.length) return;
-                container.innerHTML = '';
-                data.resources.forEach(function(res) {
-                    var card = document.createElement('div');
-                    card.className = 'photo-card';
-                    card.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:0.75rem;';
-                    card.innerHTML =
-                        '<div>' +
-                            '<h4 style="margin-bottom:0.25rem;">' + res.title + '</h4>' +
-                            '<p style="font-size:0.85rem;opacity:0.75;">' + res.description + '</p>' +
-                        '</div>' +
-                        '<a href="' + res.file + '" class="link-btn" target="_blank" rel="noopener" style="white-space:nowrap;flex-shrink:0;">View PDF →</a>';
-                    container.appendChild(card);
-                });
             }
 
             // Fetch JSON and upgrade the page (hardcoded HTML buttons show as fallback)
@@ -1030,9 +989,14 @@
                     return res.json();
                 })
                 .then(function(data) {
-                    renderActionButtons(data);
-                    applyJsonData(data);
-                    renderResources(data);
+                    applyAnnouncement(data);
+                    renderRulesModal(data);
+                    if (data.offSeason) {
+                        renderOffSeason(data);
+                    } else {
+                        renderActionButtons(data);
+                        applyJsonData(data);
+                    }
                 })
                 .catch(function() {
                     // Hardcoded HTML buttons are already visible as fallback

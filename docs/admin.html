@@ -352,6 +352,21 @@
             <textarea id="admin-announce-text" rows="2" placeholder="Team photos — Monday, March 2nd at 5:00 PM after practice!"></textarea>
         </div>
 
+        <!-- OFF-SEASON MODE -->
+        <div class="card">
+            <div class="card-title">🏁 Off-Season Mode</div>
+            <div class="toggle-row">
+                <label for="admin-offseason-active">Show off-season message instead of the full site</label>
+                <label class="toggle">
+                    <input type="checkbox" id="admin-offseason-active">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="help-text" style="margin-top: -0.5rem;">When on, replaces the schedule/sign-ups/action buttons with the message below. The announcement banner above still works independently.</p>
+            <label for="admin-offseason-message">Off-season message</label>
+            <textarea id="admin-offseason-message" rows="2" placeholder="The season has ended. See you next year — Go Wolves!"></textarea>
+        </div>
+
         <!-- LINKS -->
         <div class="card">
             <div class="card-title">🔗 Links</div>
@@ -426,16 +441,29 @@
             <input type="text" id="admin-signup-food">
         </div>
 
-        <!-- PHOTO DAY -->
+        <!-- RULES & RESOURCES -->
         <div class="card">
-            <div class="card-title">📸 Photo Day</div>
-            <p class="help-text" style="margin-top: -0.5rem; margin-bottom: 1rem;">Leave Date blank to hide this section from the site.</p>
-            <label for="admin-photo-date">Date</label>
-            <input type="text" id="admin-photo-date" placeholder="Monday, March 2nd">
-            <label for="admin-photo-time">Time</label>
-            <input type="text" id="admin-photo-time" placeholder="5:00 PM">
-            <label for="admin-photo-note">Note</label>
-            <textarea id="admin-photo-note" placeholder="After practice. Parent Night follows at 6:30 PM."></textarea>
+            <div class="card-title">📖 Rules & Resources</div>
+            <p class="help-text" style="margin-top: -0.5rem;">Titles and descriptions shown in the "Rules" popup on the site. To replace a PDF file itself, ask your developer — this only edits the text.</p>
+
+            <label for="admin-resource-0-title">Resource 1 — Title</label>
+            <input type="text" id="admin-resource-0-title">
+            <label for="admin-resource-0-desc">Resource 1 — Description</label>
+            <input type="text" id="admin-resource-0-desc">
+
+            <hr class="divider">
+
+            <label for="admin-resource-1-title">Resource 2 — Title</label>
+            <input type="text" id="admin-resource-1-title">
+            <label for="admin-resource-1-desc">Resource 2 — Description</label>
+            <input type="text" id="admin-resource-1-desc">
+
+            <hr class="divider">
+
+            <label for="admin-resource-2-title">Resource 3 — Title</label>
+            <input type="text" id="admin-resource-2-title">
+            <label for="admin-resource-2-desc">Resource 3 — Description</label>
+            <input type="text" id="admin-resource-2-desc">
         </div>
 
         <div style="margin-top: 1.5rem; padding-bottom: 2rem;">
@@ -503,11 +531,18 @@
                     document.getElementById('admin-announce-emoji').value = announce.emoji || '';
                     document.getElementById('admin-announce-text').value = announce.text || '';
 
-                    // Photo day
-                    var photo = data.photoDay || {};
-                    document.getElementById('admin-photo-date').value = photo.date || '';
-                    document.getElementById('admin-photo-time').value = photo.time || '';
-                    document.getElementById('admin-photo-note').value = photo.note || '';
+                    // Off-season mode
+                    document.getElementById('admin-offseason-active').checked = !!data.offSeason;
+                    document.getElementById('admin-offseason-message').value = data.offSeasonMessage || '';
+
+                    // Rules & resources
+                    var resources = data.resources || [];
+                    resources.forEach(function(res, i) {
+                        var titleEl = document.getElementById('admin-resource-' + i + '-title');
+                        var descEl = document.getElementById('admin-resource-' + i + '-desc');
+                        if (titleEl) titleEl.value = res.title || '';
+                        if (descEl) descEl.value = res.description || '';
+                    });
                 })
                 .catch(function() {
                     showToast('Error loading site-data.json');
@@ -539,11 +574,18 @@
                 text: document.getElementById('admin-announce-text').value
             };
 
-            data.photoDay = {
-                date: document.getElementById('admin-photo-date').value,
-                time: document.getElementById('admin-photo-time').value,
-                note: document.getElementById('admin-photo-note').value
-            };
+            data.offSeason = document.getElementById('admin-offseason-active').checked;
+            data.offSeasonMessage = document.getElementById('admin-offseason-message').value;
+
+            data.resources = (siteData.resources || []).map(function(res, i) {
+                var titleEl = document.getElementById('admin-resource-' + i + '-title');
+                var descEl = document.getElementById('admin-resource-' + i + '-desc');
+                return {
+                    title: titleEl ? titleEl.value : res.title,
+                    description: descEl ? descEl.value : res.description,
+                    file: res.file
+                };
+            });
 
             return data;
         }
