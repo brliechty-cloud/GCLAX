@@ -1,9 +1,9 @@
 {
   "season": "2026-2027",
   "announcement": {
-    "active": false,
-    "emoji": "",
-    "text": ""
+    "active": true,
+    "emoji": "📸",
+    "text": "Photo Day is now Wed, Sept 10th at 5:30pm, right after practice. Please wear your jersey!"
   },
   "links": {
     "teamStore": "https://shop.teamupathletics.com/015-green_canyon_lacrosse_fan_s/shop/home",
